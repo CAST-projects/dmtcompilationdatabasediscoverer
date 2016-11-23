@@ -13,14 +13,14 @@ import com.castsoftware.dmt.engine.project.Profile.ReferenceCollation;
  * Tests for source files based projects discovery
  *
  */
-public class CppCDDiscovererUnitTest
+public class CppCDUnitTest
 {
 
-    private static class CppCDDiscovererUnitTestTester extends ProjectsDiscoveryEngineTester
+    private static class CppCDUnitTestTester extends ProjectsDiscoveryEngineTester
     {
-        CppCDDiscovererUnitTestTester(String desc)
+        CppCDUnitTestTester(String desc)
         {
-            super(CppCDDiscovererUnitTest.class, desc);
+            super(CppCDUnitTest.class, desc);
         }
 
         @Override
@@ -59,6 +59,6 @@ public class CppCDDiscovererUnitTest
     @Test
     public void unitTest1() throws Throwable
     {
-        new CppCDDiscovererUnitTestTester("Test1").go();
+        new CppCDUnitTestTester("UT1").go();
     }
 }
