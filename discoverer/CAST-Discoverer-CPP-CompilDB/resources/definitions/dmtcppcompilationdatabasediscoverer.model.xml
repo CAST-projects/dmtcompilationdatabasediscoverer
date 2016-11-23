@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document>
+	<library imageRootPath="icons" product="DMT" symbol="dmtcppcompilationdatabasediscoverer" version="1.0"
+	         dependencies="delivery:2.10;dmtdevmicrosofttechno:2.1">
+		
+        <entity symbol="CppCompilationDatabaseDiscoverer" baseEntity="dmtdevmicrosofttechno.CCPlusPlusBaseDiscoverer" label="C/C++ Compilation Database project" viewForm="subForm">
+            <field length="500" override="true" symbol="javaClassName" valueEntity="system.String">
+                <value formula="true">'com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CppCompilationDatabaseDiscoverer'</value>
+            </field>
+            <field override="true" symbol="projectsFilesPatterns">
+                <value formula="true">'compile_commands.json'</value>
+            </field>
+            <!--
+            <field override="true" symbol="resourceProjectsPatterns">
+                <value formula="true">'xxx.xml'</value>
+            </field>
+            -->
+        </entity>
+
+	</library>
+	
+	<conversion requires="" provides="dmtcppcompilationdatabasediscoverer:1.0">
+		<!-- Library installation -->
+	</conversion>	
+</document>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+	<language name="English">
+		<message id="cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing" format="Error while reading the file %PATH%"/>
+    <message id="cast.dmt.discover.cpp.compilationdatabase.missingLanguage" format="Invalid installation: language %LNG% is not defined"/>
+	</language>
+</messages>
