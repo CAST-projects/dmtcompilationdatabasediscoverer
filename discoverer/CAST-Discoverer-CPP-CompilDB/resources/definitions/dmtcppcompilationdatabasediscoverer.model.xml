@@ -5,7 +5,7 @@
 		
         <entity symbol="CppCompilationDatabaseDiscoverer" baseEntity="dmtdevmicrosofttechno.CCPlusPlusBaseDiscoverer" label="C/C++ Compilation Database project" viewForm="subForm">
             <field length="500" override="true" symbol="javaClassName" valueEntity="system.String">
-                <value formula="true">'com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CppCompilationDatabaseDiscoverer'</value>
+                <value formula="true">'com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CppCompilDBDiscoverer'</value>
             </field>
             <field override="true" symbol="projectsFilesPatterns">
                 <value formula="true">'compile_commands.json'</value>
