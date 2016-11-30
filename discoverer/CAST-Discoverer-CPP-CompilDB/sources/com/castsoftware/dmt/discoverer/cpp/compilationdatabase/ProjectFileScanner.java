@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.castsoftware.dmt.engine.project.IResourceReadOnly;
@@ -39,6 +39,9 @@ public class ProjectFileScanner
     	String cFileExtensions = "*.c;*.pc;*.ppc";
     	BufferedReader reader = null;
     	String command = null;
+    	Boolean isArguments = false;
+    	Boolean isInArguments = false;
+    	List<String> includes = new ArrayList<String>();
     	String directory = null;
     	String file = null;
     	int languageId = 0;
@@ -47,20 +50,26 @@ public class ProjectFileScanner
 
         try
         {
-            for (String line = reader.readLine(); line != null; line = reader.readLine())
+            for (String readline = reader.readLine(); readline != null; readline = reader.readLine())
             {
-            	line = line.trim();
+            	String line = readline.trim();
             	if ("{".equals(line))
             	{
             		// new
             		command = null;
+            		isArguments = false;
+            		isInArguments = false;
             		directory = null;
             		file = null;
             		languageId = 0;
             		languageHeaderId = 0;
             	}
-            	else if ("}".equals(line))
+            	else if (line.startsWith("}"))
             	{
+            		if ((command == null) && (!isArguments))
+            		{
+            			Logging.warn("Not supported format: no command and no arguments");
+            		}
                     if (project.getName() == null)
             		{
                 		int last = directory.lastIndexOf("/");
@@ -104,6 +113,37 @@ public class ProjectFileScanner
 		        		{
 		        			parseCommand(project, command, languageId, languageHeaderId);
 		        		}
+            		}
+            		if (isArguments)
+            		{
+            			for (String include : includes)
+            			{
+            				String directoryRef = buildPackageRelativePath(project, include);
+            				if (project.getDirectoryReference(directoryRef) == null)
+            					project.addDirectoryReference(directoryRef, languageId, languageHeaderId);
+            			}
+            		}
+            	}
+            	else if (line.startsWith("\"arguments\": ["))
+            	{
+            		isArguments = true;
+            		isInArguments = true;
+            		//if (line.length() > 14)
+            		//	arguments = line.substring(15);
+            	}
+            	else if (line.startsWith("]"))
+            	{
+            		isInArguments = false;
+            	}
+            	else if (isInArguments)
+            	{
+            		if (line.startsWith("\"-D"))
+            		{
+            			addMacro(project, line.substring(2));
+            		}
+            		else if (line.startsWith("-I"))
+            		{
+            			includes.add(line.substring(2));
             		}
             	}
             	else if (line.startsWith("\"command\":"))
@@ -151,7 +191,6 @@ public class ProjectFileScanner
 			} catch (IOException e) {
 				Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing", "PATH", relativeFilePath);
 			}
-        	reader = null;
         }
         return;
     }
@@ -175,31 +214,7 @@ public class ProjectFileScanner
     		else
     			macro = command.substring(pos1 + 2);
     		
-    		String macroName = "";
-    		String macroValue = null;
-    		if (macro.contains("="))
-    		{
-    			String [] values = macro.split("=");
-    			macroName = values[0];
-    			macroValue = values[1];
-    		}
-    		else
-    		{
-    			macroName = macro;
-    		}
-    		
-    		Option o = project.getOption(macroName);
-	        if (o == null)
-	            project.addOption(macroName, macroValue);
-	        else
-	        {
-	        	if (macroValue == null && o.getValue() != null)
-	        		Logging.warn("A", "MACRO", macroName, "VALUE", o.getValue());
-	        	if (macroValue != null && !macroValue.equals(o.getValue()))
-	        		Logging.warn("B", "MACRO", macroName, "VALUE1", macroValue, "VALUE2", o.getValue());
-	        }	
-	        if (project.getMetadata(macroName) == null)
-	            project.addMetadata(macroName, macroValue);
+    		addMacro(project, macro);
 	        pos1 = command.indexOf("-D",pos1 + 1);
     	}
 
@@ -221,4 +236,34 @@ public class ProjectFileScanner
     	}
     	return;
     }
+    private static void addMacro(Project project, String macro)
+    {
+		String macroName = "";
+		String macroValue = null;
+		if (macro.contains("="))
+		{
+			String [] values = macro.split("=");
+			macroName = values[0];
+			macroValue = values[1];
+		}
+		else
+		{
+			macroName = macro;
+		}
+		
+		Option o = project.getOption(macroName);
+        if (o == null)
+            project.addOption(macroName, macroValue);
+        else
+        {
+        	if (macroValue == null && o.getValue() != null)
+        		Logging.warn("A", "MACRO", macroName, "VALUE", o.getValue());
+        	if (macroValue != null && !macroValue.equals(o.getValue()))
+        		Logging.warn("B", "MACRO", macroName, "VALUE1", macroValue, "VALUE2", o.getValue());
+        }	
+        if (project.getMetadata(macroName) == null)
+            project.addMetadata(macroName, macroValue);
+    	return;
+    }
 }
+

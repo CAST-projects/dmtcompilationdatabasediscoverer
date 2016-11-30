@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects packageId="e6ced788-f60f-4d31-a58a-6bf23eb56f10" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="D:/SRC/C++/CompilationDatabase/unittests">
+ <PackageRootPath path=""/>
+ <Project projectId="unittest2/compile_commands.json" projectName="IR" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="unittest2/compile_commands.json" projectPath="unittest2" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?DESCRIPTOR" value="compile_commands.json"/>
+  <Metadata name="D__STDC_LIMIT_MACROS" value="1&quot;,"/>
+  <Metadata name="D__STDC_CONSTANT_MACROS" value="1&quot;,"/>
+  <Metadata name="D__STDC_FORMAT_MACROS" value="1&quot;,"/>
+  <Metadata name="DNDEBUG&quot;,"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@IR" value="unittest2"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@unittest2/compile_commands.json" value="unittest2"/>
+  <Metadata name="#!$?EXTREF#!$?" value="IR"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="D__STDC_LIMIT_MACROS" value="1&quot;,"/>
+   <Option name="D__STDC_CONSTANT_MACROS" value="1&quot;,"/>
+   <Option name="D__STDC_FORMAT_MACROS" value="1&quot;,"/>
+   <Option name="DNDEBUG&quot;,"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@IR%/../../../../Soter/src/llvm/IR/IRBuilder.cpp" languageId="2" sourceFileSize="0">
+   </SourceFile>
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@IR%/../../../../Soter/src/llvm/Analysis/ProfileDataLoader.cpp" languageId="2" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+ </Project>
+</Projects>

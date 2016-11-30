@@ -33,6 +33,8 @@
    <Option name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
   </Options>
   <Sources>
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@msieve%/aprcl/mpz_aprcl32.c" languageId="1" sourceFileSize="0">
+   </SourceFile>
    <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@msieve%/common/filter/clique.c" languageId="1" sourceFileSize="0">
    </SourceFile>
   </Sources>

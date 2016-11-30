@@ -51,7 +51,7 @@ public class CppCDUnitTest
     }
 
     /**
-     * Test discovery of 1 Project
+     * Test discovery for cc command
      *
      * @throws Throwable
      *             if anything goes wrong
@@ -60,5 +60,17 @@ public class CppCDUnitTest
     public void unitTest1() throws Throwable
     {
         new CppCDUnitTestTester("UT1").go();
+    }
+
+    /**
+     * Test discovery for arguments
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest2() throws Throwable
+    {
+        new CppCDUnitTestTester("UT2").go();
     }
 }

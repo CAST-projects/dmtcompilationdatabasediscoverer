@@ -24,8 +24,14 @@ public class CppCompilDBDiscoverer extends BasicProjectsDiscovererAdapter
         IProjectsDiscovererUtilities projectsDiscovererUtilities)
     {
         String projectDescriptor = project.getMetadata(IProfileReadOnly.METADATA_DESCRIPTOR).getValue();
-        if ((!projectDescriptor.equals("compile_commands.json")) || (!parseProjectFile(relativeFilePath, content, project, projectsDiscovererUtilities)))
-            projectsDiscovererUtilities.deleteProject(project.getId());
+        if (projectDescriptor.equals("compile_commands.json"))
+        {
+        	parseProjectFile(relativeFilePath, content, project, projectsDiscovererUtilities);
+        	if (project.getName() == null)
+        		projectsDiscovererUtilities.deleteProject(project.getId());
+        }
+        else
+        	projectsDiscovererUtilities.deleteProject(project.getId());
     }
 
     private static boolean parseProjectFile(String relativeFilePath, String content, Project project, IProjectsDiscovererUtilities projectsDiscovererUtilities)
