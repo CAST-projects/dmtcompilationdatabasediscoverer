@@ -5,8 +5,6 @@ import java.io.File;
 import com.castsoftware.dmt.engine.discovery.AdvancedProjectsDiscovererAdapter;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
 import com.castsoftware.dmt.engine.discovery.ProjectsDiscovererWrapper.ProfileOrProjectTypeConfiguration.LanguageConfiguration;
-import com.castsoftware.dmt.engine.foldertree.IMetadataInterpreter;
-import com.castsoftware.dmt.engine.project.IProfileReadOnly;
 import com.castsoftware.dmt.engine.project.Project;
 import com.castsoftware.util.logger.Logging;
 
@@ -35,7 +33,7 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     	super.startTree(packageId, packageName, packageType, versionId, connectionPath);
     	this.connectionPath = connectionPath;
     	//To simulate a real extraction
-    	this.connectionPath = "/usr1/soter";
+    	//this.connectionPath = "/usr1/soter";
     	//this.connectionPath = "/home/yle/msieve";
     }
 

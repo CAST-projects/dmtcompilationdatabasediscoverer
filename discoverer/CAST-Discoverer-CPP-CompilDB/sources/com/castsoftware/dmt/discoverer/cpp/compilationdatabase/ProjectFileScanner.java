@@ -39,7 +39,6 @@ public class ProjectFileScanner
      */
     public static void scan(String connectionPath, String relativeFilePath, Project project, String projectContent, int cLanguageId, int cHeaderLanguage, int cPlusPlusLanguage, int cPlusPlusHeaderLanguage, int cFamilyNotCompilableLanguage)
     {
-    	String cFileExtensions = "*.c;*.pc;*.ppc";
     	BufferedReader reader = null;
     	String command = null;
     	Boolean isArguments = false;
