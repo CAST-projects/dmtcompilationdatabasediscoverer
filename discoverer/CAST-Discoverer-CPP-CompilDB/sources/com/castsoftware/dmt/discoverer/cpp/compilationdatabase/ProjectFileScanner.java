@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.castsoftware.dmt.engine.project.IResourceReadOnly;
@@ -18,6 +19,8 @@ import com.castsoftware.util.logger.Logging;
  */
 public class ProjectFileScanner
 {
+	static String sep = "";
+	
     private ProjectFileScanner()
     {
         // NOP
@@ -34,7 +37,7 @@ public class ProjectFileScanner
      *            the file content to scan.
      * @return {@code true} if no error was encountered during scanning. {@code false} otherwise.
      */
-    public static void scan(String relativeFilePath, Project project, String projectContent, int cLanguageId, int cHeaderLanguage, int cPlusPlusLanguage, int cPlusPlusHeaderLanguage, int cFamilyNotCompilableLanguage)
+    public static void scan(String connectionPath, String relativeFilePath, Project project, String projectContent, int cLanguageId, int cHeaderLanguage, int cPlusPlusLanguage, int cPlusPlusHeaderLanguage, int cFamilyNotCompilableLanguage)
     {
     	String cFileExtensions = "*.c;*.pc;*.ppc";
     	BufferedReader reader = null;
@@ -46,6 +49,9 @@ public class ProjectFileScanner
     	String file = null;
     	int languageId = 0;
     	int languageHeaderId = 0;
+    	
+    	setSeparator(connectionPath);
+    	
     	reader = new BufferedReader(new StringReader(projectContent), projectContent.length());
 
         try
@@ -95,13 +101,9 @@ public class ProjectFileScanner
                     else 
                     	languageId = cFamilyNotCompilableLanguage;
 
-            		if (!"".equals(directory))
-            		{
-            			if (file.startsWith(directory))
-            				file = file.substring(directory.length() + 1);
-            		}
-                    if (project.getFileReference(file) == null)
-                    	project.addSourceFileReference(buildPackageRelativePath(project, file), languageId);
+                    String fileRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, directory, file);
+                    if (project.getFileReference(fileRef) == null)
+                    	project.addSourceFileReference(fileRef, languageId);
             		
             		if (command != null)
             		{
@@ -118,9 +120,9 @@ public class ProjectFileScanner
             		{
             			for (String include : includes)
             			{
-            				String directoryRef = buildPackageRelativePath(project, include);
-            				if (project.getDirectoryReference(directoryRef) == null)
-            					project.addDirectoryReference(directoryRef, languageId, languageHeaderId);
+            				String includeRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, directory, include);
+            				if (project.getDirectoryReference(includeRef) == null && project.getResourceReference(includeRef) == null)
+            					project.addDirectoryReference(includeRef, languageId, languageHeaderId);
             			}
             		}
             	}
@@ -139,11 +141,11 @@ public class ProjectFileScanner
             	{
             		if (line.startsWith("\"-D"))
             		{
-            			addMacro(project, line.substring(2));
+            			addMacro(project, line.substring(3,line.indexOf("\"",2)));
             		}
-            		else if (line.startsWith("-I"))
+            		else if (line.startsWith("\"-I"))
             		{
-            			includes.add(line.substring(2));
+            			includes.add(line.substring(3,line.indexOf("\"",2)));
             		}
             	}
             	else if (line.startsWith("\"command\":"))
@@ -228,7 +230,8 @@ public class ProjectFileScanner
     		else
     			include = command.substring(pos1 + 2);
     		
-    		String directoryRef = buildPackageRelativePath(project, include);
+    		String includeRelativeRef = removeRelativePath(include);
+    		String directoryRef = buildPackageRelativePath(project, includeRelativeRef);
     		if (project.getDirectoryReference(directoryRef) == null)
     			project.addDirectoryReference(directoryRef, languageId, languageHeaderId);
     		
@@ -264,6 +267,84 @@ public class ProjectFileScanner
         if (project.getMetadata(macroName) == null)
             project.addMetadata(macroName, macroValue);
     	return;
+    }
+    
+    private static void setSeparator(String rootPath)
+    {
+    	if (rootPath.startsWith("/"))
+    		sep = "/";
+        else
+        	sep = "\\";
+    }
+
+    private static String getRelativeConnectionPath(Project project, String connectionPath, String relativeFilePath, String directory, String file)
+    {
+    	if (file.startsWith("/"))
+    	{
+    		if (file.startsWith(connectionPath))
+    		{
+    			String relativeFile = file.substring(connectionPath.length() + 1);
+    			if (relativeFilePath != null)
+    			{
+	    			if (relativeFile.startsWith(relativeFilePath) && (relativeFile.length() > (relativeFilePath.length() + 1)))
+	    			{
+	    				relativeFile = relativeFile.substring(relativeFilePath.length() + 1);
+	    				String fileRelativeRef = removeRelativePath(relativeFile);
+						return buildPackageRelativePath(project, fileRelativeRef);
+	    			}
+	    			else
+	    				return removeRelativePath(relativeFile);
+    			}
+    			else
+    				return buildPackageRelativePath(project, relativeFile);
+    		}
+    		else
+    			return file;
+    	}
+    	else
+    	{
+    		if (directory.startsWith(connectionPath))
+	    	{
+	    		String relativeDirectory = directory.substring(connectionPath.length() + 1);
+	    		if (relativeDirectory.startsWith(relativeFilePath))
+	    		{
+	    			relativeDirectory = relativeDirectory.substring(relativeFilePath.length() + 1);
+	    			String fileRelativeRef = removeRelativePath(relativeDirectory + sep + file);
+    				return buildPackageRelativePath(project, fileRelativeRef);
+	    		}
+	    		else
+	    			return removeRelativePath(directory + sep + file);
+	    	}
+			return removeRelativePath(directory + sep + file);
+    	}
+    }
+    
+    private static String removeRelativePath(String path)
+    {
+    	List<String> list = new ArrayList<String>(Arrays.asList(path.split("/")));
+    	List<String> relativeList = new ArrayList<String>();
+    	
+    	for (int i = 0; i < list.size(); i++)
+    	{
+    		String fld1 = list.get(i);
+    		if ("..".equals(fld1))
+    		{
+    			if (relativeList.size() > 0 && !"..".equals(relativeList.get(relativeList.size() - 1)))
+    				relativeList.remove(relativeList.size() - 1);
+    			else
+    				relativeList.add(fld1);
+    		}
+    		else
+    			relativeList.add(fld1);
+    	}
+		String relativePath = "";
+    	for (int i = 0; i < relativeList.size(); i++)
+    	{
+    		if (i > 0)
+    			relativePath += "/";
+    		relativePath += relativeList.get(i);
+    	}
+    	return relativePath;
     }
 }
 

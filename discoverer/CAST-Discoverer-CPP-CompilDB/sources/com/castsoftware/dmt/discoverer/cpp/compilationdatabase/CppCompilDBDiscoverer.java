@@ -1,8 +1,11 @@
 package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 
-import com.castsoftware.dmt.engine.discovery.BasicProjectsDiscovererAdapter;
+import java.io.File;
+
+import com.castsoftware.dmt.engine.discovery.AdvancedProjectsDiscovererAdapter;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
 import com.castsoftware.dmt.engine.discovery.ProjectsDiscovererWrapper.ProfileOrProjectTypeConfiguration.LanguageConfiguration;
+import com.castsoftware.dmt.engine.foldertree.IMetadataInterpreter;
 import com.castsoftware.dmt.engine.project.IProfileReadOnly;
 import com.castsoftware.dmt.engine.project.Project;
 import com.castsoftware.util.logger.Logging;
@@ -10,31 +13,63 @@ import com.castsoftware.util.logger.Logging;
 /**
  * Basic discoverer for
  */
-public class CppCompilDBDiscoverer extends BasicProjectsDiscovererAdapter
+public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
 {
+	String connectionPath;
+	String directoryId;
+	String relativeDirectoryPath;
+	
     /**
      * Default constructor used by the discovery engine
      */
     public CppCompilDBDiscoverer()
     {
+    	connectionPath = "";
+    	directoryId = null;
+    	relativeDirectoryPath = null;
     }
 
-	@Override
-    public void buildProject(String relativeFilePath, String content, Project project,
-        IProjectsDiscovererUtilities projectsDiscovererUtilities)
+    @Override
+    public void startTree(String packageId, String packageName, String packageType, String versionId, String connectionPath)
     {
-        String projectDescriptor = project.getMetadata(IProfileReadOnly.METADATA_DESCRIPTOR).getValue();
-        if (projectDescriptor.equals("compile_commands.json"))
+    	super.startTree(packageId, packageName, packageType, versionId, connectionPath);
+    	this.connectionPath = connectionPath;
+    	//To simulate a real extraction
+    	this.connectionPath = "/usr1/soter";
+    	//this.connectionPath = "/home/yle/msieve";
+    }
+
+    @Override
+    public void startDirectory(String directoryId, String directoryName, String relativeDirectoryPath)
+    {
+    	super.startDirectory(directoryId, directoryName, relativeDirectoryPath);
+    	this.directoryId = directoryId;
+    	this.relativeDirectoryPath = relativeDirectoryPath;
+    }
+
+    @Override
+    public boolean mustProcessFile(String fileName)
+    {
+    	return false;
+        //return fileName.endsWith("compile_commands.json");
+    }
+
+    @Override
+	public void startTextFile(String fileId, String fileName, long fileSize, String relativeFilePath, String content)
+    {
+    	File f = new File(connectionPath);
+        Project project = getProjectsDiscovererUtilities().createInitialProject(fileId, f.getName(), "dmtdevmicrosofttechno.CppProject", fileId, directoryId);
+        if (fileName.equals("compile_commands.json"))
         {
-        	parseProjectFile(relativeFilePath, content, project, projectsDiscovererUtilities);
+        	parseProjectFile(relativeDirectoryPath, content, project, getProjectsDiscovererUtilities());
         	if (project.getName() == null)
-        		projectsDiscovererUtilities.deleteProject(project.getId());
+        		getProjectsDiscovererUtilities().deleteProject(project.getId());
         }
         else
-        	projectsDiscovererUtilities.deleteProject(project.getId());
+        	getProjectsDiscovererUtilities().deleteProject(project.getId());
     }
-
-    private static boolean parseProjectFile(String relativeFilePath, String content, Project project, IProjectsDiscovererUtilities projectsDiscovererUtilities)
+    
+    private boolean parseProjectFile(String relativeFilePath, String content, Project project, IProjectsDiscovererUtilities projectsDiscovererUtilities)
     {
     	int cLanguageId = -1;
     	int cHeaderLanguage = -1;
@@ -84,7 +119,8 @@ public class CppCompilDBDiscoverer extends BasicProjectsDiscovererAdapter
             Logging.managedError("cast.dmt.discover.cpp.compilationdatabase.missingLanguage","LNG","CFamilyNotCompilableLanguage");
         }
 
-        ProjectFileScanner.scan(relativeFilePath, project, content, cLanguageId, cHeaderLanguage, cPlusPlusLanguage, cPlusPlusHeaderLanguage, cFamilyNotCompilableLanguage);
+        String path = connectionPath;
+        ProjectFileScanner.scan(path, relativeFilePath, project, content, cLanguageId, cHeaderLanguage, cPlusPlusLanguage, cPlusPlusHeaderLanguage, cFamilyNotCompilableLanguage);
 
         return true;
     }

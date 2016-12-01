@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Projects packageId="e6ced788-f60f-4d31-a58a-6bf23eb56f10" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="D:/SRC/C++/CompilationDatabase/unittests">
+<Projects packageId="e6ced788-f60f-4d31-a58a-6bf23eb56f10" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/usr1/soter">
  <PackageRootPath path=""/>
- <Project projectId="unittest2/compile_commands.json" projectName="IR" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="unittest2/compile_commands.json" projectPath="unittest2" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
-  <Metadata name="#!$?DESCRIPTOR" value="compile_commands.json"/>
-  <Metadata name="D__STDC_LIMIT_MACROS" value="1&quot;,"/>
-  <Metadata name="D__STDC_CONSTANT_MACROS" value="1&quot;,"/>
-  <Metadata name="D__STDC_FORMAT_MACROS" value="1&quot;,"/>
-  <Metadata name="DNDEBUG&quot;,"/>
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@IR" value="unittest2"/>
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@unittest2/compile_commands.json" value="unittest2"/>
-  <Metadata name="#!$?EXTREF#!$?" value="IR"/>
+ <Project projectId="Soter_build/compile_commands.json" projectName="soter" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="Soter_build/compile_commands.json" projectPath="Soter_build" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@soter" value="Soter_build"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@Soter_build/compile_commands.json" value="Soter_build"/>
+  <Metadata name="__STDC_LIMIT_MACROS" value="1"/>
+  <Metadata name="__STDC_CONSTANT_MACROS" value="1"/>
+  <Metadata name="__STDC_FORMAT_MACROS" value="1"/>
+  <Metadata name="NDEBUG"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -27,16 +25,28 @@
    </Language>
   </Languages>
   <Options>
-   <Option name="D__STDC_LIMIT_MACROS" value="1&quot;,"/>
-   <Option name="D__STDC_CONSTANT_MACROS" value="1&quot;,"/>
-   <Option name="D__STDC_FORMAT_MACROS" value="1&quot;,"/>
-   <Option name="DNDEBUG&quot;,"/>
+   <Option name="__STDC_LIMIT_MACROS" value="1"/>
+   <Option name="__STDC_CONSTANT_MACROS" value="1"/>
+   <Option name="__STDC_FORMAT_MACROS" value="1"/>
+   <Option name="NDEBUG"/>
   </Options>
   <Sources>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@IR%/../../../../Soter/src/llvm/IR/IRBuilder.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@soter%/../Soter/src/llvm/IR/IRBuilder.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@IR%/../../../../Soter/src/llvm/Analysis/ProfileDataLoader.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@soter%/../Soter/src/llvm/Analysis/ProfileDataLoader.cpp" languageId="2" sourceFileSize="0">
+   </SourceFile>
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@soter%/../Soter/src/llvm/Target/X86/MCTargetDesc/X86MCTargetDesc.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
   </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="Soter/include" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@soter%/include" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@soter%/src/llvm/Target/X86" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="Soter/src/llvm/Target/X86" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
  </Project>
 </Projects>

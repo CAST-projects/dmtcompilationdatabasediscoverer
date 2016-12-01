@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Projects packageId="e6ced788-f60f-4d31-a58a-6bf23eb56f10" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="D:/SRC/C++/CompilationDatabase/unittests/unittest1">
+<Projects packageId="e6ced788-f60f-4d31-a58a-6bf23eb56f10" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/home/yle/msieve">
  <PackageRootPath path=""/>
  <Project projectId="compile_commands.json" projectName="msieve" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
-  <Metadata name="#!$?DESCRIPTOR" value="compile_commands.json"/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@msieve" value="."/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json" value="."/>
-  <Metadata name="#!$?EXTREF#!$?" value="msieve"/>
   <Metadata name="_FILE_OFFSET_BITS" value="64"/>
   <Metadata name="NDEBUG"/>
   <Metadata name="_LARGEFILE64_SOURCE"/>
