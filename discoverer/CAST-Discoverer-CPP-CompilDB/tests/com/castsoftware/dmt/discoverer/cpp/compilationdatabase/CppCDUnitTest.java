@@ -63,6 +63,18 @@ public class CppCDUnitTest
     }
 
     /**
+     * Same test as UT1 with an extraction path on Windows
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest1W() throws Throwable
+    {
+        new CppCDUnitTestTester("UT1W").go();
+    }
+
+    /**
      * Test discovery for arguments
      *
      * @throws Throwable
@@ -72,5 +84,65 @@ public class CppCDUnitTest
     public void unitTest2() throws Throwable
     {
         new CppCDUnitTestTester("UT2").go();
+    }
+
+    /**
+     * Same test as UT2 with an extraction path on Windows
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest2W() throws Throwable
+    {
+        new CppCDUnitTestTester("UT2W").go();
+    }
+
+    /**
+     * Test discovery for arguments c++
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest3() throws Throwable
+    {
+        new CppCDUnitTestTester("UT3").go();
+    }
+
+    /**
+     * Same test as UT3 with an extraction path on Windows
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest3W() throws Throwable
+    {
+        new CppCDUnitTestTester("UT3W").go();
+    }
+
+    /**
+     * Test discovery with link
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest5() throws Throwable
+    {
+        new CppCDUnitTestTester("UT5").go();
+    }
+
+    /**
+     * Same test as UT5 with an extraction path on Windows
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest5W() throws Throwable
+    {
+        new CppCDUnitTestTester("UT5W").go();
     }
 }

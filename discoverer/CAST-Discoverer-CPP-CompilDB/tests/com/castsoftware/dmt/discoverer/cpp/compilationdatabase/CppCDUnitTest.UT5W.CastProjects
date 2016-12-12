@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects packageId="54472420-ee41-4fb8-8f17-1183d9e837cb" packageName="unittest5" packageType="FileSourceCodeRepository" packageConnectionPath="D:/SRC/C++/CompilationDatabase/unittests/unittest5">
+ <PackageRootPath path=""/>
+ <Project projectId="compile_commands.json./home/yle/ffmpeg/libavdevice/libavdevice.a" projectName="libavdevice" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json./home/yle/ffmpeg/libavdevice/libavdevice.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@libavdevice" value="."/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json./home/yle/ffmpeg/libavdevice/libavdevice.a" value="."/>
+  <Metadata name="#!$?EXTREF#!$?" value="libavdevice"/>
+  <Metadata name="_ISOC99_SOURCE"/>
+  <Metadata name="_FILE_OFFSET_BITS" value="64"/>
+  <Metadata name="_LARGEFILE_SOURCE"/>
+  <Metadata name="_POSIX_C_SOURCE" value="200112"/>
+  <Metadata name="_XOPEN_SOURCE" value="600"/>
+  <Metadata name="ZLIB_CONST"/>
+  <Metadata name="HAVE_AV_CONFIG_H"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="_ISOC99_SOURCE"/>
+   <Option name="_FILE_OFFSET_BITS" value="64"/>
+   <Option name="_LARGEFILE_SOURCE"/>
+   <Option name="_POSIX_C_SOURCE" value="200112"/>
+   <Option name="_XOPEN_SOURCE" value="600"/>
+   <Option name="ZLIB_CONST"/>
+   <Option name="HAVE_AV_CONFIG_H"/>
+  </Options>
+  <Outputs>
+   <OutputContainer outputContainerRef="/home/yle/ffmpeg/libavdevice/libavdevice.a" languageId="0">
+   </OutputContainer>
+  </Outputs>
+  <Sources>
+   <SourceFile sourceFileRef="/home/yle/ffmpeg/libavdevice/alsa.c" languageId="1" sourceFileSize="0">
+   </SourceFile>
+   <SourceFile sourceFileRef="/home/yle/ffmpeg/libavdevice/alldevices.c" languageId="1" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="/home/yle/ffmpeg/." languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+</Projects>

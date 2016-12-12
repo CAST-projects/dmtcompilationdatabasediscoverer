@@ -35,6 +35,7 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     	//To simulate a real extraction
     	//this.connectionPath = "/usr1/soter";
     	//this.connectionPath = "/home/yle/msieve";
+    	//this.connectionPath = "/home/yle/ffmpeg";
     }
 
     @Override
@@ -118,7 +119,7 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         }
 
         String path = connectionPath;
-        ProjectFileScanner.scan(path, relativeFilePath, project, content, cLanguageId, cHeaderLanguage, cPlusPlusLanguage, cPlusPlusHeaderLanguage, cFamilyNotCompilableLanguage);
+        ProjectFileScanner.scan(path, relativeFilePath, project, content, projectsDiscovererUtilities, cLanguageId, cHeaderLanguage, cPlusPlusLanguage, cPlusPlusHeaderLanguage, cFamilyNotCompilableLanguage);
 
         return true;
     }
