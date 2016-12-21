@@ -66,7 +66,7 @@ public class CompileFile extends Compile {
 		return null;
 	}
 	public void addInclude(String include) {
-		this.includes.add(include);
+		this.includes.add(include.replace("\\", "/"));
 	}
 	public void setIncludes(List<String> includes) {
 		this.includes = includes;

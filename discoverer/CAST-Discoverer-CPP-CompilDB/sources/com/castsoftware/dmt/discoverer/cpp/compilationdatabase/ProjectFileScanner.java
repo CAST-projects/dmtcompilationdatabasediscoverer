@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CompileFile.Macro;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
+import com.castsoftware.dmt.engine.project.IProfileReadOnly;
 import com.castsoftware.dmt.engine.project.IResourceReadOnly;
 import com.castsoftware.dmt.engine.project.Profile;
 import com.castsoftware.dmt.engine.project.Profile.Option;
@@ -278,8 +279,12 @@ public class ProjectFileScanner
             		// identfiy the selected compileFile
             		cl.setCompileFiles(compileFiles);
             		
-            		String id = project.getId() + "." + cl.getFilename();
+            		String id = project.getId() + "#" + cl.getFilename();
             		Project p = projectsDiscovererUtilities.createInitialProject(id, cl.getLinkname(), project.getType(), id, project.getPath());
+            		//String castpasthRef =  project.getPath() + "/compile_commands.castpath";
+            		//castpasthRef = p.buildPackageRelativePath("compile_commands.castpath");
+            		//p.addSourceFileReference(castpasthRef, Project.PROJECT_LANGUAGE_ID);
+            		//p.addMetadata(IProfileReadOnly.METADATA_DESCRIPTOR, "compile_commands.json");
             		p.addMetadata(IResourceReadOnly.METADATA_REFKEY, cl.getLinkname());
             		p.addOutputContainer(cl.getFilename(), 0);
             		for (CompileFile cf : cl.getCompileFiles())
@@ -317,6 +322,7 @@ public class ProjectFileScanner
 	    		}
 	            for (CompileFile cf : compileFiles)
 	            {
+	            	int i = 1;
 		            String fileRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getDirectory(), cf.getFilename());
 		            if (project.getFileReference(fileRef) == null)
 		            	project.addSourceFileReference(fileRef, cf.getLanguageId());
@@ -382,7 +388,7 @@ public class ProjectFileScanner
 
     private static String getRelativeConnectionPath(Project project, String connectionPath, String relativeFilePath, String directory, String file)
     {
-    	if (file.startsWith("/"))
+    	if (file.startsWith("/") || ":".equals(file.substring(1, 2)))
     	{
     		if (file.startsWith(connectionPath))
     		{

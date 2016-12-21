@@ -10,11 +10,9 @@
             <field override="true" symbol="projectsFilesPatterns">
                 <value formula="true">'compile_commands.json'</value>
             </field>
-            <!--
             <field override="true" symbol="resourceProjectsPatterns">
-                <value formula="true">'xxx.xml'</value>
+                <value formula="true">'compile_commands.castpath'</value>
             </field>
-            -->
         </entity>
 
 	</library>

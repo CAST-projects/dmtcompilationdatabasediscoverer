@@ -12,29 +12,40 @@ public abstract class Compile {
 		return directory;
 	}
 	public void setDirectory(String directory) {
-		this.directory = directory;
+		this.directory = directory.replace("\\", "/");
 	}
 	public String getFilename() {
 		return filename;
 	}
 	public void setFilename(String filename) {
-		this.filename = getRelativePath(getDirectory(), filename);
+		this.filename = getRelativePath(getDirectory(), filename.replace("\\", "/"));
 	}
 
     protected static String getRelativePath(String directory, String file)
     {
     	if (file.startsWith("/"))
     	{
-			return file;
+			return removeRelativePath(file, "/");
+    	}
+    	else if (":".equals(file.substring(1, 2)))
+    	{
+			//return removeRelativePath(file, "\\\\");
+			return removeRelativePath(file, "/");
     	}
     	else
     	{
-			return removeRelativePath(directory + "/" + file);
+    		if (directory.startsWith("/"))
+    			return removeRelativePath(directory + "/" + file, "/");
+    		else if (":".equals(directory.substring(1, 2)))
+    			//return removeRelativePath(directory + "\\" + file, "\\\\");
+    			return removeRelativePath(directory + "/" + file, "/");
+    		else
+    			return removeRelativePath(directory + "/" + file, "/");
     	}
     }
-    protected static String removeRelativePath(String path)
+    protected static String removeRelativePath(String path, String sep)
     {
-    	List<String> list = new ArrayList<String>(Arrays.asList(path.split("/")));
+    	List<String> list = new ArrayList<String>(Arrays.asList(path.split(sep)));
     	List<String> relativeList = new ArrayList<String>();
     	
     	for (int i = 0; i < list.size(); i++)

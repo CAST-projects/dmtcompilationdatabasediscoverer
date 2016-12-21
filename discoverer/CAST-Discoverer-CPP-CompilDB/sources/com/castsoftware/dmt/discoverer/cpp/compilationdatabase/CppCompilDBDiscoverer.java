@@ -5,6 +5,9 @@ import java.io.File;
 import com.castsoftware.dmt.engine.discovery.AdvancedProjectsDiscovererAdapter;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
 import com.castsoftware.dmt.engine.discovery.ProjectsDiscovererWrapper.ProfileOrProjectTypeConfiguration.LanguageConfiguration;
+import com.castsoftware.dmt.engine.project.Profile.IReferencedContents;
+import com.castsoftware.dmt.engine.project.Profile.ResourceReference;
+import com.castsoftware.dmt.engine.project.Profile.SourceReference;
 import com.castsoftware.dmt.engine.project.Project;
 import com.castsoftware.util.logger.Logging;
 
@@ -123,4 +126,18 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
 
         return true;
     }
+    
+//    @Override
+//    public boolean reparseProject(Project project, String projectContent, IReferencedContents contents,
+//        IProjectsDiscovererUtilities projectsDiscovererUtilities)
+//    {
+//        String castpathReference = project.buildPackageRelativePath("compile_commands.castpath");
+//        String castpathContent = contents.getContent(castpathReference);
+//        
+//        for (SourceReference ref : project.getSourceReferences())
+//        {
+//        	String r = ref.getResolutionRef();
+//        }
+//    	return true;
+//    }
 }
