@@ -45,8 +45,12 @@ public class CompileLink extends Compile {
 		int pos = filename.lastIndexOf("/");
 		if (pos >= 0)
 		{
-			this.linkname = filename.substring(pos + 1, filename.lastIndexOf("."));
+			//this.linkname = filename.substring(pos + 1, filename.lastIndexOf("."));
+			this.linkname = filename.substring(pos + 1);
 		}
+		else
+			//this.linkname = filename.substring(0, filename.lastIndexOf("."));
+			this.linkname = filename;
 		
 	}
 }

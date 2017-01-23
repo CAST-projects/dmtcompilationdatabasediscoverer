@@ -285,7 +285,8 @@ public class ProjectFileScanner
             		//castpasthRef = p.buildPackageRelativePath("compile_commands.castpath");
             		//p.addSourceFileReference(castpasthRef, Project.PROJECT_LANGUAGE_ID);
             		//p.addMetadata(IProfileReadOnly.METADATA_DESCRIPTOR, "compile_commands.json");
-            		p.addMetadata(IResourceReadOnly.METADATA_REFKEY, cl.getLinkname());
+            		if (cl.getLinkname() != null)
+            			p.addMetadata(IResourceReadOnly.METADATA_REFKEY, cl.getLinkname());
             		p.addOutputContainer(cl.getFilename(), 0);
             		for (CompileFile cf : cl.getCompileFiles())
             		{
