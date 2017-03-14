@@ -1,6 +1,9 @@
 package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 import com.castsoftware.dmt.engine.discovery.AdvancedProjectsDiscovererAdapter;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
@@ -19,6 +22,8 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
 	String connectionPath;
 	String directoryId;
 	String relativeDirectoryPath;
+	private final Stack<String> directoryIds;
+	private final Stack<String> relativeDirectoryPaths;
 	
     /**
      * Default constructor used by the discovery engine
@@ -28,6 +33,8 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     	connectionPath = "";
     	directoryId = null;
     	relativeDirectoryPath = null;
+    	directoryIds = new Stack<String>();
+    	relativeDirectoryPaths = new Stack<String>();
     }
 
     @Override
@@ -47,6 +54,24 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     	super.startDirectory(directoryId, directoryName, relativeDirectoryPath);
     	this.directoryId = directoryId;
     	this.relativeDirectoryPath = relativeDirectoryPath;
+    	this.directoryIds.push(directoryId);
+    	this.relativeDirectoryPaths.push(relativeDirectoryPath);
+    }
+
+    @Override
+    public void endDirectory()
+    {
+    	this.directoryIds.pop();
+    	if (this.directoryIds.size() > 0)
+    		this.directoryId = this.directoryIds.lastElement();
+    	else
+    		this.directoryId = null;
+
+    	this.relativeDirectoryPaths.pop();
+    	if (this.relativeDirectoryPaths.size() > 0)
+    		this.relativeDirectoryPath = this.relativeDirectoryPaths.lastElement();
+    	else
+    		this.relativeDirectoryPath = null;
     }
 
     @Override

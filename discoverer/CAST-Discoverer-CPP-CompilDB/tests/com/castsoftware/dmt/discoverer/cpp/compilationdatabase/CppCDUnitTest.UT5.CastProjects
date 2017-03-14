@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Projects packageId="54472420-ee41-4fb8-8f17-1183d9e837cb" packageName="unittest5" packageType="FileSourceCodeRepository" packageConnectionPath="/home/yle/ffmpeg">
  <PackageRootPath path=""/>
- <Project projectId="compile_commands.json./home/yle/ffmpeg/libavdevice/libavdevice.a" projectName="libavdevice" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json./home/yle/ffmpeg/libavdevice/libavdevice.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@libavdevice" value="."/>
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json./home/yle/ffmpeg/libavdevice/libavdevice.a" value="."/>
-  <Metadata name="#!$?EXTREF#!$?" value="libavdevice"/>
+ <Project projectId="compile_commands.json#/home/yle/ffmpeg/libavdevice/libavdevice.a" projectName="libavdevice.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#/home/yle/ffmpeg/libavdevice/libavdevice.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@libavdevice.a" value="."/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#/home/yle/ffmpeg/libavdevice/libavdevice.a" value="."/>
+  <Metadata name="#!$?EXTREF#!$?" value="libavdevice.a"/>
   <Metadata name="_ISOC99_SOURCE"/>
   <Metadata name="_FILE_OFFSET_BITS" value="64"/>
   <Metadata name="_LARGEFILE_SOURCE"/>
@@ -42,13 +42,13 @@
    </OutputContainer>
   </Outputs>
   <Sources>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@libavdevice%/libavdevice/alsa.c" languageId="1" sourceFileSize="0">
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/libavdevice/alldevices.c" languageId="1" sourceFileSize="0">
    </SourceFile>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@libavdevice%/libavdevice/alldevices.c" languageId="1" sourceFileSize="0">
+   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/libavdevice/alsa.c" languageId="1" sourceFileSize="0">
    </SourceFile>
   </Sources>
   <Resources>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice%/." languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/." languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
   </Resources>
  </Project>

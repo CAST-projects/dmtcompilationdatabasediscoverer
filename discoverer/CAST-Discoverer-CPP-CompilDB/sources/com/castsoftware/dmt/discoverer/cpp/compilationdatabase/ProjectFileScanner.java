@@ -387,9 +387,23 @@ public class ProjectFileScanner
         	sep = "\\";
     }
 
+    private static Boolean isFullPath(String file)
+    {
+    	if (file.startsWith("/"))
+    		return true;
+    	if (file.length() > 1)
+    	{
+    		if (":".equals(file.substring(1, 2)))
+    			return true;
+    		if ("\\\\".equals(file.substring(1, 2)))
+    			return true;
+    	}
+    			
+    	return false;
+    }
     private static String getRelativeConnectionPath(Project project, String connectionPath, String relativeFilePath, String directory, String file)
     {
-    	if (file.startsWith("/") || ":".equals(file.substring(1, 2)))
+    	if (isFullPath(file))
     	{
     		if (file.startsWith(connectionPath))
     		{
@@ -426,7 +440,11 @@ public class ProjectFileScanner
 	    		}
 	    		else
 	    		{
-	    			if (relativeDirectory.startsWith(relativeFilePath))
+	    			if (relativeDirectory.length() == 0)
+	    			{
+	    				return buildPackageRelativePath(project, file);
+	    			}
+	    			else if (relativeDirectory.startsWith(relativeFilePath))
 	    			{
 		    			relativeDirectory = (relativeDirectory.equals("") ? relativeDirectory.substring(relativeFilePath.length() + 1) : relativeDirectory.substring(relativeFilePath.length() + 1));
 		    			String fileRelativeRef = removeRelativePath(relativeDirectory + "/" + file);
