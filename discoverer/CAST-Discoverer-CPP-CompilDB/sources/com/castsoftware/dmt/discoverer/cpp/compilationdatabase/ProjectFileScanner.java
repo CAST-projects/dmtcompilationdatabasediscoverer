@@ -43,6 +43,85 @@ public class ProjectFileScanner
     }
 
     /**
+     * Scan a compile_config.json file and add info to the project.
+     *
+     * @param interpreter
+     *            the project file interpreter
+     * @param projectFilePath
+     *            the path to the project file used for reference
+     * @param projectContent
+     *            the file content to scan.
+     * @return {@code true} if no error was encountered during scanning. {@code false} otherwise.
+     */
+    public static List<String> scanConfig(Project project, String configContent, int languageId, int headerLanguageId)
+    {
+    	BufferedReader reader = null;
+    	String include = null;
+    	Boolean isConfig = false;
+    	Boolean isInIncludePaths = false;
+    	String command = project.getMetadata("command").getValue();
+    	Boolean isCommandConfig = false;
+    	List<String> includes = new ArrayList<String>();
+    	
+    	reader = new BufferedReader(new StringReader(configContent), configContent.length());
+
+    	if (command == null)
+    		command = ArgumentTypes.CC.toString();
+        try
+        {
+            for (String readline = reader.readLine(); readline != null; readline = reader.readLine())
+            {
+            	String line = readline.trim();
+            	if (line.contains(": {"))
+            	{
+            		isConfig = true;
+            		String config = line.substring(line.indexOf("\"") + 1).trim();
+            		config = config.substring(0, config.indexOf("\""));
+            		if (command.equals(config))
+            			isCommandConfig = true;
+            		else
+            			isCommandConfig = false;
+            	}
+            	else if (isConfig && line.contains("}"))
+            	{
+            		isConfig = false;
+            	}
+            	else if (isConfig && line.contains("include_paths"))
+            	{
+            		isInIncludePaths = true;
+            	}
+            	else if (isInIncludePaths)
+            	{
+            		if ("]".equals(line))
+            			isInIncludePaths = false;
+            		else
+            		{
+            			if (isCommandConfig)
+            			{
+	            			include = line.substring(line.indexOf("\"") + 1).trim();
+	        				include = include.substring(0, include.indexOf("\"")).trim();
+	            			includes.add(include);
+            			}
+            		}
+            	}
+            }
+        }
+        catch (IOException e)
+        {
+            Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing", "PATH", project.getPath() + "/compile_config.json");
+        }
+        finally
+        {
+        	try {
+				reader.close();
+			} catch (IOException e) {
+				Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing", "PATH", project.getPath() + "/compile_config.json");
+			}
+        }
+        return includes;
+    }
+    
+    /**
      * Scan a compile_commands.json file and add info to the project.
      *
      * @param interpreter
@@ -116,6 +195,7 @@ public class ProjectFileScanner
                 			Logging.warn("Not supported format: no command and no arguments");
                 			continue;
                 		}
+                		compileFile.setCommand(argumentType.toString());
                         if (file.matches("^.*cpp$"))
                 		{
                         	compileFile.setLanguageId(cPlusPlusLanguage);
@@ -138,6 +218,7 @@ public class ProjectFileScanner
                 			compileFile.setOutput(output);
 
                 		compileFiles.add(compileFile);
+                		
             		}
             		else
             		{
@@ -201,6 +282,7 @@ public class ProjectFileScanner
             			}
             			else
             			{
+            				
             				if (line.startsWith("\"-D"))
 	                		{
 	                			compileFile.addMacro(line.substring(3,line.indexOf("\"",2)));
@@ -288,6 +370,10 @@ public class ProjectFileScanner
             		if (cl.getLinkname() != null)
             			p.addMetadata(IResourceReadOnly.METADATA_REFKEY, cl.getLinkname());
             		p.addOutputContainer(cl.getFilename(), 0);
+                    String fullPath = p.buildPackageRelativePath("compile_config.json");
+                    p.addFileReference(fullPath, Project.PROJECT_LANGUAGE_ID, IResourceReadOnly.RESOURCE_TYPE_NEUTRAL_ID);
+                    if (cl.getCompileFiles().size() > 0)
+                    	p.addMetadata("command", cl.getCompileFiles().get(0).getCommand());
             		for (CompileFile cf : cl.getCompileFiles())
             		{
             			String fileRef = getRelativeConnectionPath(p, connectionPath, relativeFilePath, cf.getDirectory(), cf.getFilename());

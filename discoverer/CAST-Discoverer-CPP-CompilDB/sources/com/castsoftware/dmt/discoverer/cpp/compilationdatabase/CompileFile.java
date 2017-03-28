@@ -33,6 +33,7 @@ public class CompileFile extends Compile {
 	private String output;
 	private int languageId = 0;
 	private int languageHeaderId = 0;
+	private String command;
 	private List<String> includes = new ArrayList<String>();
 	private List<Macro> macros = new ArrayList<Macro>();
 	
@@ -53,6 +54,12 @@ public class CompileFile extends Compile {
 	}
 	public void setLanguageHeaderId(int languageHeaderId) {
 		this.languageHeaderId = languageHeaderId;
+	}
+	public String getCommand() {
+		return command;
+	}
+	public void setCommand(String command) {
+		this.command = command;
 	}
 	public List<String> getIncludes() {
 		return includes;

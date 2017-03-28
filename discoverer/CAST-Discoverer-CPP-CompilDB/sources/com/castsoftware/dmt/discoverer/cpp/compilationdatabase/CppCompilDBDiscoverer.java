@@ -2,6 +2,7 @@ package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
@@ -152,17 +153,41 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         return true;
     }
     
-//    @Override
-//    public boolean reparseProject(Project project, String projectContent, IReferencedContents contents,
-//        IProjectsDiscovererUtilities projectsDiscovererUtilities)
-//    {
-//        String castpathReference = project.buildPackageRelativePath("compile_commands.castpath");
-//        String castpathContent = contents.getContent(castpathReference);
-//        
-//        for (SourceReference ref : project.getSourceReferences())
-//        {
-//        	String r = ref.getResolutionRef();
-//        }
-//    	return true;
-//    }
+    @Override
+    public boolean reparseProject(Project project, String projectContent, IReferencedContents contents,
+        IProjectsDiscovererUtilities projectsDiscovererUtilities)
+    {
+    	Boolean isConfig = true;
+    	int languageId = 1;
+    	int languageHeaderId = 1;
+    	List<String> includes = null;
+    	Iterator<? extends SourceReference> s = project.getSourceReferences().iterator();
+    	if (s.hasNext())
+    		languageId = s.next().getLanguageId();
+    		
+        Iterator<? extends ResourceReference> resourceRefs = project.getResourceReferences().iterator();
+
+        while (resourceRefs.hasNext())
+        {
+        	ResourceReference resourceRef = resourceRefs.next();
+        	if (resourceRef.getLanguageId() == Project.PROJECT_LANGUAGE_ID) {
+        		
+	            String ref = resourceRef.getResolutionRef();
+	        	String castpathContent = contents.getContent(ref);
+	            if (castpathContent == null)
+	            {
+	                //resourceRefs.remove();
+	                continue;
+	            }
+	            isConfig = false;
+	            includes = ProjectFileScanner.scanConfig(project, castpathContent, languageId, languageHeaderId);
+        	}
+        }
+        if (includes != null && includes.size() > 1)
+        	for (String include : includes)
+        	{
+        		project.addDirectoryReference(include, languageId, languageHeaderId);
+        	}
+    	return isConfig;
+    }
 }

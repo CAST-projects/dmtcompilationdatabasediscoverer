@@ -11,7 +11,7 @@
                 <value formula="true">'compile_commands.json'</value>
             </field>
             <field override="true" symbol="resourceProjectsPatterns">
-                <value formula="true">'compile_commands.castpath'</value>
+                <value formula="true">'compile_config.json'</value>
             </field>
         </entity>
 
