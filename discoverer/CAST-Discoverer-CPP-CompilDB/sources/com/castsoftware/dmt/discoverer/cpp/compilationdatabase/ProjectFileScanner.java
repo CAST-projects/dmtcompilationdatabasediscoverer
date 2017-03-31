@@ -92,14 +92,14 @@ public class ProjectFileScanner
             	}
             	else if (isInIncludePaths)
             	{
-            		if ("]".equals(line))
+            		if (line.startsWith("]"))
             			isInIncludePaths = false;
             		else
             		{
             			if (isCommandConfig)
             			{
 	            			include = line.substring(line.indexOf("\"") + 1).trim();
-	        				include = include.substring(0, include.indexOf("\"")).trim();
+	        				include = removeRelativePath(include.substring(0, include.indexOf("\"")).trim());
 	            			includes.add(include);
             			}
             		}
