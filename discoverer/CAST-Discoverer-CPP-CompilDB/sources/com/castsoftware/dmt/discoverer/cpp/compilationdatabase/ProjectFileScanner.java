@@ -80,7 +80,10 @@ public class ProjectFileScanner
             		if (command.equals(config))
             			isCommandConfig = true;
             		else
-            			isCommandConfig = false;
+            			if (command.equals(ArgumentTypes.CPP.toString()) && "cxx".equals(config))
+            				isCommandConfig = true;
+            			else
+            				isCommandConfig = false;
             	}
             	else if (isConfig && line.contains("}"))
             	{
