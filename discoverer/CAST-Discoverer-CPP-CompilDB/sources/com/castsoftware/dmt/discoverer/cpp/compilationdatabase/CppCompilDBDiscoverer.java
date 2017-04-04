@@ -157,7 +157,6 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     public boolean reparseProject(Project project, String projectContent, IReferencedContents contents,
         IProjectsDiscovererUtilities projectsDiscovererUtilities)
     {
-    	Boolean isConfig = true;
     	int languageId = 1;
     	int languageHeaderId = 1;
     	List<String> includes = null;
@@ -174,13 +173,10 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         		
 	            String ref = resourceRef.getResolutionRef();
 	        	String castpathContent = contents.getContent(ref);
-	            if (castpathContent == null)
-	            {
-	                //resourceRefs.remove();
-	                continue;
-	            }
-	            isConfig = false;
-	            includes = ProjectFileScanner.scanConfig(project, castpathContent, languageId, languageHeaderId);
+	        	project.removeResourceReference(resourceRef.getReferenceId());
+	            if (castpathContent != null)
+		            includes = ProjectFileScanner.scanConfig(project, castpathContent, languageId, languageHeaderId);
+	            break;
         	}
         }
         if (includes != null && includes.size() > 1)
@@ -188,6 +184,6 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         	{
         		project.addDirectoryReference(include, languageId, languageHeaderId);
         	}
-    	return isConfig;
+    	return false;
     }
 }

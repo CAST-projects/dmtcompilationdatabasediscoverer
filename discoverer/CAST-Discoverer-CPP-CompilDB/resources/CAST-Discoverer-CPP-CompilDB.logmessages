@@ -2,6 +2,9 @@
 <messages>
 	<language name="English">
 		<message id="cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing" format="Error while reading the file %PATH%"/>
-    <message id="cast.dmt.discover.cpp.compilationdatabase.missingLanguage" format="Invalid installation: language %LNG% is not defined"/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.noFile" format="The file '%PATH%' does not contain any compile command. File is skipped."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped."/>
+    <message id="cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand" format="Command not supported in file '%PATH%' at line %LINE%"/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped."/>
 	</language>
 </messages>
