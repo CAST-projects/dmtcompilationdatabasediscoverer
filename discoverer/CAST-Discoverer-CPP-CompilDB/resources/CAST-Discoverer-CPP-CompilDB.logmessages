@@ -6,5 +6,6 @@
 		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped."/>
     <message id="cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand" format="Command not supported in file '%PATH%' at line %LINE%"/>
 		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.missingOutput" format="No output defined for the file '%FILE%'. File is skipped."/>
 	</language>
 </messages>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>com.castsoftware.dmtcppcompilationdatabasediscoverer</id>
+    <version>_VERSION_-build_BUILDNO_</version>
+    <title>CPP Compilation Database Discoverer</title>
+    <authors>CAST Product</authors>
+    <owners>CAST</owners>
+    <licenseUrl>https://help.castsoftware.com/hc/en-us/articles/212612648-AIP-Extension-License</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>http://doc.castsoftware.com/display/DOCEXT/CPP+Compilation+Database+Discoverer+1.0</projectUrl>
+    <description>Support for discovering C/C++ Compilation Database projects. It should be used when the source is extracted from a build chain where the compile_commands.json are generated.</description>
+    <dependencies>
+      <dependency id="CAIP" version="8.2.0"/>
+    </dependencies>
+		<tags>DMT DISCOVER CPP CAIP8.2</tags>		
+ </metadata>
+  <files>
+    <file src="TOOLS\**" target="TOOLS" />    
+    <file src="CPP-CompilationDatabase Technology Extension Version.txt" target="CPP-CompilationDatabase Technology Extension Version.txt" />    
+    <file src="readme.html" target="readme.html" />    
+  </files>  
+</package>

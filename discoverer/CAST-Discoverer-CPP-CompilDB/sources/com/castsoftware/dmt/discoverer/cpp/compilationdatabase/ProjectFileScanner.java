@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CompileFile.Macro;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
-import com.castsoftware.dmt.engine.project.IProfileReadOnly;
 import com.castsoftware.dmt.engine.project.IResourceReadOnly;
 import com.castsoftware.dmt.engine.project.Profile;
 import com.castsoftware.dmt.engine.project.Profile.Option;
@@ -31,12 +30,13 @@ public class ProjectFileScanner
 		ArgumentTypes(String name){
 			this.name = name;
 		}
-		public String toString(){
+		@Override
+        public String toString(){
 			return name;
 		}
 	}
 	;
-	
+
     private ProjectFileScanner()
     {
         // NOP
@@ -62,7 +62,7 @@ public class ProjectFileScanner
     	String command = project.getMetadata("command").getValue();
     	Boolean isCommandConfig = false;
     	List<String> includes = new ArrayList<String>();
-    	
+
     	reader = new BufferedReader(new StringReader(configContent), configContent.length());
 
     	if (command == null)
@@ -139,7 +139,7 @@ public class ProjectFileScanner
         }
         return includes;
     }
-    
+
     /**
      * Scan a compile_commands.json file and add info to the project.
      *
@@ -159,7 +159,8 @@ public class ProjectFileScanner
     	Boolean isInArguments = false;
     	Boolean isNextOutput = false;
     	ArgumentTypes argumentType = null;
-    	List<String> includes = new ArrayList<String>();
+    	@SuppressWarnings("unused")
+		List<String> includes = new ArrayList<String>();
     	String directory = null;
     	String file = null;
     	String output = null;
@@ -170,9 +171,9 @@ public class ProjectFileScanner
 		CompileFile compileFile = null;
     	List<CompileLink> compileLinks = new ArrayList<CompileLink>();
 		CompileLink compileLink = null;
-    	
+
     	setSeparator(connectionPath);
-    	
+
     	reader = new BufferedReader(new StringReader(projectContent), projectContent.length());
 
         try
@@ -235,19 +236,25 @@ public class ProjectFileScanner
 			                        	compileFile.setLanguageId(cLanguageId);
 			                        	compileFile.setLanguageHeaderId(cHeaderLanguage);
 			                        }
-			                        else 
+			                        else
 			                        	compileFile.setLanguageId(cFamilyNotCompilableLanguage);
-			
+
 			                        compileFile.setDirectory(directory);
 			                        compileFile.setFilename(file);
-			                		
+
 			                		if (command != null)
 			                			compileFile.parseCommand(command, languageId, languageHeaderId);
 			                		else
-			                			compileFile.setOutput(output);
-			
+                                    {
+                                        if (output == null)
+                                            Logging.warn("cast.dmt.discover.cpp.compilationdatabase.missingOutput", "FILE",
+                                                compileFile.getFilename());
+                                        else
+                                            compileFile.setOutput(output);
+                                    }
+
 			                		compileFiles.add(compileFile);
-			                		
+
 			            		}
 			            		else
 			            		{
@@ -276,15 +283,15 @@ public class ProjectFileScanner
 			            		isNextOutput = false;
 			            		if (argumentType.equals(ArgumentTypes.AR))
 			            		{
-			            			
+
 			            		}
 			            		else if (argumentType.equals(ArgumentTypes.CC) || argumentType.equals(ArgumentTypes.CPP))
 			            		{
-			            			
+
 			            		}
 			            		else
 			            		{
-			            			
+
 			            		}
 		            		}
 		            	}
@@ -314,7 +321,7 @@ public class ProjectFileScanner
 		            			}
 		            			else
 		            			{
-		            				
+
 		            				if (line.startsWith("\"-D"))
 			                		{
 			                			compileFile.addMacro(line.substring(3,line.indexOf("\"",2)));
@@ -389,9 +396,9 @@ public class ProjectFileScanner
 		                //    project.addDirectoryReference(directoryRef, languageId, resourceTypeId);
 		                //}
 		            }
-	
+
 	            }
-	            // 
+	            //
 	            if (compileLinks.size() > 0)
 	            {
 	            	// a project per link
@@ -399,7 +406,7 @@ public class ProjectFileScanner
 	            	{
 	            		// identfiy the selected compileFile
 	            		cl.setCompileFiles(compileFiles);
-	            		
+
 	            		String id = project.getId() + "#" + cl.getFilename();
 	            		Project p = projectsDiscovererUtilities.createInitialProject(id, cl.getLinkname(), project.getType(), id, project.getPath());
 	            		//String castpasthRef =  project.getPath() + "/compile_commands.castpath";
@@ -418,10 +425,10 @@ public class ProjectFileScanner
 	            			String fileRef = getRelativeConnectionPath(p, connectionPath, relativeFilePath, cf.getDirectory(), cf.getFilename());
 	        	            if (p.getFileReference(fileRef) == null)
 	                			p.addSourceFileReference(fileRef, cf.getLanguageId());
-	    		            
+
 	        	            for (Macro macro : cf.getMacros())
 	    		            	addMacro(p, macro.getKey(), macro.getValue());
-	            			
+
 	        	            for (String include : cf.getIncludes())
 	            			{
 	            				String includeRef = getRelativeConnectionPath(p, connectionPath, relativeFilePath, cf.getDirectory(), include);
@@ -450,14 +457,13 @@ public class ProjectFileScanner
 			    		}
 			            for (CompileFile cf : compileFiles)
 			            {
-			            	int i = 1;
-				            String fileRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getDirectory(), cf.getFilename());
+			            	String fileRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getDirectory(), cf.getFilename());
 				            if (project.getFileReference(fileRef) == null)
 				            	project.addSourceFileReference(fileRef, cf.getLanguageId());
-		
+
 				            for (Macro macro : cf.getMacros())
 				            	addMacro(project, macro.getKey(), macro.getValue());
-		
+
 				            for (String include : cf.getIncludes())
 							{
 								String includeRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getDirectory(), include);
@@ -497,7 +503,7 @@ public class ProjectFileScanner
     {
         if (new File(projectPath).isAbsolute() || projectPath.startsWith("/"))
             return projectPath;
-        
+
         return Profile.buildPackageRelativePath(project.getName(), projectPath);
     }
 
@@ -512,12 +518,12 @@ public class ProjectFileScanner
         		Logging.warn("A", "MACRO", macroName, "VALUE", o.getValue());
         	if (macroValue != null && !macroValue.equals(o.getValue()))
         		Logging.warn("B", "MACRO", macroName, "VALUE1", macroValue, "VALUE2", o.getValue());
-        }	
+        }
         if (project.getMetadata(macroName) == null)
             project.addMetadata(macroName, macroValue);
     	return;
     }
-    
+
     private static void setSeparator(String rootPath)
     {
     	if (rootPath.startsWith("/"))
@@ -537,7 +543,7 @@ public class ProjectFileScanner
     		if ("\\\\".equals(file.substring(1, 2)))
     			return true;
     	}
-    			
+
     	return false;
     }
     private static String getRelativeConnectionPath(Project project, String connectionPath, String relativeFilePath, String directory, String file)
@@ -571,11 +577,11 @@ public class ProjectFileScanner
 	    		String relativeDirectory = "";
 	    		if (directory.length() > connectionPath.length())
 	    			relativeDirectory = directory.substring(connectionPath.length() + 1);
-	    			
+
 	    		if (relativeFilePath == null)
 	    		{
 	    			String fileRelativeRef = (relativeDirectory.equals("") ? removeRelativePath(file) : removeRelativePath(relativeDirectory + "/" + file));
-    				return buildPackageRelativePath(project, fileRelativeRef);	    			
+    				return buildPackageRelativePath(project, fileRelativeRef);
 	    		}
 	    		else
 	    		{
@@ -596,12 +602,12 @@ public class ProjectFileScanner
 			return removeRelativePath(directory + "/" + file);
     	}
     }
-    
+
     private static String removeRelativePath(String path)
     {
     	List<String> list = new ArrayList<String>(Arrays.asList(path.split("/")));
     	List<String> relativeList = new ArrayList<String>();
-    	
+
     	for (int i = 0; i < list.size(); i++)
     	{
     		String fld1 = list.get(i);

@@ -1,7 +1,6 @@
 package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CompileFile extends Compile {
