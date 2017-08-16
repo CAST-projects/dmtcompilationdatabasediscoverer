@@ -1,4 +1,4 @@
-LPVERS=1.0.2
+LPVERS=1.0.3
 EXT_NAME=CPP-CompilationDatabase
-DEPENDENCIES=dmtcppcompilationdatabasediscoverer-1.0.2.dmtplugin
+DEPENDENCIES=dmtcppcompilationdatabasediscoverer-1.0.3.dmtplugin
 PLUGIN_DELIVERY=dmtcppcompilationdatabasediscoverer

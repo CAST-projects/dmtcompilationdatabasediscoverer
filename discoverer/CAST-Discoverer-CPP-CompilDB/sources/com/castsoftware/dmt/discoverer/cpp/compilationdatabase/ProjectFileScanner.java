@@ -25,6 +25,7 @@ public class ProjectFileScanner
 	enum ArgumentTypes {
 		CC("cc")
 		,AR("ar")
+		,LD("ld")
 		,CPP("c++");
 		private String name = "";
 		ArgumentTypes(String name){
@@ -209,7 +210,7 @@ public class ProjectFileScanner
 		            	{
 		            		if (argumentType != null)
 		            		{
-			            		if (argumentType.equals(ArgumentTypes.AR))
+			            		if (argumentType.equals(ArgumentTypes.AR) || argumentType.equals(ArgumentTypes.LD))
 			            		{
 			            			compileLink.setLinkname(file);
 			            			compileLink.setDirectory(directory);
@@ -281,7 +282,7 @@ public class ProjectFileScanner
 		            		{
 			            		isInArguments = false;
 			            		isNextOutput = false;
-			            		if (argumentType.equals(ArgumentTypes.AR))
+			            		if (argumentType.equals(ArgumentTypes.AR) || argumentType.equals(ArgumentTypes.LD))
 			            		{
 
 			            		}
@@ -307,6 +308,11 @@ public class ProjectFileScanner
 		            			argumentType = ArgumentTypes.AR;
 		            			compileLink = new CompileLink();
 		            		}
+		            		else if (line.contains("\"" + ArgumentTypes.LD.toString() + "\""))
+		            		{
+		            			argumentType = ArgumentTypes.LD;
+		            			compileLink = new CompileLink();
+		            		}
 		            		else if (line.contains("\"" + ArgumentTypes.CPP.toString() + "\""))
 		            		{
 		            			argumentType = ArgumentTypes.CPP;
@@ -314,7 +320,7 @@ public class ProjectFileScanner
 		            		}
 		            		else
 		            		{
-		            			if (argumentType.equals(ArgumentTypes.AR))
+		            			if (argumentType.equals(ArgumentTypes.AR) || argumentType.equals(ArgumentTypes.LD))
 		            			{
 		            				if (line.contains(".o"))
 		            					outputs.add(line.substring(1,line.indexOf("\"",2)));
@@ -355,6 +361,11 @@ public class ProjectFileScanner
 		            		else if (command.startsWith("\"" + ArgumentTypes.AR.toString() + " "))
 		            		{
 		            			argumentType = ArgumentTypes.AR;
+		            			compileLink = new CompileLink();
+		            		}
+		            		else if (command.startsWith("\"" + ArgumentTypes.LD.toString() + " "))
+		            		{
+		            			argumentType = ArgumentTypes.LD;
 		            			compileLink = new CompileLink();
 		            		}
 		            		else if (command.startsWith("\"" + ArgumentTypes.CPP.toString() + " "))
