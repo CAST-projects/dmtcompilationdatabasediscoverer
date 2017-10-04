@@ -35,6 +35,7 @@ public class CompileFile extends Compile {
 	private String command;
 	private List<String> includes = new ArrayList<String>();
 	private List<Macro> macros = new ArrayList<Macro>();
+	private String folder;
 	
 	public String getOutput() {
 		return output;
@@ -155,4 +156,10 @@ public class CompileFile extends Compile {
     	}
     	return;
     }
+	public String getFolder() {
+		return folder;
+	}
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
 }

@@ -43,9 +43,9 @@
    </OutputContainer>
   </Outputs>
   <Sources>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/libavdevice/alldevices.c" languageId="1" sourceFileSize="0">
+   <SourceFile sourceFileRef="libavdevice/alldevices.c" languageId="1" sourceFileSize="0">
    </SourceFile>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/libavdevice/alsa.c" languageId="1" sourceFileSize="0">
+   <SourceFile sourceFileRef="libavdevice/alsa.c" languageId="1" sourceFileSize="0">
    </SourceFile>
   </Sources>
   <Resources>

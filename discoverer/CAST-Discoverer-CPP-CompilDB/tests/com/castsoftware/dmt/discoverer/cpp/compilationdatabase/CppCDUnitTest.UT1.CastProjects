@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Projects packageId="e6ced788-f60f-4d31-a58a-6bf23eb56f10" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/home/yle/msieve">
  <PackageRootPath path=""/>
- <Project projectId="compile_commands.json" projectName="msieve" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@msieve" value="."/>
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json" value="."/>
+ <Project projectId="compile_commands.json#aprcl" projectName="aprcl" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#aprcl" projectPath="aprcl" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@aprcl" value="aprcl"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#aprcl" value="aprcl"/>
   <Metadata name="_FILE_OFFSET_BITS" value="64"/>
   <Metadata name="NDEBUG"/>
   <Metadata name="_LARGEFILE64_SOURCE"/>
@@ -31,23 +31,69 @@
    <Option name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
   </Options>
   <Sources>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@msieve%/aprcl/mpz_aprcl32.c" languageId="1" sourceFileSize="0">
-   </SourceFile>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@msieve%/common/filter/clique.c" languageId="1" sourceFileSize="0">
+   <SourceFile sourceFileRef="aprcl/mpz_aprcl32.c" languageId="1" sourceFileSize="0">
    </SourceFile>
   </Sources>
   <Resources>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@msieve%/." languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/." languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@msieve%/aprcl" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/aprcl" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@msieve%/include" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/include" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@msieve%/gnfs" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/gnfs" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@msieve%/gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@msieve%/gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+ <Project projectId="compile_commands.json#common/filter" projectName="filter" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#common/filter" projectPath="common/filter" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@filter" value="common/filter"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#common/filter" value="common/filter"/>
+  <Metadata name="_FILE_OFFSET_BITS" value="64"/>
+  <Metadata name="NDEBUG"/>
+  <Metadata name="_LARGEFILE64_SOURCE"/>
+  <Metadata name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="_FILE_OFFSET_BITS" value="64"/>
+   <Option name="NDEBUG"/>
+   <Option name="_LARGEFILE64_SOURCE"/>
+   <Option name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="common/filter/clique.c" languageId="1" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/." languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/aprcl" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/include" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/gnfs" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
   </Resources>
  </Project>

@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CompileFile.Macro;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
@@ -452,36 +454,61 @@ public class ProjectFileScanner
 	            }
 	            else
 	            {
+	            	// delete the default project and create one project per folder
 	            	if (compileFiles.size() > 0)
 	            	{
-		            	// no link: create a default project with all files
-			            if (project.getName() == null)
-			    		{
-			        		int last = directory.lastIndexOf("/");
-			        		String projectName = "";
-			        		if (last < 0)
-			        			projectName = directory;
-			        		else
-			        			projectName = directory.substring(last + 1);
-			        		project.setName(projectName);
-			                project.addMetadata(IResourceReadOnly.METADATA_REFKEY, projectName);
-			    		}
+	            		Set<String> sourceFolders;
+	            		sourceFolders = new HashSet<String>();
+	            		
 			            for (CompileFile cf : compileFiles)
 			            {
-			            	String fileRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getDirectory(), cf.getFilename());
-				            if (project.getFileReference(fileRef) == null)
-				            	project.addSourceFileReference(fileRef, cf.getLanguageId());
-
-				            for (Macro macro : cf.getMacros())
-				            	addMacro(project, macro.getKey(), macro.getValue());
-
-				            for (String include : cf.getIncludes())
-							{
-								String includeRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getDirectory(), include);
-								if (project.getDirectoryReference(includeRef) == null && project.getResourceReference(includeRef) == null)
-									project.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
-							}
+			            	String folderRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getFilename(), "");
+			            	if (folderRef.startsWith("%#!$?BASE_DIRECTORY_PATH"))
+			            		folderRef = folderRef.substring(folderRef.indexOf("/"));
+			            	if (folderRef.lastIndexOf("/") == 0)
+			            		folderRef = ".";
+			            	else
+			            	{
+			            		folderRef = folderRef.substring(1);
+			            		folderRef = folderRef.substring(0,folderRef.lastIndexOf("/"));
+			            	}
+			            	if (!sourceFolders.contains(folderRef))
+			            		sourceFolders.add(folderRef);
+		            		cf.setFolder(folderRef);
 			            }
+			            for (String folderRef : sourceFolders)
+			            {
+		            		String id = project.getId() + "#" + folderRef;
+		            		int pos = folderRef.lastIndexOf("/") + 1;
+		            		if (folderRef.length() > pos)
+		            		{
+			            		String folderName = folderRef.substring(folderRef.lastIndexOf("/") + 1);
+			            		Project p = projectsDiscovererUtilities.createInitialProject(id, folderName, project.getType(), id, folderRef);
+			            		//p.addMetadata(IResourceReadOnly.METADATA_REFKEY, folderName);
+				            	
+					            for (CompileFile cf : compileFiles)
+					            {
+					            	if (cf.getFolder().equals(folderRef))
+					            	{
+						            	String fileRef = getRelativeConnectionPath(p, connectionPath, null, null, cf.getFilename());
+							            if (p.getFileReference(fileRef) == null)
+							            	p.addSourceFileReference(fileRef, cf.getLanguageId());
+		
+							            for (Macro macro : cf.getMacros())
+							            	addMacro(p, macro.getKey(), macro.getValue());
+		
+							            for (String include : cf.getIncludes())
+										{
+											String includeRef = getRelativeConnectionPath(p, connectionPath, relativeFilePath, cf.getDirectory(), include);
+											if (p.getDirectoryReference(includeRef) == null && project.getResourceReference(includeRef) == null)
+												p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
+										}
+					            	}
+					            }
+			            	}
+			            }
+	            		projectsDiscovererUtilities.deleteProject(project.getId());
+			            
 	            	}
 	            	else
 	            	{
@@ -576,7 +603,8 @@ public class ProjectFileScanner
 	    				return removeRelativePath(relativeFile);
     			}
     			else
-    				return buildPackageRelativePath(project, relativeFile);
+    				//return buildPackageRelativePath(project, relativeFile);
+    				return removeRelativePath(relativeFile);
     		}
     		else
     			return removeRelativePath(file);

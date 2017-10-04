@@ -85,15 +85,13 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
 	public void startTextFile(String fileId, String fileName, long fileSize, String relativeFilePath, String content)
     {
     	File f = new File(connectionPath);
-        Project project = getProjectsDiscovererUtilities().createInitialProject(fileId, f.getName(), "dmtdevmicrosofttechno.CppProject", fileId, directoryId);
         if (fileName.equals("compile_commands.json"))
         {
+            Project project = getProjectsDiscovererUtilities().createInitialProject(fileId, f.getName(), "dmtdevmicrosofttechno.CppProject", fileId, directoryId);
         	parseProjectFile(relativeDirectoryPath, content, project, getProjectsDiscovererUtilities());
         	if (project.getName() == null)
         		getProjectsDiscovererUtilities().deleteProject(project.getId());
         }
-        else
-        	getProjectsDiscovererUtilities().deleteProject(project.getId());
     }
     
     private boolean parseProjectFile(String relativeFilePath, String content, Project project, IProjectsDiscovererUtilities projectsDiscovererUtilities)
