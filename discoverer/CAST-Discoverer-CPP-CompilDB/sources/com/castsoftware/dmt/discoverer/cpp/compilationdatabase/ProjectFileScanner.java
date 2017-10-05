@@ -17,6 +17,7 @@ import com.castsoftware.dmt.engine.project.Profile;
 import com.castsoftware.dmt.engine.project.Profile.Option;
 import com.castsoftware.dmt.engine.project.Project;
 import com.castsoftware.util.logger.Logging;
+import com.castsoftware.util.logger.exceptions.LogException;
 
 /**
  * Scanner for json file
@@ -125,7 +126,7 @@ public class ProjectFileScanner
         	}
         	else
         	{
-        		Logging.warn("cast.dmt.discover.cpp.compilationdatabase.compile_config", "PATH", project.getPath() + "/compile_config.json");
+        		Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notJsonFormat", "PATH", project.getPath() + "/compile_config.json");
         	}
         }
         catch (IOException e)
@@ -154,8 +155,9 @@ public class ProjectFileScanner
      *            the file content to scan.
      * @return {@code true} if no error was encountered during scanning. {@code false} otherwise.
      */
-    public static void scan(String connectionPath, String relativeFilePath, Project project, String projectContent, IProjectsDiscovererUtilities projectsDiscovererUtilities, int cLanguageId, int cHeaderLanguage, int cPlusPlusLanguage, int cPlusPlusHeaderLanguage, int cFamilyNotCompilableLanguage)
+    public static Boolean scan(String connectionPath, String relativeFilePath, Project project, String projectContent, IProjectsDiscovererUtilities projectsDiscovererUtilities, int cLanguageId, int cHeaderLanguage, int cPlusPlusLanguage, int cPlusPlusHeaderLanguage, int cFamilyNotCompilableLanguage)
     {
+    	Boolean scanFailed = false;
     	BufferedReader reader = null;
     	String command = null;
     	Boolean isArguments = false;
@@ -384,7 +386,13 @@ public class ProjectFileScanner
 		            	else if (line.startsWith("\"directory\":"))
 		            	{
 		            		String name = line.substring(line.indexOf(":") + 1).trim();
+		            		int i = 1;
 		            		directory = name.substring(name.indexOf("\"") + 1, name.lastIndexOf("\""));
+		            		
+		            		if (!directory.startsWith(connectionPath))
+		            		{
+		            			throw Logging.error("cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand", "DIR", directory, "ROOT", connectionPath);
+		            		}
 		            	}
 		            	else if (line.startsWith("\"file\":"))
 		            	{
@@ -525,7 +533,13 @@ public class ProjectFileScanner
         }
         catch (IOException e)
         {
+        	scanFailed = true;
             Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing", "PATH", relativeFilePath);
+        }
+        catch (LogException e)
+        {
+            //error already
+        	scanFailed = true;
         }
         finally
         {
@@ -535,7 +549,7 @@ public class ProjectFileScanner
 				Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing", "PATH", relativeFilePath);
 			}
         }
-        return;
+        return scanFailed;
     }
     private static String buildPackageRelativePath(Project project, String projectPath)
     {

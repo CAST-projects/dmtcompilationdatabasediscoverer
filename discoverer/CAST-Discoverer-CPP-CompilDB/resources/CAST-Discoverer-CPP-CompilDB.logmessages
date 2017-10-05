@@ -2,10 +2,11 @@
 <messages>
 	<language name="English">
 		<message id="cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing" format="Error while reading the file %PATH%"/>
-		<message id="cast.dmt.discover.cpp.compilationdatabase.noFile" format="The file '%PATH%' does not contain any compile command. File is skipped."/>
-		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped."/>
-    <message id="cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand" format="Command not supported in file '%PATH%' at line %LINE%"/>
-		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped."/>
-		<message id="cast.dmt.discover.cpp.compilationdatabase.missingOutput" format="No output defined for the file '%FILE%'. File is skipped."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.noFile" format="The file '%PATH%' does not contain any compile command. File is skipped." remediation="Check the documentation."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped." remediation="Check the documentation."/>
+    <message id="cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand" format="Command not supported in file '%PATH%' at line %LINE%" remediation="Check if you're using the latest version of the extension or report this limitation to get a new version of this extension."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.invalidRoot" format="The directory '%DIR%' used in commands inside the compile_config.json file is not matching the selected root %ROOT%" remediation="The source code must be packaged in its development location or you should define a value for the Development root folder."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.missingOutput" format="No output defined for the compile command for the '%FILE%'. File is skipped." remediation="If an output is defined, report this limitation to get a new version of this extension."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.missingLanguage" format="The language '%LNG%' is not defined in the extension." remediation="The extension can't be used. Check if you're using the latest version of the extension or report this limitation to get a new version of this extension."/> 
 	</language>
 </messages>
