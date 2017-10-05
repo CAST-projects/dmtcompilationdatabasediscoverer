@@ -391,7 +391,7 @@ public class ProjectFileScanner
 		            		
 		            		if (!directory.startsWith(connectionPath))
 		            		{
-		            			throw Logging.error("cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand", "DIR", directory, "ROOT", connectionPath);
+		            			throw Logging.error("cast.dmt.discover.cpp.compilationdatabase.invalidRoot", "DIR", directory, "ROOT", connectionPath);
 		            		}
 		            	}
 		            	else if (line.startsWith("\"file\":"))

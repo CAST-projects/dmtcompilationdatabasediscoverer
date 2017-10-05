@@ -88,8 +88,7 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         if (fileName.equals("compile_commands.json"))
         {
             Project project = getProjectsDiscovererUtilities().createInitialProject(fileId, f.getName(), "dmtdevmicrosofttechno.CppProject", fileId, directoryId);
-        	parseProjectFile(relativeDirectoryPath, content, project, getProjectsDiscovererUtilities());
-        	if (project.getName() == null)
+        	if (parseProjectFile(relativeDirectoryPath, content, project, getProjectsDiscovererUtilities()) && project != null)
         		getProjectsDiscovererUtilities().deleteProject(project.getId());
         }
     }
@@ -145,9 +144,8 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         }
 
         String path = connectionPath;
-        ProjectFileScanner.scan(path, relativeFilePath, project, content, projectsDiscovererUtilities, cLanguageId, cHeaderLanguage, cPlusPlusLanguage, cPlusPlusHeaderLanguage, cFamilyNotCompilableLanguage);
-
-        return true;
+        
+        return ProjectFileScanner.scan(path, relativeFilePath, project, content, projectsDiscovererUtilities, cLanguageId, cHeaderLanguage, cPlusPlusLanguage, cPlusPlusHeaderLanguage, cFamilyNotCompilableLanguage);
     }
     
     @Override
