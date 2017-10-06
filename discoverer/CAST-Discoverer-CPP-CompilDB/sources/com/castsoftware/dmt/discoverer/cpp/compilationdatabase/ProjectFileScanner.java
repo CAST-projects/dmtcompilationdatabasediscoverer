@@ -29,7 +29,9 @@ public class ProjectFileScanner
 		CC("cc")
 		,AR("ar")
 		,LD("ld")
-		,CPP("c++");
+		,CPP("c++")
+		,GPP("g++")
+		,GCC("gcc");
 		private String name = "";
 		ArgumentTypes(String name){
 			this.name = name;
@@ -223,7 +225,7 @@ public class ProjectFileScanner
 			            				compileLink.addOutput(s);
 			            			compileLinks.add(compileLink);
 			            		}
-			            		else if (argumentType.equals(ArgumentTypes.CC) || argumentType.equals(ArgumentTypes.CPP))
+			            		else if (argumentType.equals(ArgumentTypes.CC) || argumentType.equals(ArgumentTypes.CPP) || argumentType.equals(ArgumentTypes.GPP) || argumentType.equals(ArgumentTypes.GCC))
 			            		{
 			                		if ((command == null) && (!isArguments))
 			                		{
@@ -362,20 +364,45 @@ public class ProjectFileScanner
 		            			argumentType = ArgumentTypes.CC;
 		            			compileFile = new CompileFile();
 		            		}
-		            		else if (command.startsWith("\"" + ArgumentTypes.AR.toString() + " "))
+		            		else if (command.startsWith(ArgumentTypes.AR.toString() + " "))
 		            		{
 		            			argumentType = ArgumentTypes.AR;
 		            			compileLink = new CompileLink();
 		            		}
-		            		else if (command.startsWith("\"" + ArgumentTypes.LD.toString() + " "))
+		            		else if (command.startsWith(ArgumentTypes.LD.toString() + " "))
 		            		{
 		            			argumentType = ArgumentTypes.LD;
 		            			compileLink = new CompileLink();
 		            		}
-		            		else if (command.startsWith("\"" + ArgumentTypes.CPP.toString() + " "))
+		            		else if (command.startsWith(ArgumentTypes.CPP.toString() + " "))
 		            		{
 		            			argumentType = ArgumentTypes.CPP;
 		            			compileFile = new CompileFile();
+		            		}
+		            		else if (command.startsWith(ArgumentTypes.GPP.toString() + " "))
+		            		{
+		            			argumentType = ArgumentTypes.GPP;
+		            			compileFile = new CompileFile();
+		            		}
+		            		else if (command.startsWith( ArgumentTypes.GCC.toString() + " "))
+		            		{
+		            			argumentType = ArgumentTypes.GCC;
+		            			compileFile = new CompileFile();
+		            		}
+		            		else if (command.startsWith("/"))
+		            		{
+		            			String compilerName = command.substring(1,command.indexOf(" "));
+		            			compilerName = compilerName.substring(compilerName.lastIndexOf("/") + 1);
+		            			if (compilerName.equals(ArgumentTypes.GPP.toString()))
+		            			{
+			            			argumentType = ArgumentTypes.GPP;
+			            			compileFile = new CompileFile();
+		            			}
+		            			else if (compilerName.equals(ArgumentTypes.GCC.toString()))
+		            			{
+			            			argumentType = ArgumentTypes.GCC;
+			            			compileFile = new CompileFile();
+		            			}
 		            		}
 		            		else
 		            		{
