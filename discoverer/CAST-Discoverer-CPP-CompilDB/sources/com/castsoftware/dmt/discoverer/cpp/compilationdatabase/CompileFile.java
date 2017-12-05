@@ -7,6 +7,7 @@ import java.util.List;
  * CompileFile detected in a json
  */
 public class CompileFile extends Compile {
+	static String MACRO_STRING="\\\\\\\"";
 
     CompileFile(String command, String type)
 	{
@@ -183,6 +184,7 @@ public class CompileFile extends Compile {
 	public void addMacro(String macro) {
 		String macroName = "";
 		String macroValue = null;
+		macro = macro.replace(MACRO_STRING, "");
 		if (macro.contains("="))
 		{
 			String [] values = macro.split("=");
@@ -213,7 +215,12 @@ public class CompileFile extends Compile {
     		String macro = "";
     		int pos2 = commandline.indexOf(" ", pos1);
     		if (pos2 > 0)
-    			macro = commandline.substring(pos1 + 2, pos2);
+    		{
+    			int pos3 = commandline.indexOf("\"", pos1);
+    			if (pos3 > 0 && pos3 < pos2)
+    				pos2 = commandline.indexOf("\"", pos3 + 1) + 1;
+				macro = commandline.substring(pos1 + 2, pos2);
+    		}
     		else
     			macro = commandline.substring(pos1 + 2);
 

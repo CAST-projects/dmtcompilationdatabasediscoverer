@@ -7,7 +7,7 @@
   <Metadata name="_FILE_OFFSET_BITS" value="64"/>
   <Metadata name="NDEBUG"/>
   <Metadata name="_LARGEFILE64_SOURCE"/>
-  <Metadata name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
+  <Metadata name="MSIEVE_SVN_VERSION" value="1003M"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -28,7 +28,7 @@
    <Option name="_FILE_OFFSET_BITS" value="64"/>
    <Option name="NDEBUG"/>
    <Option name="_LARGEFILE64_SOURCE"/>
-   <Option name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
+   <Option name="MSIEVE_SVN_VERSION" value="1003M"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="msieve/aprcl/mpz_aprcl32.c" languageId="1" sourceFileSize="0">
