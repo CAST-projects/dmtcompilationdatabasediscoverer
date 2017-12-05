@@ -1,5 +1,6 @@
 package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscoverer;
@@ -8,6 +9,8 @@ import com.castsoftware.dmt.engine.discovery.ProjectsDiscovererWrapper.ProfileOr
 import com.castsoftware.dmt.engine.discovery.ProjectsDiscovererWrapper.ProfileOrProjectTypeConfiguration.LanguageConfiguration;
 import com.castsoftware.dmt.engine.discovery.ProjectsDiscoveryEngineTester;
 import com.castsoftware.dmt.engine.project.Profile.ReferenceCollation;
+import com.castsoftware.util.logger.Level;
+import com.castsoftware.util.logger.LogRecorder;
 
 /**
  * Tests for source files based projects discovery
@@ -15,9 +18,13 @@ import com.castsoftware.dmt.engine.project.Profile.ReferenceCollation;
  */
 public class CppCDUnitTest
 {
+    /** Per test log recorder and checker */
+    @Rule
+    public final LogRecorder logRecorder = new LogRecorder();
 
     private static class CppCDUnitTestTester extends ProjectsDiscoveryEngineTester
     {
+
         CppCDUnitTestTester(String desc)
         {
             super(CppCDUnitTest.class, desc);
@@ -57,21 +64,23 @@ public class CppCDUnitTest
      *             if anything goes wrong
      */
     @Test
-    public void unitTest1() throws Throwable
+    public void unitTest_UT1() throws Throwable
     {
         new CppCDUnitTestTester("UT1").go();
     }
 
     /**
-     * Same test as UT1 with an extraction path on Windows
+     * Same test as UT1 with an extraction path on Windows which doesn't match with the directory in the json
      *
      * @throws Throwable
      *             if anything goes wrong
      */
     @Test
-    public void unitTest1W() throws Throwable
+    public void unitTest_ERR1() throws Throwable
     {
-        new CppCDUnitTestTester("UT1W").go();
+        logRecorder.setHighestAllowedLogLevel(Level.ERROR);
+        new CppCDUnitTestTester("ERR1").go();
+        logRecorder.assertError("cast.dmt.discover.cpp.compilationdatabase.invalidRoot");
     }
 
     /**
@@ -81,21 +90,9 @@ public class CppCDUnitTest
      *             if anything goes wrong
      */
     @Test
-    public void unitTest2() throws Throwable
+    public void unitTest_UT2() throws Throwable
     {
-        //new CppCDUnitTestTester("UT2").go();
-    }
-
-    /**
-     * Same test as UT2 with an extraction path on Windows
-     *
-     * @throws Throwable
-     *             if anything goes wrong
-     */
-    @Test
-    public void unitTest2W() throws Throwable
-    {
-        //new CppCDUnitTestTester("UT2W").go();
+        new CppCDUnitTestTester("UT2").go();
     }
 
     /**
@@ -105,21 +102,45 @@ public class CppCDUnitTest
      *             if anything goes wrong
      */
     @Test
-    public void unitTest3() throws Throwable
+    public void unitTest_UT3() throws Throwable
     {
-        //new CppCDUnitTestTester("UT3").go();
+        new CppCDUnitTestTester("UT3").go();
     }
 
     /**
-     * Same test as UT3 with an extraction path on Windows
+     * Test discovery for arguments c++
      *
      * @throws Throwable
      *             if anything goes wrong
      */
     @Test
-    public void unitTest3W() throws Throwable
+    public void unitTest_UT4() throws Throwable
     {
-        //new CppCDUnitTestTester("UT3W").go();
+        new CppCDUnitTestTester("UT4").go();
+    }
+
+    /**
+     * Test discovery with AR link and files with command
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest_AR1() throws Throwable
+    {
+        new CppCDUnitTestTester("AR1").go();
+    }
+
+    /**
+     * Test discovery with AR link and files with arguments
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest_AR2() throws Throwable
+    {
+        new CppCDUnitTestTester("AR2").go();
     }
 
     /**
@@ -129,20 +150,8 @@ public class CppCDUnitTest
      *             if anything goes wrong
      */
     @Test
-    public void unitTest5() throws Throwable
+    public void unitTest_GPP1() throws Throwable
     {
-        new CppCDUnitTestTester("UT5").go();
-    }
-
-    /**
-     * Same test as UT5 with an extraction path on Windows
-     *
-     * @throws Throwable
-     *             if anything goes wrong
-     */
-    @Test
-    public void unitTest5W() throws Throwable
-    {
-        //new CppCDUnitTestTester("UT5W").go();
+        new CppCDUnitTestTester("GPP1").go();
     }
 }

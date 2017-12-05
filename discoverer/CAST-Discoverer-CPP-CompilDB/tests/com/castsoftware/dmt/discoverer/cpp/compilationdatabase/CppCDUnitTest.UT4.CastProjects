@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Projects packageId="8bc0a62b-014c-4910-b029-65aa71df88d5" packageName="unittest3" packageType="FileSourceCodeRepository" packageConnectionPath="D:/SRC/C++/CompilationDatabase/unittests/unittest3">
+<Projects packageId="8bc0a62b-014c-4910-b029-65aa71df88d5" packageName="unittest4" packageType="FileSourceCodeRepository" packageConnectionPath="/home/yle">
  <PackageRootPath path=""/>
- <Project projectId="tiny-c/compile_commands.json" projectName="unittest3" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="tiny-c/compile_commands.json" projectPath="tiny-c" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@unittest3" value="tiny-c"/>
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@tiny-c/compile_commands.json" value="tiny-c"/>
+ <Project projectId="tiny-c2/compile_commands.json#tiny-c2" projectName="tiny-c2" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="tiny-c2/compile_commands.json#tiny-c2" projectPath="tiny-c2" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@tiny-c2" value="tiny-c2"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@tiny-c2/compile_commands.json#tiny-c2" value="tiny-c2"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -21,11 +21,11 @@
    </Language>
   </Languages>
   <Sources>
-   <SourceFile sourceFileRef="/home/yle/tiny-c/a.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="tiny-c2/a.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
-   <SourceFile sourceFileRef="/home/yle/tiny-c/main.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="tiny-c2/main.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
-   <SourceFile sourceFileRef="/home/yle/tiny-c/b.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="tiny-c2/b.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
   </Sources>
  </Project>

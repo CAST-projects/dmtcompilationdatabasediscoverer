@@ -3,27 +3,48 @@ package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CompileFile detected in a json
+ */
 public class CompileFile extends Compile {
 
-	CompileFile()
+    CompileFile(String command, String type)
 	{
-		//NOP
+        this.command = command;
+        this.type = type;
 	}
+
+    /**
+     * Macro used to do the compilation
+     */
     public static class Macro
     {
-    	private String key;
+    	private final String key;
     	private String value;
     	Macro(String key, String value)
     	{
     		this.key = key;
-    		this.setValue(value);
+    		setValue(value);
     	}
+
+        /**
+         * @return macro key
+         */
 		public String getKey() {
 			return key;
 		}
+
+        /**
+         * @return macro value
+         */
 		public String getValue() {
 			return value;
 		}
+
+        /**
+         * @param value
+         *            set the value of the macro
+         */
 		public void setValue(String value) {
 			this.value = value;
 		}
@@ -33,54 +54,119 @@ public class CompileFile extends Compile {
 	private int languageId = 0;
 	private int languageHeaderId = 0;
 	private String command;
-	private List<String> includes = new ArrayList<String>();
-	private List<Macro> macros = new ArrayList<Macro>();
+	private final List<String> includes = new ArrayList<String>();
+	private final List<Macro> macros = new ArrayList<Macro>();
 	private String folder;
+    private String type;
+    private Boolean linked = false;
+
+    @Override
+	public void setFilename(String filename) {
+		super.setFilename(filename);
+	    if (filename.matches("^.*cpp$"))
+	    {
+	        setLanguageId(cPlusPlusLanguage);
+	        setLanguageHeaderId(cPlusPlusHeaderLanguage);
+	    }
+	    else if (filename.matches("^.*c$"))
+	    {
+	        setLanguageId(cLanguageId);
+	        setLanguageHeaderId(cHeaderLanguage);
+	    }
+	    else
+	        setLanguageId(cFamilyNotCompilableLanguage);
+	}
 	
+    /**
+     * @return the output
+     */
 	public String getOutput() {
 		return output;
 	}
+
+    /**
+     * @param output
+     *            the output (.o file)
+     */
 	public void setOutput(String output) {
-		this.output = getRelativePath(getDirectory(), output);
+        // this.output = getRelativePath(getDirectory(), output);
+        this.output = output;
 	}
+
+    /**
+     * @return the language ID
+     */
 	public int getLanguageId() {
 		return languageId;
 	}
+
+    /**
+     * @param languageId
+     *            language ID corresponding to the file
+     */
 	public void setLanguageId(int languageId) {
 		this.languageId = languageId;
 	}
+
+    /**
+     * @return language ID corresponding to the file
+     */
 	public int getLanguageHeaderId() {
 		return languageHeaderId;
 	}
+
+    /**
+     * @param languageHeaderId
+     *            language ID corresponding to the file
+     */
 	public void setLanguageHeaderId(int languageHeaderId) {
 		this.languageHeaderId = languageHeaderId;
 	}
-	public String getCommand() {
-		return command;
-	}
-	public void setCommand(String command) {
-		this.command = command;
-	}
+
+    /**
+     * @return command used for the compilation
+     */
+    public String getCommand()
+    {
+        return command;
+    }
+
+    /**
+     * @param command
+     *            command used for the compilation
+     */
+    public void setCommand(String command)
+    {
+        this.command = command;
+    }
+
+    /**
+     * @return list of includes
+     */
 	public List<String> getIncludes() {
 		return includes;
 	}
-	public String getInclude(String include) {
-		for (String i : includes)
-		{
-			if (include.equals(i))
-				return i;
-		}
-		return null;
-	}
+
+    /**
+     * @param include
+     *            include to be added
+     */
 	public void addInclude(String include) {
-		this.includes.add(include.replace("\\", "/"));
+		includes.add(include.replace("\\", "/"));
 	}
-	public void setIncludes(List<String> includes) {
-		this.includes = includes;
-	}
+
+    /**
+     * @return list of macros
+     */
 	public List<Macro> getMacros() {
 		return macros;
 	}
+
+    /**
+     * @param name
+     *            macro name
+     * @return macro
+     */
 	public Macro getMacro(String name) {
 		for (Macro m : macros)
 		{
@@ -89,6 +175,11 @@ public class CompileFile extends Compile {
 		}
 		return null;
 	}
+
+    /**
+     * @param macro
+     *            macro to add
+     */
 	public void addMacro(String macro) {
 		String macroName = "";
 		String macroValue = null;
@@ -109,57 +200,105 @@ public class CompileFile extends Compile {
 			macros.add(m);
 		}
 	}
-    public void parseCommand(String command, int languageId, int languageHeaderId)
+
+    /**
+     * @param commandline
+     *            command used in the compilation. In that format, compiler followed by the list of arguments
+     */
+    public void parseCommand(String commandline)
     {
-    	int pos1 = command.indexOf("-D");
+    	int pos1 = commandline.indexOf("-D");
     	while (pos1 > 0)
     	{
     		String macro = "";
-    		int pos2 = command.indexOf(" ", pos1);
+    		int pos2 = commandline.indexOf(" ", pos1);
     		if (pos2 > 0)
-    			macro = command.substring(pos1 + 2, pos2);
+    			macro = commandline.substring(pos1 + 2, pos2);
     		else
-    			macro = command.substring(pos1 + 2);
-    		
+    			macro = commandline.substring(pos1 + 2);
+
     		addMacro(macro);
-	        pos1 = command.indexOf("-D",pos1 + 1);
+	        pos1 = commandline.indexOf("-D",pos1 + 1);
     	}
 
-    	pos1 = command.indexOf("-I");
+    	pos1 = commandline.indexOf("-I");
     	while (pos1 > 0)
     	{
     		String include = "";
-    		int pos2 = command.indexOf(" ", pos1);
+    		int pos2 = commandline.indexOf(" ", pos1);
     		if (pos2 > 0)
-    			include = command.substring(pos1 + 2, pos2);
+    			include = commandline.substring(pos1 + 2, pos2);
     		else
-    			include = command.substring(pos1 + 2);
-    		
+    			include = commandline.substring(pos1 + 2);
+
     		addInclude(include);
     		//String includeRelativeRef = removeRelativePath(include);
     		//String directoryRef = buildPackageRelativePath(project, includeRelativeRef);
     		//if (project.getDirectoryReference(directoryRef) == null)
     		//	project.addDirectoryReference(directoryRef, languageId, languageHeaderId);
-    		
-	        pos1 = command.indexOf("-I",pos1 + 1);
+
+	        pos1 = commandline.indexOf("-I",pos1 + 1);
     	}
-    	pos1 = command.indexOf("-o");
+    	pos1 = commandline.indexOf("-o");
     	if (pos1 > 0)
     	{
-    		String output = "";
-    		int pos2 = command.indexOf(".o", pos1);
+    		String outputFile = "";
+    		int pos2 = commandline.indexOf(".o", pos1);
     		if (pos2 > 0)
     		{
-    			output = command.substring(pos1 + 3, pos2 + 2).trim();
-    			setOutput(output);
+    			outputFile = commandline.substring(pos1 + 3, pos2 + 2).trim();
+    			setOutput(outputFile);
     		}
     	}
     	return;
     }
+
+    /**
+     * @return folder to use as a grouping factor when no link command is found
+     */
 	public String getFolder() {
 		return folder;
 	}
+
+    /**
+     * @param folder
+     *            folder to use as a grouping factor when no link command is found
+     */
 	public void setFolder(String folder) {
 		this.folder = folder;
 	}
+
+    /**
+     * @return command type
+     */
+    public String getType()
+    {
+        return type;
+    }
+
+    /**
+     * @param type
+     *            command type
+     */
+    public void setType(String type)
+    {
+        this.type = type;
+    }
+
+    /**
+     * @return if the compile file is used in a link
+     */
+    public Boolean isLinked()
+    {
+        return linked;
+    }
+
+    /**
+     * @param linked
+     *            flag if the compile file is used in a link
+     */
+    public void setLinked(Boolean linked)
+    {
+        this.linked = linked;
+    }
 }

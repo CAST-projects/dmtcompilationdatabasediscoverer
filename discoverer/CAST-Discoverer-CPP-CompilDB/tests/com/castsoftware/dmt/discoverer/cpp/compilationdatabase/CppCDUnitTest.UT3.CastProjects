@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Projects packageId="8bc0a62b-014c-4910-b029-65aa71df88d5" packageName="unittest3" packageType="FileSourceCodeRepository" packageConnectionPath="/home/yle">
  <PackageRootPath path=""/>
- <Project projectId="tiny-c/compile_commands.json" projectName="yle" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="tiny-c/compile_commands.json" projectPath="tiny-c" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@yle" value="tiny-c"/>
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@tiny-c/compile_commands.json" value="tiny-c"/>
+ <Project projectId="tiny-c/compile_commands.json#tiny-c" projectName="tiny-c" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="tiny-c/compile_commands.json#tiny-c" projectPath="tiny-c" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@tiny-c" value="tiny-c"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@tiny-c/compile_commands.json#tiny-c" value="tiny-c"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -21,11 +21,11 @@
    </Language>
   </Languages>
   <Sources>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@yle%/a.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="tiny-c/a.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@yle%/main.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="tiny-c/main.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
-   <SourceFile sourceFileRef="%#!$?BASE_DIRECTORY_PATH@yle%/b.cpp" languageId="2" sourceFileSize="0">
+   <SourceFile sourceFileRef="tiny-c/b.cpp" languageId="2" sourceFileSize="0">
    </SourceFile>
   </Sources>
  </Project>

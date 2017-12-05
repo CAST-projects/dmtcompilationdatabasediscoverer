@@ -1,23 +1,13 @@
 package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CompileFile.Macro;
-import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
-import com.castsoftware.dmt.engine.project.IResourceReadOnly;
-import com.castsoftware.dmt.engine.project.Profile;
-import com.castsoftware.dmt.engine.project.Profile.Option;
 import com.castsoftware.dmt.engine.project.Project;
 import com.castsoftware.util.logger.Logging;
-import com.castsoftware.util.logger.exceptions.LogException;
 
 /**
  * Scanner for json file
@@ -25,23 +15,71 @@ import com.castsoftware.util.logger.exceptions.LogException;
 public class ProjectFileScanner
 {
 	static String sep = "";
-	enum ArgumentTypes {
+
+    enum CCompileCommands
+    {
 		CC("cc")
-		,AR("ar")
-		,LD("ld")
-		,CPP("c++")
-		,GPP("g++")
 		,GCC("gcc");
 		private String name = "";
-		ArgumentTypes(String name){
+
+        CCompileCommands(String name)
+        {
 			this.name = name;
 		}
 		@Override
         public String toString(){
 			return name;
 		}
-	}
-	;
+
+        public static String getConfigName()
+        {
+            return "cc";
+        }
+    }
+
+    enum CPPCompileCommands
+    {
+        CPP("c++")
+        ,
+        GPP("g++");
+        private String name = "";
+
+        CPPCompileCommands(String name)
+        {
+            this.name = name;
+        }
+
+        @Override
+        public String toString()
+        {
+            return name;
+        }
+
+        public static String getConfigName()
+        {
+            return "cxx";
+        }
+    }
+
+    enum LinkCommands
+    {
+        AR("ar")
+        ,
+        LD("ld");
+        private String name = "";
+
+        LinkCommands(String name)
+        {
+            this.name = name;
+        }
+
+        @Override
+        public String toString()
+        {
+            return name;
+        }
+    }
+    // static int cLanguageId, cHeaderLanguage, cPlusPlusLanguage, cPlusPlusHeaderLanguage, cFamilyNotCompilableLanguage;
 
     private ProjectFileScanner()
     {
@@ -51,42 +89,76 @@ public class ProjectFileScanner
     /**
      * Scan a compile_config.json file and add info to the project.
      *
-     * @param interpreter
-     *            the project file interpreter
-     * @param projectFilePath
-     *            the path to the project file used for reference
-     * @param projectContent
+     * @param command
+     *            the command options to load in this file
+     * @param configFilePath
+     *            the path to the compile_config.json file
+     * @param configContent
      *            the file content to scan.
      * @return {@code true} if no error was encountered during scanning. {@code false} otherwise.
      */
-    public static List<String> scanConfig(Project project, String configContent, int languageId, int headerLanguageId)
+    public static CompileConfig scanConfig(String command, String configFilePath, String configContent)
     {
     	BufferedReader reader = null;
-    	String include = null;
-    	Boolean isConfig = false;
-    	Boolean isInIncludePaths = false;
-    	String command = project.getMetadata("command").getValue();
-    	Boolean isCommandConfig = false;
-    	List<String> includes = new ArrayList<String>();
+        CompileConfig compileConfig = null;
 
-    	reader = new BufferedReader(new StringReader(configContent), configContent.length());
-
-    	if (command == null)
-    		command = ArgumentTypes.CC.toString();
         try
         {
-        	String firstLine = reader.readLine().trim();
+            reader = new BufferedReader(new StringReader(configContent), configContent.length());
+
+            String firstLine = reader.readLine().trim();
         	if ((firstLine != null) && ("{".equals(firstLine)))
         	{
+                int numline = 1;
         		Boolean isInside = true;
+                // identify the bloc config { }
+                Boolean isConfig = false;
+                // identify the required config
+                Boolean isCommandConfig = false;
+
+                // identify the bloc include_paths [ ]
+                Boolean isInIncludePaths = false;
+                Boolean isInDefines = false;
+                String defineName = null;
+                String defineValue = null;
+                // String command = project.getMetadata("command").getValue();
 	            for (String readline = reader.readLine(); readline != null; readline = reader.readLine())
 	            {
 	            	String line = readline.trim();
+                    numline++;
 	            	if (isInside)
 	            	{
-		            	if (line.startsWith("]"))
+                        if (line.contains("}"))
+                        {
+                            if (isInDefines)
+                            {
+                                if (isCommandConfig && defineName != null && defineValue != null)
+                                    compileConfig.addDefine(defineName, defineValue);
+                                defineName = null;
+                                defineValue = null;
+                            }
+                            else if (isConfig)
+                                isConfig = false;
+                            else if (isInside)
+                                isInside = false;
+                            else
+                                // out the main bloc
+                                Logging.detail("cast.dmt.discover.cpp.compilationdatabase.lineoutside", "LINE",
+                                    String.valueOf(numline), "FILE", configFilePath);
+                            continue;
+                        }
+                        else if (isConfig && line.startsWith("]"))
 		            	{
-		            		isInside = false;
+                            if (isInIncludePaths)
+                                isInIncludePaths = false;
+                            else if (isInDefines)
+                                isInDefines = false;
+                            else
+                            {
+                                isInIncludePaths = false;
+                                isInDefines = false;
+                            }
+                            continue;
 		            	}
 		            	else if (line.contains(": {"))
 		            	{
@@ -94,70 +166,110 @@ public class ProjectFileScanner
 		            		String config = line.substring(line.indexOf("\"") + 1).trim();
 		            		config = config.substring(0, config.indexOf("\""));
 		            		if (command.equals(config))
+                            {
 		            			isCommandConfig = true;
+                                compileConfig = new CompileConfig();
+                            }
 		            		else
-		            			if (command.equals(ArgumentTypes.CPP.toString()) && "cxx".equals(config))
-		            				isCommandConfig = true;
-		            			else
+                                // if (command.equals(ArgumentTypes.CPP.toString()) && "cxx".equals(config))
+                                // isCommandConfig = true;
+                                // else
 		            				isCommandConfig = false;
 		            	}
 		            	else if (isConfig && line.contains("}"))
 		            	{
-		            		isConfig = false;
+                            if (isInDefines)
+                            {
+                                if (isCommandConfig && defineName != null && defineValue != null)
+                                    compileConfig.addDefine(defineName, defineValue);
+                                defineName = null;
+                                defineValue = null;
+                            }
+                            else
+                                isConfig = false;
 		            	}
-		            	else if (isConfig && line.contains("include_paths"))
+                        else if (isConfig && line.startsWith("\"include_paths\""))
 		            	{
 		            		isInIncludePaths = true;
 		            	}
-		            	else if (isInIncludePaths)
-		            	{
-		            		if (line.startsWith("]"))
-		            			isInIncludePaths = false;
-		            		else
-		            		{
-		            			if (isCommandConfig)
-		            			{
-			            			include = line.substring(line.indexOf("\"") + 1).trim();
-			        				include = removeRelativePath(include.substring(0, include.indexOf("\"")).trim());
-			            			includes.add(include);
-		            			}
-		            		}
-		            	}
+                        else if (isConfig && line.startsWith("\"defines\""))
+                        {
+                            isInDefines = true;
+                        }
+                        else
+                        {
+                            if (isCommandConfig)
+                            {
+                                if (isInIncludePaths)
+                                {
+                                    String include = line.substring(line.indexOf("\"") + 1).trim();
+                                    include = PathHelper.removeRelativePath(include.substring(0, include.indexOf("\"")).trim());
+                                    compileConfig.addInclude_path(include);
+                                }
+                                else if (isInDefines)
+                                {
+                                    if (line.startsWith("\"name\":"))
+                                    {
+                                        String val = line.substring(line.indexOf("\"", 7) + 1).trim();
+                                        defineName = val.substring(0, val.length() - 1);
+                                    }
+                                    else if (line.startsWith("\"value\":"))
+                                    {
+                                        String val = line.substring(line.indexOf("\"", 8) + 1).trim();
+                                        defineValue = val.substring(0, val.length() - 1);
+                                    }
+                                }
+                            }
+                        }
 	            	}
 	            }
         	}
         	else
         	{
-        		Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notJsonFormat", "PATH", project.getPath() + "/compile_config.json");
+                Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notJsonFormat", "PATH", configFilePath);
         	}
+        }
+        catch (IllegalArgumentException e)
+        {
+            Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing", "PATH",
+                configFilePath);
         }
         catch (IOException e)
         {
-            Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing", "PATH", project.getPath() + "/compile_config.json");
+            Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing", "PATH",
+                configFilePath);
         }
         finally
         {
         	try {
 				reader.close();
 			} catch (IOException e) {
-				Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing", "PATH", project.getPath() + "/compile_config.json");
+                Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing", "PATH",
+                    configFilePath);
 			}
         }
-        return includes;
+        return compileConfig;
     }
 
     /**
      * Scan a compile_commands.json file and add info to the project.
      *
-     * @param interpreter
+     * @param connectionPath
      *            the project file interpreter
-     * @param projectFilePath
+     * @param relativeFilePath
      *            the path to the project file used for reference
+     * @param project
+     *            the file content to scan.
      * @param projectContent
      *            the file content to scan.
+     * @param compileFiles
+     *            the list of compileFile found in the file.
+     * @param compileLinks
+     *            the list of compileLink found in the file.
      * @return {@code true} if no error was encountered during scanning. {@code false} otherwise.
      */
-    public static Boolean scan(String connectionPath, String relativeFilePath, Project project, String projectContent, IProjectsDiscovererUtilities projectsDiscovererUtilities, int cLanguageId, int cHeaderLanguage, int cPlusPlusLanguage, int cPlusPlusHeaderLanguage, int cFamilyNotCompilableLanguage)
+    public static Boolean scan(String connectionPath, String relativeFilePath, Project project, String projectContent,
+        List<CompileFile> compileFiles, List<CompileLink> compileLinks)
     {
     	Boolean scanFailed = false;
     	BufferedReader reader = null;
@@ -165,19 +277,12 @@ public class ProjectFileScanner
     	Boolean isArguments = false;
     	Boolean isInArguments = false;
     	Boolean isNextOutput = false;
-    	ArgumentTypes argumentType = null;
-    	@SuppressWarnings("unused")
-		List<String> includes = new ArrayList<String>();
-    	String directory = null;
+        String directory = null;
     	String file = null;
     	String output = null;
-    	List<String> outputs = new ArrayList<String>();
-    	int languageId = 0;
-    	int languageHeaderId = 0;
-    	List<CompileFile> compileFiles = new ArrayList<CompileFile>();
-		CompileFile compileFile = null;
-    	List<CompileLink> compileLinks = new ArrayList<CompileLink>();
-		CompileLink compileLink = null;
+        List<String> outputs = new ArrayList<String>();
+        CompileFile compileFile = null;
+        CompileLink compileLink = null;
 
     	setSeparator(connectionPath);
 
@@ -204,221 +309,205 @@ public class ProjectFileScanner
 		            		isInArguments = false;
 		            		isNextOutput = false;
 		            		output = null;
-		            		argumentType = null;
 		            		directory = null;
 		            		file = null;
-		            		languageId = 0;
-		            		languageHeaderId = 0;
 		            		compileFile = null;
 		            		compileLink = null;
 		            	}
 		            	else if (line.startsWith("}"))
 		            	{
-		            		if (argumentType != null)
+                            if (isArguments == true)
 		            		{
-			            		if (argumentType.equals(ArgumentTypes.AR) || argumentType.equals(ArgumentTypes.LD))
-			            		{
+                                if (compileLink != null)
+                                {
 			            			compileLink.setLinkname(file);
 			            			compileLink.setDirectory(directory);
 			            			compileLink.setFilename(file);
-			            			for (String s : outputs)
-			            				compileLink.addOutput(s);
+                                    for (String s : outputs)
+                                        compileLink.addOutput(s);
 			            			compileLinks.add(compileLink);
+                                    compileLink = null;
 			            		}
-			            		else if (argumentType.equals(ArgumentTypes.CC) || argumentType.equals(ArgumentTypes.CPP) || argumentType.equals(ArgumentTypes.GPP) || argumentType.equals(ArgumentTypes.GCC))
-			            		{
-			                		if ((command == null) && (!isArguments))
-			                		{
-			                			Logging.warn("Not supported format: no command and no arguments");
-			                			continue;
-			                		}
-			                		compileFile.setCommand(argumentType.toString());
-			                        if (file.matches("^.*cpp$"))
-			                		{
-			                        	compileFile.setLanguageId(cPlusPlusLanguage);
-			                        	compileFile.setLanguageHeaderId(cPlusPlusHeaderLanguage);
-			                		}
-			                        else if (file.matches("^.*c$"))
-			                        {
-			                        	compileFile.setLanguageId(cLanguageId);
-			                        	compileFile.setLanguageHeaderId(cHeaderLanguage);
-			                        }
-			                        else
-			                        	compileFile.setLanguageId(cFamilyNotCompilableLanguage);
-
+                                else if (compileFile != null)
+                                {
 			                        compileFile.setDirectory(directory);
 			                        compileFile.setFilename(file);
 
-			                		if (command != null)
-			                			compileFile.parseCommand(command, languageId, languageHeaderId);
-			                		else
-                                    {
-                                        if (output == null)
-                                            Logging.warn("cast.dmt.discover.cpp.compilationdatabase.missingOutput", "FILE",
-                                                compileFile.getFilename());
-                                        else
-                                            compileFile.setOutput(output);
-                                    }
+                                    if (output == null)
+                                        Logging.warn("cast.dmt.discover.cpp.compilationdatabase.missingOutput", "FILE",
+                                            compileFile.getFilename());
+                                    else
+                                        compileFile.setOutput(output);
 
 			                		compileFiles.add(compileFile);
-
+                                    compileFile = null;
 			            		}
 			            		else
-			            		{
-			                		if (command != null)
-			                		{
-			            				Logging.warn("Bad command", "COMMAND", command);
-			                		}
-			            		}
+                                    Logging.warn("cast.dmt.discover.cpp.compilationdatabase.invalidCommand", "LINE",
+                                        String.valueOf(numline), "FILE", connectionPath);
 		            		}
+                            else if (command != null)
+                            {
+                                if (compileFile != null)
+                                {
+                                    compileFile.setDirectory(directory);
+                                    compileFile.setFilename(file);
+                                    compileFile.parseCommand(command);
+
+                                    compileFiles.add(compileFile);
+                                    compileFile = null;
+                                }
+                                else
+                                    Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand", "PATH",
+                                        connectionPath, "LINE", String.valueOf(numline));
+                            }
 		            	}
 		            	else if (line.startsWith("\"arguments\": ["))
 		            	{
 		            		isArguments = true;
 		            		isInArguments = true;
 		            		isNextOutput = false;
-		            		//if (line.length() > 14)
-		            		//	arguments = line.substring(15);
 		            	}
 		            	else if (line.startsWith("]"))
 		            	{
 		            		if (line.equals("]"))
 		            			isInside = false;
-		            		if (isInArguments)
+                            else if (isInArguments)
 		            		{
 			            		isInArguments = false;
 			            		isNextOutput = false;
-			            		if (argumentType.equals(ArgumentTypes.AR) || argumentType.equals(ArgumentTypes.LD))
-			            		{
-
-			            		}
-			            		else if (argumentType.equals(ArgumentTypes.CC) || argumentType.equals(ArgumentTypes.CPP))
-			            		{
-
-			            		}
-			            		else
-			            		{
-
-			            		}
 		            		}
 		            	}
 		            	else if (isInArguments)
 		            	{
-		            		if (line.contains("\"" + ArgumentTypes.CC.toString() + "\""))
-		            		{
-		            			argumentType = ArgumentTypes.CC;
-		            			compileFile = new CompileFile();
-		            		}
-		            		else if (line.contains("\"" + ArgumentTypes.AR.toString() + "\""))
-		            		{
-		            			argumentType = ArgumentTypes.AR;
-		            			compileLink = new CompileLink();
-		            		}
-		            		else if (line.contains("\"" + ArgumentTypes.LD.toString() + "\""))
-		            		{
-		            			argumentType = ArgumentTypes.LD;
-		            			compileLink = new CompileLink();
-		            		}
-		            		else if (line.contains("\"" + ArgumentTypes.CPP.toString() + "\""))
-		            		{
-		            			argumentType = ArgumentTypes.CPP;
-		            			compileFile = new CompileFile();
-		            		}
-		            		else
-		            		{
-		            			if (argumentType.equals(ArgumentTypes.AR) || argumentType.equals(ArgumentTypes.LD))
-		            			{
-		            				if (line.contains(".o"))
-		            					outputs.add(line.substring(1,line.indexOf("\"",2)));
-		            			}
-		            			else
-		            			{
-
-		            				if (line.startsWith("\"-D"))
-			                		{
-			                			compileFile.addMacro(line.substring(3,line.indexOf("\"",2)));
-			                		}
-			                		else if (line.startsWith("\"-I"))
-			                		{
-			                			compileFile.addInclude(line.substring(3,line.indexOf("\"",2)));
-			                			//includes.add(line.substring(3,line.indexOf("\"",2)));
-			                		}
-			                		else if (line.startsWith("\"-o"))
-			                		{
-			                			isNextOutput = true;
-			                		}
-			                		else if (isNextOutput)
-			                		{
-			                			output = line.substring(1,line.indexOf("\"",2));
-			                			isNextOutput = false;
-			                		}
-		            			}
-		            		}
+                            if (compileFile != null)
+                            {
+                                if (line.startsWith("\"-D"))
+                                {
+                                    compileFile.addMacro(line.substring(3, line.indexOf("\"", 2)));
+                                }
+                                else if (line.startsWith("\"-I"))
+                                {
+                                    compileFile.addInclude(line.substring(3, line.indexOf("\"", 2)));
+                                }
+                                else if (line.startsWith("\"-o"))
+                                {
+                                    isNextOutput = true;
+                                }
+                                else if (isNextOutput)
+                                {
+                                    output = line.substring(1, line.indexOf("\"", 2));
+                                    isNextOutput = false;
+                                    // to set the output, wait for the directory
+                                }
+                            }
+                            else if (compileLink != null)
+                            {
+                                if (line.contains(".o"))
+                                    outputs.add(line.substring(1, line.indexOf("\"", 2)));
+                            }
+                            else
+                            {
+                                if (line.equals("\"" + CCompileCommands.CC.toString() + "\",")
+                                    || line.endsWith("/" + CCompileCommands.CC.toString() + "\","))
+                                {
+                                    compileFile = new CompileFile(CCompileCommands.CC.toString(),
+                                        CCompileCommands.getConfigName());
+                                }
+                                else if (line.equals("\"" + CCompileCommands.GCC.toString() + "\",")
+                                         || line.endsWith("/" + CCompileCommands.GCC.toString() + "\","))
+                                {
+                                    compileFile = new CompileFile(CCompileCommands.GCC.toString(),
+                                        CCompileCommands.getConfigName());
+                                }
+                                else if (line.equals("\"" + CPPCompileCommands.CPP.toString() + "\",")
+                                         || line.endsWith("/" + CPPCompileCommands.CPP.toString() + "\","))
+                                {
+                                    compileFile = new CompileFile(CPPCompileCommands.CPP.toString(),
+                                        CPPCompileCommands.getConfigName());
+                                }
+                                else if (line.equals("\"" + CPPCompileCommands.GPP.toString() + "\",")
+                                        || line.endsWith("/" + CPPCompileCommands.GPP.toString() + "\","))
+                               {
+                                   compileFile = new CompileFile(CPPCompileCommands.GPP.toString(),
+                                       CPPCompileCommands.getConfigName());
+                               }
+                                else if (line.equals("\"" + LinkCommands.AR.toString() + "\",")
+                                         || line.endsWith("/" + LinkCommands.AR.toString() + "\","))
+                                {
+                                    compileLink = new CompileLink(LinkCommands.AR.toString());
+                                }
+                                else if (line.equals("\"" + LinkCommands.LD.toString() + "\",")
+                                         || line.endsWith("/" + LinkCommands.LD.toString() + "\","))
+                                {
+                                    compileLink = new CompileLink(LinkCommands.LD.toString());
+                                }
+                            }
 		            	}
 		            	else if (line.startsWith("\"command\":"))
 		            	{
 		            		String val = line.substring(line.indexOf(":") + 1).trim();
 		            		command = val.substring(val.indexOf("\"") + 1, val.lastIndexOf("\""));
-		            		if (command.startsWith(ArgumentTypes.CC.toString() + " "))
+		            		int pos = command.indexOf(" ");
+		            		if (pos > 0)
 		            		{
-		            			argumentType = ArgumentTypes.CC;
-		            			compileFile = new CompileFile();
-		            		}
-		            		else if (command.startsWith(ArgumentTypes.AR.toString() + " "))
-		            		{
-		            			argumentType = ArgumentTypes.AR;
-		            			compileLink = new CompileLink();
-		            		}
-		            		else if (command.startsWith(ArgumentTypes.LD.toString() + " "))
-		            		{
-		            			argumentType = ArgumentTypes.LD;
-		            			compileLink = new CompileLink();
-		            		}
-		            		else if (command.startsWith(ArgumentTypes.CPP.toString() + " "))
-		            		{
-		            			argumentType = ArgumentTypes.CPP;
-		            			compileFile = new CompileFile();
-		            		}
-		            		else if (command.startsWith(ArgumentTypes.GPP.toString() + " "))
-		            		{
-		            			argumentType = ArgumentTypes.GPP;
-		            			compileFile = new CompileFile();
-		            		}
-		            		else if (command.startsWith( ArgumentTypes.GCC.toString() + " "))
-		            		{
-		            			argumentType = ArgumentTypes.GCC;
-		            			compileFile = new CompileFile();
-		            		}
-		            		else if (command.startsWith("/"))
-		            		{
-		            			String compilerName = command.substring(1,command.indexOf(" "));
-		            			compilerName = compilerName.substring(compilerName.lastIndexOf("/") + 1);
-		            			if (compilerName.equals(ArgumentTypes.GPP.toString()))
-		            			{
-			            			argumentType = ArgumentTypes.GPP;
-			            			compileFile = new CompileFile();
-		            			}
-		            			else if (compilerName.equals(ArgumentTypes.GCC.toString()))
-		            			{
-			            			argumentType = ArgumentTypes.GCC;
-			            			compileFile = new CompileFile();
-		            			}
+                                String commandType = command.substring(0, pos);
+                                if (commandType.equals(CCompileCommands.CC.toString())
+                                    || commandType.endsWith("/" + CCompileCommands.CC.toString()))
+                                {
+                                    compileFile = new CompileFile(CCompileCommands.CC.toString(),
+                                        CCompileCommands.getConfigName());
+                                }
+                                else if (commandType.equals(CCompileCommands.GCC.toString())
+                                         || commandType.endsWith("/" + CCompileCommands.GCC.toString()))
+                                {
+                                    compileFile = new CompileFile(CCompileCommands.GCC.toString(),
+                                        CCompileCommands.getConfigName());
+                                }
+                                else if (commandType.equals(CPPCompileCommands.CPP.toString())
+                                         || commandType.endsWith("/" + CPPCompileCommands.CPP.toString()))
+                                {
+                                    compileFile = new CompileFile(CPPCompileCommands.CPP.toString(),
+                                        CPPCompileCommands.getConfigName());
+                                }
+                                else if (commandType.equals(CPPCompileCommands.GPP.toString())
+                                         || commandType.endsWith("/" + CPPCompileCommands.GPP.toString()))
+                                {
+                                    compileFile = new CompileFile(CPPCompileCommands.GPP.toString(),
+                                        CPPCompileCommands.getConfigName());
+                                }
+                                else if (commandType.equals(LinkCommands.AR.toString())
+                                         || commandType.endsWith("/" + LinkCommands.AR.toString()))
+                                {
+                                    compileLink = new CompileLink(LinkCommands.AR.toString());
+                                }
+                                else if (commandType.equals(LinkCommands.LD.toString())
+                                         || commandType.endsWith("/" + LinkCommands.LD.toString()))
+                                {
+                                    compileLink = new CompileLink(LinkCommands.LD.toString());
+                                }
+                                else
+                                {
+                                    //
+                                    Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand", "PATH",
+                                        project.getPath() + "/compile_commands.json", "LINE", numline);
+                                }
 		            		}
 		            		else
-		            		{
-		            			//
-		            			Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand", "PATH", project.getPath() + "/compile_commands.json", "LINE", numline);
-		            		}
+                                Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand", "PATH",
+                                    project.getPath() + "/compile_commands.json", "LINE", numline);
 		            	}
 		            	else if (line.startsWith("\"directory\":"))
 		            	{
 		            		String name = line.substring(line.indexOf(":") + 1).trim();
-		            		int i = 1;
 		            		directory = name.substring(name.indexOf("\"") + 1, name.lastIndexOf("\""));
-		            		
+
 		            		if (!directory.startsWith(connectionPath))
 		            		{
-		            			throw Logging.error("cast.dmt.discover.cpp.compilationdatabase.invalidRoot", "DIR", directory, "ROOT", connectionPath);
+                                Logging.managedError("cast.dmt.discover.cpp.compilationdatabase.invalidRoot", "DIR", directory, "ROOT",
+                                    connectionPath);
+                                scanFailed = true;
+                                break;
 		            		}
 		            	}
 		            	else if (line.startsWith("\"file\":"))
@@ -426,147 +515,20 @@ public class ProjectFileScanner
 		            		file = line.substring(line.indexOf(":") + 1).trim();
 		            		file = file.substring(file.indexOf("\"") + 1, file.lastIndexOf("\""));
 		            	}
-		            	//project.addMetadata("pchGenerator", pchGeneratorPath);
-		                //project.setName(name);
-		                //project.addMetadata(IResourceReadOnly.METADATA_REFKEY, name);
-		                //if (project.getOption(macroName) == null)
-		                //    project.addOption(macroName, macroValue);
-		                //if (project.getMetadata(macroName) == null)
-		                //    project.addMetadata(macroName, macroValue);
-		                //if (project.getFileReference(fileRef) == null)
-		                //{
-		                //    project.addSourceFileReference(fileRef, languageId);
-		                //}
-		                //if (project.getDirectoryReference(directoryRef) == null)
-		                //    project.addDirectoryReference(directoryRef, languageId, resourceTypeId);
-		                //}
-		                //if (project.getDirectoryReference(directoryRef) == null)
-		                //    project.addDirectoryReference(directoryRef, languageId, resourceTypeId);
-		                //}
 		            }
 
-	            }
-	            //
-	            if (compileLinks.size() > 0)
-	            {
-	            	// a project per link
-	            	for (CompileLink cl : compileLinks)
-	            	{
-	            		// identfiy the selected compileFile
-	            		cl.setCompileFiles(compileFiles);
-
-	            		String id = project.getId() + "#" + cl.getFilename();
-	            		Project p = projectsDiscovererUtilities.createInitialProject(id, cl.getLinkname(), project.getType(), id, project.getPath());
-	            		//String castpasthRef =  project.getPath() + "/compile_commands.castpath";
-	            		//castpasthRef = p.buildPackageRelativePath("compile_commands.castpath");
-	            		//p.addSourceFileReference(castpasthRef, Project.PROJECT_LANGUAGE_ID);
-	            		//p.addMetadata(IProfileReadOnly.METADATA_DESCRIPTOR, "compile_commands.json");
-	            		if (cl.getLinkname() != null)
-	            			p.addMetadata(IResourceReadOnly.METADATA_REFKEY, cl.getLinkname());
-	            		p.addOutputContainer(cl.getFilename(), 0);
-	                    String fullPath = p.buildPackageRelativePath("compile_config.json");
-	                    p.addFileReference(fullPath, Project.PROJECT_LANGUAGE_ID, IResourceReadOnly.RESOURCE_TYPE_NEUTRAL_ID);
-	                    if (cl.getCompileFiles().size() > 0)
-	                    	p.addMetadata("command", cl.getCompileFiles().get(0).getCommand());
-	            		for (CompileFile cf : cl.getCompileFiles())
-	            		{
-	            			String fileRef = getRelativeConnectionPath(p, connectionPath, relativeFilePath, cf.getDirectory(), cf.getFilename());
-	        	            if (p.getFileReference(fileRef) == null)
-	                			p.addSourceFileReference(fileRef, cf.getLanguageId());
-
-	        	            for (Macro macro : cf.getMacros())
-	    		            	addMacro(p, macro.getKey(), macro.getValue());
-
-	        	            for (String include : cf.getIncludes())
-	            			{
-	            				String includeRef = getRelativeConnectionPath(p, connectionPath, relativeFilePath, cf.getDirectory(), include);
-	        					if (p.getDirectoryReference(includeRef) == null && p.getResourceReference(includeRef) == null)
-	        						p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
-	            			}
-	            		}
-	            	}
-	            	projectsDiscovererUtilities.deleteProject(project.getId());
-	            }
-	            else
-	            {
-	            	// delete the default project and create one project per folder
-	            	if (compileFiles.size() > 0)
-	            	{
-	            		Set<String> sourceFolders;
-	            		sourceFolders = new HashSet<String>();
-	            		
-			            for (CompileFile cf : compileFiles)
-			            {
-			            	String folderRef = getRelativeConnectionPath(project, connectionPath, relativeFilePath, cf.getFilename(), "");
-			            	if (folderRef.startsWith("%#!$?BASE_DIRECTORY_PATH"))
-			            		folderRef = folderRef.substring(folderRef.indexOf("/"));
-			            	if (folderRef.lastIndexOf("/") == 0)
-			            		folderRef = ".";
-			            	else
-			            	{
-			            		folderRef = folderRef.substring(1);
-			            		folderRef = folderRef.substring(0,folderRef.lastIndexOf("/"));
-			            	}
-			            	if (!sourceFolders.contains(folderRef))
-			            		sourceFolders.add(folderRef);
-		            		cf.setFolder(folderRef);
-			            }
-			            for (String folderRef : sourceFolders)
-			            {
-		            		String id = project.getId() + "#" + folderRef;
-		            		int pos = folderRef.lastIndexOf("/") + 1;
-		            		if (folderRef.length() > pos)
-		            		{
-			            		String folderName = folderRef.substring(folderRef.lastIndexOf("/") + 1);
-			            		Project p = projectsDiscovererUtilities.createInitialProject(id, folderName, project.getType(), id, folderRef);
-			            		//p.addMetadata(IResourceReadOnly.METADATA_REFKEY, folderName);
-				            	
-					            for (CompileFile cf : compileFiles)
-					            {
-					            	if (cf.getFolder().equals(folderRef))
-					            	{
-						            	String fileRef = getRelativeConnectionPath(p, connectionPath, null, null, cf.getFilename());
-							            if (p.getFileReference(fileRef) == null)
-							            	p.addSourceFileReference(fileRef, cf.getLanguageId());
-		
-							            for (Macro macro : cf.getMacros())
-							            	addMacro(p, macro.getKey(), macro.getValue());
-		
-							            for (String include : cf.getIncludes())
-										{
-											String includeRef = getRelativeConnectionPath(p, connectionPath, relativeFilePath, cf.getDirectory(), include);
-											if (p.getDirectoryReference(includeRef) == null && project.getResourceReference(includeRef) == null)
-												p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
-										}
-					            	}
-					            }
-			            	}
-			            }
-	            		projectsDiscovererUtilities.deleteProject(project.getId());
-			            
-	            	}
-	            	else
-	            	{
-	            		Logging.warn("cast.dmt.discover.cpp.compilationdatabase.noFile", "PATH", project.getPath() + "/compile_commands.json");
-	            		projectsDiscovererUtilities.deleteProject(project.getId());
-	            	}
 	            }
         	}
         	else
         	{
         		Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notJsonFormat", "PATH", project.getPath() + "/compile_commands.json");
-        		projectsDiscovererUtilities.deleteProject(project.getId());
+                scanFailed = true;
         	}
         }
         catch (IOException e)
         {
         	scanFailed = true;
             Logging.managedError(e, "cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing", "PATH", relativeFilePath);
-        }
-        catch (LogException e)
-        {
-            //error already
-        	scanFailed = true;
         }
         finally
         {
@@ -578,137 +540,13 @@ public class ProjectFileScanner
         }
         return scanFailed;
     }
-    private static String buildPackageRelativePath(Project project, String projectPath)
-    {
-        if (new File(projectPath).isAbsolute() || projectPath.startsWith("/"))
-            return projectPath;
-
-        return Profile.buildPackageRelativePath(project.getName(), projectPath);
-    }
-
-    private static void addMacro(Project project, String macroName, String macroValue)
-    {
-		Option o = project.getOption(macroName);
-        if (o == null)
-            project.addOption(macroName, macroValue);
-        else
-        {
-        	if (macroValue == null && o.getValue() != null)
-        		Logging.warn("A", "MACRO", macroName, "VALUE", o.getValue());
-        	if (macroValue != null && !macroValue.equals(o.getValue()))
-        		Logging.warn("B", "MACRO", macroName, "VALUE1", macroValue, "VALUE2", o.getValue());
-        }
-        if (project.getMetadata(macroName) == null)
-            project.addMetadata(macroName, macroValue);
-    	return;
-    }
 
     private static void setSeparator(String rootPath)
     {
-    	if (rootPath.startsWith("/"))
-    		sep = "/";
+        if (rootPath.startsWith("/"))
+            sep = "/";
         else
-        	sep = "\\";
-    }
-
-    private static Boolean isFullPath(String file)
-    {
-    	if (file.startsWith("/"))
-    		return true;
-    	if (file.length() > 1)
-    	{
-    		if (":".equals(file.substring(1, 2)))
-    			return true;
-    		if ("\\\\".equals(file.substring(1, 2)))
-    			return true;
-    	}
-
-    	return false;
-    }
-    private static String getRelativeConnectionPath(Project project, String connectionPath, String relativeFilePath, String directory, String file)
-    {
-    	if (isFullPath(file))
-    	{
-    		if (file.startsWith(connectionPath))
-    		{
-    			String relativeFile = file.substring(connectionPath.length() + 1);
-    			if (relativeFilePath != null)
-    			{
-	    			if (relativeFile.startsWith(relativeFilePath) && (relativeFile.length() > (relativeFilePath.length() + 1)))
-	    			{
-	    				relativeFile = relativeFile.substring(relativeFilePath.length() + 1);
-	    				String fileRelativeRef = removeRelativePath(relativeFile);
-						return buildPackageRelativePath(project, fileRelativeRef);
-	    			}
-	    			else
-	    				return removeRelativePath(relativeFile);
-    			}
-    			else
-    				//return buildPackageRelativePath(project, relativeFile);
-    				return removeRelativePath(relativeFile);
-    		}
-    		else
-    			return removeRelativePath(file);
-    	}
-    	else
-    	{
-    		if (directory.startsWith(connectionPath))
-	    	{
-	    		String relativeDirectory = "";
-	    		if (directory.length() > connectionPath.length())
-	    			relativeDirectory = directory.substring(connectionPath.length() + 1);
-
-	    		if (relativeFilePath == null)
-	    		{
-	    			String fileRelativeRef = (relativeDirectory.equals("") ? removeRelativePath(file) : removeRelativePath(relativeDirectory + "/" + file));
-    				return buildPackageRelativePath(project, fileRelativeRef);
-	    		}
-	    		else
-	    		{
-	    			if (relativeDirectory.length() == 0)
-	    			{
-	    				return buildPackageRelativePath(project, file);
-	    			}
-	    			else if (relativeDirectory.startsWith(relativeFilePath))
-	    			{
-		    			relativeDirectory = (relativeDirectory.equals("") ? relativeDirectory.substring(relativeFilePath.length() + 1) : relativeDirectory.substring(relativeFilePath.length() + 1));
-		    			String fileRelativeRef = removeRelativePath(relativeDirectory + "/" + file);
-	    				return buildPackageRelativePath(project, fileRelativeRef);
-		    		}
-		    		else
-		    			return removeRelativePath(directory + "/" + file);
-	    		}
-	    	}
-			return removeRelativePath(directory + "/" + file);
-    	}
-    }
-
-    private static String removeRelativePath(String path)
-    {
-    	List<String> list = new ArrayList<String>(Arrays.asList(path.split("/")));
-    	List<String> relativeList = new ArrayList<String>();
-
-    	for (int i = 0; i < list.size(); i++)
-    	{
-    		String fld1 = list.get(i);
-    		if ("..".equals(fld1))
-    		{
-    			if (relativeList.size() > 0 && !"..".equals(relativeList.get(relativeList.size() - 1)))
-    				relativeList.remove(relativeList.size() - 1);
-    			else
-    				relativeList.add(fld1);
-    		}
-    		else
-    			relativeList.add(fld1);
-    	}
-		String relativePath = "";
-    	for (int i = 0; i < relativeList.size(); i++)
-    	{
-    		if (i > 0)
-    			relativePath += "/";
-    		relativePath += relativeList.get(i);
-    	}
-    	return relativePath;
+            sep = "\\";
     }
 }
 

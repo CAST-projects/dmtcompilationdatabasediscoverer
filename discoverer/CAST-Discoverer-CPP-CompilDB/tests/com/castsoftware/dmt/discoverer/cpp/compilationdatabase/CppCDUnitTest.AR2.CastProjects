@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Projects packageId="54472420-ee41-4fb8-8f17-1183d9e837cb" packageName="unittest5" packageType="FileSourceCodeRepository" packageConnectionPath="/home/yle/ffmpeg">
  <PackageRootPath path=""/>
- <Project projectId="compile_commands.json#/home/yle/ffmpeg/libavdevice/libavdevice.a" projectName="libavdevice.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#/home/yle/ffmpeg/libavdevice/libavdevice.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+ <Project projectId="compile_commands.json#libavdevice.a" projectName="libavdevice.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#libavdevice.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@libavdevice.a" value="."/>
-  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#/home/yle/ffmpeg/libavdevice/libavdevice.a" value="."/>
-  <Metadata name="#!$?EXTREF#!$?" value="libavdevice.a"/>
-  <Metadata name="command" value="cc"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#libavdevice.a" value="."/>
   <Metadata name="_ISOC99_SOURCE"/>
   <Metadata name="_FILE_OFFSET_BITS" value="64"/>
   <Metadata name="_LARGEFILE_SOURCE"/>
@@ -38,10 +36,6 @@
    <Option name="ZLIB_CONST"/>
    <Option name="HAVE_AV_CONFIG_H"/>
   </Options>
-  <Outputs>
-   <OutputContainer outputContainerRef="/home/yle/ffmpeg/libavdevice/libavdevice.a" languageId="0">
-   </OutputContainer>
-  </Outputs>
   <Sources>
    <SourceFile sourceFileRef="libavdevice/alldevices.c" languageId="1" sourceFileSize="0">
    </SourceFile>
@@ -49,8 +43,6 @@
    </SourceFile>
   </Sources>
   <Resources>
-   <FileReference fileRef="%#!$?BASE_DIRECTORY_PATH@compile_commands.json#/home/yle/ffmpeg/libavdevice/libavdevice.a%/compile_config.json" languageId="-1" resourceTypeId="0" fileSize="0">
-   </FileReference>
    <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/." languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
   </Resources>

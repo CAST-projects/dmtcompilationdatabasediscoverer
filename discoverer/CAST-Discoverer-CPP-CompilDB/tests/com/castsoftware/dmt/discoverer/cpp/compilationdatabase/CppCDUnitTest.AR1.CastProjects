@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects packageId="e4dc7c8d-b2f7-4028-82d1-eb56c2976aea" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/home/yle">
+ <PackageRootPath path=""/>
+ <Project projectId="compile_commands.json#libavdevice.a" projectName="libavdevice.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#libavdevice.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@libavdevice.a" value="."/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#libavdevice.a" value="."/>
+  <Metadata name="_FILE_OFFSET_BITS" value="64"/>
+  <Metadata name="NDEBUG"/>
+  <Metadata name="_LARGEFILE64_SOURCE"/>
+  <Metadata name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="_FILE_OFFSET_BITS" value="64"/>
+   <Option name="NDEBUG"/>
+   <Option name="_LARGEFILE64_SOURCE"/>
+   <Option name="MSIEVE_SVN_VERSION" value="\\\&quot;1003M\\\&quot;"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="msieve/aprcl/mpz_aprcl32.c" languageId="1" sourceFileSize="0">
+   </SourceFile>
+   <SourceFile sourceFileRef="msieve/common/filter/clique.c" languageId="1" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/msieve/." languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/msieve/aprcl" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/msieve/include" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/msieve/gnfs" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/msieve/gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@libavdevice.a%/msieve/gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+</Projects>
