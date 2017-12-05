@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <messages>
 	<language name="English">
-		<message id="cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing" format="Error while reading the file %PATH%"/>
-		<message id="cast.dmt.discover.cpp.compilationdatabase.noFile" format="The file '%PATH%' does not contain any compile command. File is skipped." remediation="Check the documentation."/>
-		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file. File is skipped." remediation="Check the documentation."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.ioExceptionInProjectParsing" format="Error while parsing the compile command file '%PATH%'" remediation="Check the json file. We invite you to report a bug if necessary."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.ioExceptionInConfigParsing" format="Error while parsing the compile config file '%PATH%'" remediation="Check the json file. We invite you to report a bug if necessary."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.noFile" format="The file '%PATH%' does not contain any compile command." remediation="File is skipped. Check the documentation for supported compile commands."/>
+		<message id="cast.dmt.discover.cpp.compilationdatabase.notJsonFormat" format="The file '%PATH%' is not a valid compile_config.json file." remediation="File is skipped and no project is automatically created. We invite you to report a bug on this file."/>
     <message id="cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand" format="Command not supported in file '%PATH%' at line %LINE%" remediation="Check if you're using the latest version of the extension or report this limitation to get a new version of this extension."/>
 		<message id="cast.dmt.discover.cpp.compilationdatabase.invalidRoot" format="The directory '%DIR%' used in commands inside the compile_config.json file is not matching the selected root '%ROOT%'" remediation="The source code must be packaged in its development location or you should define a value for the Development root folder."/>
 		<message id="cast.dmt.discover.cpp.compilationdatabase.missingOutput" format="No output defined for the compile command for the '%FILE%'. File is skipped." remediation="If an output is defined, report this limitation to get a new version of this extension."/>
