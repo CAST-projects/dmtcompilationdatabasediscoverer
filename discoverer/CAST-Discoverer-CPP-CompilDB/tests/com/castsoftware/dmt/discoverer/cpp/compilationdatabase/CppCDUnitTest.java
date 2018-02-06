@@ -154,4 +154,16 @@ public class CppCDUnitTest
     {
         new CppCDUnitTestTester("GPP1").go();
     }
+
+    /**
+     * Test discovery with link
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+//    @Test
+//    public void unitTest_HUAWEI1() throws Throwable
+//    {
+//        new CppCDUnitTestTester("HUAWEI1").go();
+//    }
 }

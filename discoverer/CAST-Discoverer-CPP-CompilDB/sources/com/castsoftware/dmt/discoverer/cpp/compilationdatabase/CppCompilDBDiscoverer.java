@@ -1,6 +1,8 @@
 package com.castsoftware.dmt.discoverer.cpp.compilationdatabase;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -103,6 +105,18 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         if (fileName.equals("compile_commands.json") && !jsonFiles.contains(relativeFilePath))
         {
             jsonFiles.add(relativeFilePath);
+//            PrintWriter out = null;
+//            try {
+//            	int i = 2;
+//				out = new PrintWriter("D:\\SRC\\C++\\Huawei\\RealTimeBuild_Dorado5000_V3_Main\\code\\current\\ScmXmlSvnName\\Product\\CI\\build\\cfgusr\\compile_commands.json");
+//				out.println( content );
+//				
+//
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//			} finally {
+//				out.close();
+//			}
             Project project = getProjectsDiscovererUtilities().createInitialProject(fileId, f.getName(), "dmtdevmicrosofttechno.CppProject", fileId, directoryId);
             parseProjectFile(relativeDirectoryPath, content, project, getProjectsDiscovererUtilities());
             if (project != null)

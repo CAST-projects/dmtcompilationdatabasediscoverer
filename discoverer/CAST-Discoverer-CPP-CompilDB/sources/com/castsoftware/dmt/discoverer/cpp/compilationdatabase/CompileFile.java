@@ -90,8 +90,8 @@ public class CompileFile extends Compile {
      *            the output (.o file)
      */
 	public void setOutput(String output) {
-        // this.output = getRelativePath(getDirectory(), output);
-        this.output = output;
+        this.output = getRelativePath(getDirectory(), output);
+//        this.output = output;
 	}
 
     /**

@@ -277,6 +277,7 @@ public class ProjectFileScanner
     	Boolean isArguments = false;
     	Boolean isInArguments = false;
     	Boolean isNextOutput = false;
+    	Boolean isArgumentC = false;
         String directory = null;
     	String file = null;
     	String output = null;
@@ -308,6 +309,7 @@ public class ProjectFileScanner
 		            		isArguments = false;
 		            		isInArguments = false;
 		            		isNextOutput = false;
+		            		isArgumentC = false;
 		            		output = null;
 		            		directory = null;
 		            		file = null;
@@ -334,8 +336,15 @@ public class ProjectFileScanner
 			                        compileFile.setFilename(file);
 
                                     if (output == null)
-                                        Logging.warn("cast.dmt.discover.cpp.compilationdatabase.missingOutput", "FILE",
-                                            compileFile.getFilename());
+                                    	if (isArgumentC)
+                                    	{
+                                    		int i = 1;
+                                    		//output = directory + "/" + getFilename(file) + ".o";
+                                    		compileFile.setOutput(getFilename(file) + ".o");
+                                    	}
+                                    	else
+                                    		Logging.warn("cast.dmt.discover.cpp.compilationdatabase.missingOutput", "FILE",
+                                    				compileFile.getFilename());
                                     else
                                         compileFile.setOutput(output);
 
@@ -382,7 +391,9 @@ public class ProjectFileScanner
 		            	{
                             if (compileFile != null)
                             {
-                                if (line.startsWith("\"-D"))
+                            	if (line.startsWith("\"-c"))
+                            		isArgumentC = true;
+                            	else if (line.startsWith("\"-D"))
                                 {
                                     compileFile.addMacro(line.substring(3, line.indexOf("\"", 2)));
                                 }
@@ -539,6 +550,25 @@ public class ProjectFileScanner
 			}
         }
         return scanFailed;
+    }
+    private static String getFilename(String filename)
+    {
+    	String shortFilenameString;
+    	int pos = filename.lastIndexOf("/");
+    	if (pos > 0)
+    		shortFilenameString = filename.substring(pos + 1);
+    	else
+    	{
+    		pos = filename.lastIndexOf("\\");
+    		if (pos > 0)
+    			shortFilenameString = filename.substring(pos + 1);
+    		else
+    			shortFilenameString = filename;
+    	}
+    	pos = shortFilenameString.lastIndexOf(".");
+    	if (pos > 0)
+    		shortFilenameString = shortFilenameString.substring(0, pos);
+    	return shortFilenameString;
     }
 
     private static void setSeparator(String rootPath)

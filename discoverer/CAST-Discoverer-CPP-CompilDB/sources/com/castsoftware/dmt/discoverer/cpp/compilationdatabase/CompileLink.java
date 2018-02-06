@@ -53,8 +53,8 @@ public class CompileLink extends Compile {
      *            the output to add to the list
      */
 	public void addOutput(String output) {
-        // outputs.add(getRelativePath(getDirectory(), output));
-        outputs.add(output);
+        outputs.add(getRelativePath(getDirectory(), output));
+        //outputs.add(output);
 	}
 
     /**
