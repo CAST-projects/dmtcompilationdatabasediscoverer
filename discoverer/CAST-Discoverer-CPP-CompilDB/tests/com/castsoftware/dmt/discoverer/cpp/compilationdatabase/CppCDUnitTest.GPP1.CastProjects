@@ -35,17 +35,17 @@
    </SourceFile>
   </Sources>
   <Resources>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/." languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="." languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/aprcl" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="aprcl" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/include" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="include" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/gnfs" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="gnfs" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@aprcl%/gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
   </Resources>
  </Project>
@@ -83,17 +83,17 @@
    </SourceFile>
   </Sources>
   <Resources>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/." languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="." languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/aprcl" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="aprcl" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/include" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="include" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/gnfs" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="gnfs" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="gnfs/poly" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@filter%/gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="gnfs/poly/stage1" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
   </Resources>
  </Project>

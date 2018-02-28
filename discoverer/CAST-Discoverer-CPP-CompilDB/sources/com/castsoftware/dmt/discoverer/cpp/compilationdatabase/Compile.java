@@ -67,7 +67,9 @@ public abstract class Compile {
 
 	protected static String getRelativePath(String directory, String file)
     {
-    	if (file.startsWith("/"))
+    	if (file.length() <= 1)
+    		return directory + "/" + file;
+    	else if (file.startsWith("/"))
     	{
 			return removeRelativePath(file, "/");
     	}

@@ -15,6 +15,25 @@ import com.castsoftware.dmt.engine.project.Project;
 public class PathHelper
 {
     /**
+     * @param rootPath
+     *            xxx
+     * @param file
+     *            xxx
+     * @return xxx
+     */
+    public static String getRelativeConnectionPath(String rootPath, String file)
+    {
+        if (!isFullPath(file))
+        	return null;
+        
+        if (!file.startsWith(rootPath))
+        	return null;
+        
+        String relativeFilepath = file.substring(rootPath.length() + 1);
+        return removeRelativePath(relativeFilepath);
+    }
+
+    /**
      * @param project
      *            xxx
      * @param path

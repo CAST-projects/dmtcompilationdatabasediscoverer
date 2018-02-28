@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects packageId="22a05014-c42b-40e7-aee3-180e0699f558" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/usr1/code/CODE_Analyzer/git">
+ <PackageRootPath path=""/>
+ <Project projectId="TD/TD/PTC/compile_commands.json#TD/TD/PTC/code/neptc/protocol/source" projectName="source" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="TD/TD/PTC/compile_commands.json#TD/TD/PTC/code/neptc/protocol/source" projectPath="TD/TD/PTC/TD/TD/PTC/code/neptc/protocol/source" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@source" value="TD/TD/PTC/TD/TD/PTC/code/neptc/protocol/source"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@TD/TD/PTC/compile_commands.json#TD/TD/PTC/code/neptc/protocol/source" value="TD/TD/PTC/TD/TD/PTC/code/neptc/protocol/source"/>
+  <Metadata name="CPU" value="ARMARCH5"/>
+  <Metadata name="VOS_OS_VER" value="VOS_LINUX"/>
+  <Metadata name="VOS_CPU_TYPE" value="VOS_ARM"/>
+  <Metadata name="VOS_HARDWARE_PLATFORM" value="VOS_ARM"/>
+  <Metadata name="_OSP_DOPRA_V2"/>
+  <Metadata name="LINUX_NE"/>
+  <Metadata name="_EDT_FOR_LINUC_"/>
+  <Metadata name="TCPIP_DOUBLESOCK"/>
+  <Metadata name="_SW_DOPRA_VOS"/>
+  <Metadata name="PLATFORM_VISP"/>
+  <Metadata name="TCPIP_NOVRP_LINUX" value="1"/>
+  <Metadata name="_SUPPORT_RTN950N_"/>
+  <Metadata name="_SUPPORT_HBU_"/>
+  <Metadata name="_SUPPORT_NE_USB_"/>
+  <Metadata name="PTC_DB_SELF_RANGE"/>
+  <Metadata name="TCPIP_DOPRA_V2"/>
+  <Metadata name="PTC_FILE_STUB_DRV"/>
+  <Metadata name="_USE_PERMAP_VER2"/>
+  <Metadata name="NDEBUG"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="CPU" value="ARMARCH5"/>
+   <Option name="VOS_OS_VER" value="VOS_LINUX"/>
+   <Option name="VOS_CPU_TYPE" value="VOS_ARM"/>
+   <Option name="VOS_HARDWARE_PLATFORM" value="VOS_ARM"/>
+   <Option name="_OSP_DOPRA_V2"/>
+   <Option name="LINUX_NE"/>
+   <Option name="_EDT_FOR_LINUC_"/>
+   <Option name="TCPIP_DOUBLESOCK"/>
+   <Option name="_SW_DOPRA_VOS"/>
+   <Option name="PLATFORM_VISP"/>
+   <Option name="TCPIP_NOVRP_LINUX" value="1"/>
+   <Option name="_SUPPORT_RTN950N_"/>
+   <Option name="_SUPPORT_HBU_"/>
+   <Option name="_SUPPORT_NE_USB_"/>
+   <Option name="PTC_DB_SELF_RANGE"/>
+   <Option name="TCPIP_DOPRA_V2"/>
+   <Option name="PTC_FILE_STUB_DRV"/>
+   <Option name="_USE_PERMAP_VER2"/>
+   <Option name="NDEBUG"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="TD/TD/PTC/code/neptc/protocol/source/CPtcLagMwPgResMgr.cpp" languageId="2" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="TD/USP/uts_v1r5" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="TD/USP/uts_v1r5/APS/include" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="TD/TD/PTC/code/share/aps" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="TD/TD/PTC/code/share/tm/pubh" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+</Projects>

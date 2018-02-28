@@ -315,11 +315,12 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
                             for (Macro macro : cf.getMacros())
                                 addMacro(p, macro.getKey(), macro.getValue());
 
+                            cf.transformIncludesInFullPath();
                             for (String include : cf.getIncludes())
                             {
-                                String includeRef = PathHelper.getRelativeConnectionPath(p, connectionPath, relativeFilePath,
-                                    cf.getDirectory(), include);
-                                if (p.getDirectoryReference(includeRef) == null
+                            	String includeRef = PathHelper.getRelativeConnectionPath(connectionPath, include);
+                                if (includeRef != null
+                                	&& p.getDirectoryReference(includeRef) == null
                                     && project.getResourceReference(includeRef) == null)
                                     p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
                             }

@@ -73,7 +73,7 @@
    </SourceFile>
   </Sources>
   <Resources>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@Analysis%/include" languageId="2" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="Soter_build/include" languageId="2" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
    <DirectoryReference directoryRef="Soter/include" languageId="2" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
@@ -113,11 +113,11 @@
    </SourceFile>
   </Sources>
   <Resources>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@MCTargetDesc%/include" languageId="2" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="Soter_build/include" languageId="2" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
    <DirectoryReference directoryRef="Soter/include" languageId="2" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
-   <DirectoryReference directoryRef="%#!$?BASE_DIRECTORY_PATH@MCTargetDesc%/src/llvm/Target/X86" languageId="2" resourceTypeId="1" directorySize="0">
+   <DirectoryReference directoryRef="Soter_build/src/llvm/Target/X86" languageId="2" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
    <DirectoryReference directoryRef="Soter/src/llvm/Target/X86" languageId="2" resourceTypeId="1" directorySize="0">
    </DirectoryReference>

@@ -66,6 +66,7 @@ public class CppCDUnitTest
     @Test
     public void unitTest_UT1() throws Throwable
     {
+        logRecorder.setHighestAllowedLogLevel(Level.INFO);
         new CppCDUnitTestTester("UT1").go();
     }
 
@@ -161,9 +162,9 @@ public class CppCDUnitTest
      * @throws Throwable
      *             if anything goes wrong
      */
-//    @Test
-//    public void unitTest_HUAWEI1() throws Throwable
-//    {
-//        new CppCDUnitTestTester("HUAWEI1").go();
-//    }
+    @Test
+    public void unitTest_HUAWEI() throws Throwable
+    {
+        new CppCDUnitTestTester("HUAWEI").go();
+    }
 }

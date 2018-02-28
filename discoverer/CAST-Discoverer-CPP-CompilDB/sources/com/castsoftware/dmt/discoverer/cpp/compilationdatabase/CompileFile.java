@@ -157,6 +157,21 @@ public class CompileFile extends Compile {
 	}
 
     /**
+     * Change the includes
+     */
+	public void transformIncludesInFullPath() {
+		List<String> includesFullPath = new ArrayList<String>();
+		for (String include : includes)
+		{
+			String includeFullPath = getRelativePath(getDirectory(), include);
+			includesFullPath.add(includeFullPath);
+		}
+		includes.clear();
+		for (String include : includesFullPath)
+			includes.add(include);
+	}
+	
+    /**
      * @return list of macros
      */
 	public List<Macro> getMacros() {
