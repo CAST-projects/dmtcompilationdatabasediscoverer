@@ -158,7 +158,7 @@ public class CppCDUnitTest
 
     /**
      * Test discovery with link
-     *
+     * 
      * @throws Throwable
      *             if anything goes wrong
      */
@@ -166,5 +166,18 @@ public class CppCDUnitTest
     public void unitTest_HUAWEI() throws Throwable
     {
         new CppCDUnitTestTester("HUAWEI").go();
+    }
+
+    /**
+     * Test discovery for ld command
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest_LD1() throws Throwable
+    {
+        logRecorder.setHighestAllowedLogLevel(Level.INFO);
+        new CppCDUnitTestTester("LD1").go();
     }
 }

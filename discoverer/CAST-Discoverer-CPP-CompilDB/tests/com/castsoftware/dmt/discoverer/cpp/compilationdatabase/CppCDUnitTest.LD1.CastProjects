@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects packageId="592ffc67-43cf-44f1-8584-52e28da7a86c" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/home/nacre/nacre">
+ <PackageRootPath path=""/>
+ <Project projectId="compile_commands.json#libsrv.a" projectName="libsrv.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#libsrv.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@libsrv.a" value="."/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#libsrv.a" value="."/>
+  <Metadata name="DEV_DOCS"/>
+  <Metadata name="QT_CORE_LIB"/>
+  <Metadata name="QT_GUI_LIB"/>
+  <Metadata name="QT_NO_DEBUG"/>
+  <Metadata name="QT_SCRIPTTOOLS_LIB"/>
+  <Metadata name="QT_SCRIPT_LIB"/>
+  <Metadata name="QT_TEST_LIB"/>
+  <Metadata name="QT_THREAD_SUPPORT"/>
+  <Metadata name="QT_XML_LIB"/>
+  <Metadata name="XERCES2_PARSER"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="DEV_DOCS"/>
+   <Option name="QT_CORE_LIB"/>
+   <Option name="QT_GUI_LIB"/>
+   <Option name="QT_NO_DEBUG"/>
+   <Option name="QT_SCRIPTTOOLS_LIB"/>
+   <Option name="QT_SCRIPT_LIB"/>
+   <Option name="QT_TEST_LIB"/>
+   <Option name="QT_THREAD_SUPPORT"/>
+   <Option name="QT_XML_LIB"/>
+   <Option name="XERCES2_PARSER"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="composantes/Nacre_info/src/srv_donnees/FileTransferSrvDonRef.cc" languageId="1" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/engine" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/sys" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/conf" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/xml" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/base" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/kernel" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/qconf" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/qtnacre" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/tools" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/ncg/base" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/net" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/clt_ldap" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="prerequisites/install/poco-1.4.6p4-all-edfp1/include" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/common" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+ <Project projectId="compile_commands.json#libihmadminnacre.a" projectName="libihmadminnacre.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#libihmadminnacre.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@libihmadminnacre.a" value="."/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#libihmadminnacre.a" value="."/>
+  <Metadata name="DEV_DOCS"/>
+  <Metadata name="QT_CORE_LIB"/>
+  <Metadata name="QT_GUI_LIB"/>
+  <Metadata name="QT_NO_DEBUG"/>
+  <Metadata name="QT_SCRIPTTOOLS_LIB"/>
+  <Metadata name="QT_SCRIPT_LIB"/>
+  <Metadata name="QT_TEST_LIB"/>
+  <Metadata name="QT_THREAD_SUPPORT"/>
+  <Metadata name="QT_XML_LIB"/>
+  <Metadata name="XERCES2_PARSER"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="DEV_DOCS"/>
+   <Option name="QT_CORE_LIB"/>
+   <Option name="QT_GUI_LIB"/>
+   <Option name="QT_NO_DEBUG"/>
+   <Option name="QT_SCRIPTTOOLS_LIB"/>
+   <Option name="QT_SCRIPT_LIB"/>
+   <Option name="QT_TEST_LIB"/>
+   <Option name="QT_THREAD_SUPPORT"/>
+   <Option name="QT_XML_LIB"/>
+   <Option name="XERCES2_PARSER"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="composantes/Nacre_info/src/admin/adminListWidget.cc" languageId="1" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/admin" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/admin" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtDesigner" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtDeclarative" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtDBus" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtSql" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtOpenGL" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtNetwork" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtXmlPatterns" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtWebKit" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtHelp" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtUiTools" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtSvg" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/Qt3Support" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/share/qt4/mkspecs/default" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/sys" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/srv_donnees" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/qtnacre" languageId="1" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+ <Project projectId="compile_commands.json#admin_acces" projectName="admin_acces" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#admin_acces" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@admin_acces" value="."/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#admin_acces" value="."/>
+  <Metadata name="DEV_DOCS"/>
+  <Metadata name="QT_CORE_LIB"/>
+  <Metadata name="QT_GUI_LIB"/>
+  <Metadata name="QT_NO_DEBUG"/>
+  <Metadata name="QT_SCRIPTTOOLS_LIB"/>
+  <Metadata name="QT_SCRIPT_LIB"/>
+  <Metadata name="QT_TEST_LIB"/>
+  <Metadata name="QT_THREAD_SUPPORT"/>
+  <Metadata name="QT_XML_LIB"/>
+  <Metadata name="XERCES2_PARSER"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="DEV_DOCS"/>
+   <Option name="QT_CORE_LIB"/>
+   <Option name="QT_GUI_LIB"/>
+   <Option name="QT_NO_DEBUG"/>
+   <Option name="QT_SCRIPTTOOLS_LIB"/>
+   <Option name="QT_SCRIPT_LIB"/>
+   <Option name="QT_TEST_LIB"/>
+   <Option name="QT_THREAD_SUPPORT"/>
+   <Option name="QT_XML_LIB"/>
+   <Option name="XERCES2_PARSER"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="composantes/Nacre_info/src/admin/MainAdmin.cpp" languageId="2" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/admin" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/admin" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtDesigner" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtDeclarative" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtDBus" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtSql" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtOpenGL" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtNetwork" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtXmlPatterns" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtWebKit" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtHelp" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtUiTools" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtSvg" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/Qt3Support" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/share/qt4/mkspecs/default" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/sys" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/srv_donnees" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/qtnacre" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+</Projects>

@@ -281,7 +281,7 @@ public class ProjectFileScanner
         String directory = null;
     	String file = null;
     	String output = null;
-        List<String> outputs = new ArrayList<String>();
+        List<String> outputs = null;
         CompileFile compileFile = null;
         CompileLink compileLink = null;
 
@@ -311,6 +311,7 @@ public class ProjectFileScanner
 		            		isNextOutput = false;
 		            		isArgumentC = false;
 		            		output = null;
+		            		outputs = new ArrayList<String>();
 		            		directory = null;
 		            		file = null;
 		            		compileFile = null;
@@ -370,6 +371,7 @@ public class ProjectFileScanner
                                     Logging.warn("cast.dmt.discover.cpp.compilationdatabase.notSupportedCommand", "PATH",
                                         connectionPath, "LINE", String.valueOf(numline));
                             }
+                            outputs = null;
 		            	}
 		            	else if (line.startsWith("\"arguments\": ["))
 		            	{
