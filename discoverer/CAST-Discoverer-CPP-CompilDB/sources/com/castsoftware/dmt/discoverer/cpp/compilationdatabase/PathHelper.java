@@ -27,7 +27,7 @@ public class PathHelper
         	return null;
         
         if (!file.startsWith(rootPath))
-        	return null;
+        	return file;
         
         String relativeFilepath = file.substring(rootPath.length() + 1);
         return removeRelativePath(relativeFilepath);

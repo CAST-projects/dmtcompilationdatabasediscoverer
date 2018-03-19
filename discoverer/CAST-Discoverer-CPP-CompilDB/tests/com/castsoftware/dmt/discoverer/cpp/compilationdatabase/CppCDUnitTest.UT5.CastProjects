@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects packageId="592ffc67-43cf-44f1-8584-52e28da7a86c" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/home/nacre/nacre">
+ <PackageRootPath path=""/>
+ <Project projectId="compile_commands.json#V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" projectName="qtcomponents" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" projectPath="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@qtcomponents" value="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents"/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" value="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents"/>
+  <Metadata name="DEV_DOCS"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="DEV_DOCS"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents/moc_QTreeNodeCanvas.cxx" languageId="3" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtDesigner" languageId="3" resourceTypeId="0" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/base" languageId="3" resourceTypeId="0" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+</Projects>
