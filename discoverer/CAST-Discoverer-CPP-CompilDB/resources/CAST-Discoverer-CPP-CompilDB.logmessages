@@ -17,6 +17,8 @@
 		<message id="cast.dmt.discover.cpp.compilationdatabase.macroconflict2" format="The macro '%MACRO%' is already defined with value '%VALUE1%'. New value '%VALUE2%' is skipped." remediation="If the file is used in a link, we invite you to report a bug."/> 
 		<message id="cast.dmt.discover.cpp.compilationdatabase.lineoutside" format="The line '%LINE%' is outside the json file '%FILE%'. Line is skipped." remediation="Check the json file. We invite you to report a bug if necessary."/> 
 		<message id="cast.dmt.discover.cpp.compilationdatabase.invalidCommand" format="The command ending at line '%LINE%' in the json file '%FILE%' is not supported. Command is skipped." remediation="Check the json file. We invite you to report a bug if necessary."/> 
+		<message id="cast.dmt.discover.cpp.compilationdatabase.startProcessingCompileCommands" format="Start processing of the file '%FILE%'"/> 
+		<message id="cast.dmt.discover.cpp.compilationdatabase.endProcessingCompileCommands" format="End processing of the file '%FILE%'"/> 
     <!-- detail -->
 	</language>
 </messages>

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CompileFile.IncludePath;
 import com.castsoftware.dmt.discoverer.cpp.compilationdatabase.CompileFile.Macro;
 import com.castsoftware.dmt.engine.discovery.AdvancedProjectsDiscovererAdapter;
 import com.castsoftware.dmt.engine.discovery.IProjectsDiscovererUtilities;
@@ -104,6 +105,7 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     	File f = new File(connectionPath);
         if (fileName.equals("compile_commands.json") && !jsonFiles.contains(relativeFilePath))
         {
+        	Logging.info("cast.dmt.discover.cpp.compilationdatabase.startProcessingCompileCommands", "FILE", relativeFilePath);
             jsonFiles.add(relativeFilePath);
 //            PrintWriter out = null;
 //            try {
@@ -121,6 +123,7 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
             parseProjectFile(relativeDirectoryPath, content, project, getProjectsDiscovererUtilities());
             if (project != null)
         		getProjectsDiscovererUtilities().deleteProject(project.getId());
+        	Logging.info("cast.dmt.discover.cpp.compilationdatabase.endProcessingCompileCommands", "FILE", relativeFilePath);
         }
     }
 
@@ -229,13 +232,17 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
                         for (Macro macro : cf.getMacros())
                             addMacro(p, macro.getKey(), macro.getValue());
 
-                        for (String include : cf.getIncludes())
+                        for (IncludePath include : cf.getIncludes())
                         {
                             String includeRef = PathHelper.getRelativeConnectionPath(p, connectionPath, relativeFilePath,
-                                cf.getDirectory(), include);
+                                cf.getDirectory(), include.getPath());
                             if (p.getDirectoryReference(includeRef) == null
                                 && project.getResourceReference(includeRef) == null)
-                                p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
+                            {
+                                ResourceReference ref = p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
+                                if (include.getType() != null && !include.getType().equals("I"))
+                                	ref.addMetadata("includeType", include.getType());
+                            }
                         }
                     }
                 }
@@ -316,13 +323,17 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
                                 addMacro(p, macro.getKey(), macro.getValue());
 
                             cf.transformIncludesInFullPath();
-                            for (String include : cf.getIncludes())
+                            for (IncludePath include : cf.getIncludes())
                             {
-                            	String includeRef = PathHelper.getRelativeConnectionPath(connectionPath, include);
+                            	String includeRef = PathHelper.getRelativeConnectionPath(connectionPath, include.getPath());
                                 if (includeRef != null
                                 	&& p.getDirectoryReference(includeRef) == null
                                     && project.getResourceReference(includeRef) == null)
-                                    p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
+                                {
+                                    ResourceReference ref = p.addDirectoryReference(includeRef, cf.getLanguageId(), cf.getLanguageHeaderId());
+                                    if (include.getType() != null && !include.getType().equals("I"))
+                                    	ref.addMetadata("includeType", include.getType());
+                                }
                             }
                         }
                     }

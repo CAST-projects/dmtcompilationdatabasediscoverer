@@ -51,11 +51,36 @@ public class CompileFile extends Compile {
 		}
     }
 
+    public static class IncludePath
+    {
+    	private String path;
+    	private String type;
+    	IncludePath(String path, String type)
+    	{
+    		this.path = path;
+    		this.type = type;
+    	}
+
+        /**
+         * @return include path
+         */
+		public String getPath() {
+			return path;
+		}
+
+        /**
+         * @return include type
+         */
+		public String getType() {
+			return type;
+		}
+    }
+    
 	private String output;
 	private int languageId = 0;
 	private int languageHeaderId = 0;
 	private String command;
-	private final List<String> includes = new ArrayList<String>();
+	private final List<IncludePath> includes = new ArrayList<IncludePath>();
 	private final List<Macro> macros = new ArrayList<Macro>();
 	private String folder;
     private String type;
@@ -144,7 +169,7 @@ public class CompileFile extends Compile {
     /**
      * @return list of includes
      */
-	public List<String> getIncludes() {
+	public List<IncludePath> getIncludes() {
 		return includes;
 	}
 
@@ -152,23 +177,30 @@ public class CompileFile extends Compile {
      * @param include
      *            include to be added
      */
-	public void addInclude(String include) {
-		includes.add(include.replace("\\", "/"));
+	public void addInclude(String include, String type) {
+		IncludePath includePath = new IncludePath(include.replace("\\", "/"), type);
+		includes.add(includePath);
 	}
 
     /**
      * Change the includes
      */
 	public void transformIncludesInFullPath() {
-		List<String> includesFullPath = new ArrayList<String>();
-		for (String include : includes)
+		List<IncludePath> includesFullPath = new ArrayList<IncludePath>();
+		List<String> fullPaths = new ArrayList<String>();
+		for (IncludePath includePath : includes)
 		{
-			String includeFullPath = getRelativePath(getDirectory(), include);
-			includesFullPath.add(includeFullPath);
+			String path = getRelativePath(getDirectory(), includePath.getPath());
+			if (!fullPaths.contains(path))
+			{
+				fullPaths.add(path);
+				IncludePath includeFullPath = new IncludePath(path, includePath.getType());
+				includesFullPath.add(includeFullPath);
+			}
 		}
 		includes.clear();
-		for (String include : includesFullPath)
-			includes.add(include);
+		for (IncludePath includePath : includesFullPath)
+			includes.add(includePath);
 	}
 	
     /**
@@ -253,7 +285,7 @@ public class CompileFile extends Compile {
     		else
     			include = commandline.substring(pos1 + 2);
 
-    		addInclude(include);
+    		addInclude(include, "I");
     		//String includeRelativeRef = removeRelativePath(include);
     		//String directoryRef = buildPackageRelativePath(project, includeRelativeRef);
     		//if (project.getDirectoryReference(directoryRef) == null)

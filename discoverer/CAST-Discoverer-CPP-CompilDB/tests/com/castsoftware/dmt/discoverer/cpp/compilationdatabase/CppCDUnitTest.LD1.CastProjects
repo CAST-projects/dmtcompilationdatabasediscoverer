@@ -47,6 +47,27 @@
    </SourceFile>
   </Sources>
   <Resources>
+   <DirectoryReference directoryRef="/usr/include/qt4" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtScript" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtScriptTools" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtGui" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtTest" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtXml" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtCore" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
    <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/engine" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
    <DirectoryReference directoryRef="composantes/Nacre_info/src/rock/sys" languageId="1" resourceTypeId="1" directorySize="0">
@@ -123,6 +144,27 @@
    </SourceFile>
   </Sources>
   <Resources>
+   <DirectoryReference directoryRef="/usr/include/qt4" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtScript" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtScriptTools" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtGui" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtTest" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtXml" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtCore" languageId="1" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
    <DirectoryReference directoryRef="composantes/Nacre_info/src/admin" languageId="1" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
    <DirectoryReference directoryRef="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/admin" languageId="1" resourceTypeId="1" directorySize="0">
@@ -207,6 +249,27 @@
    </SourceFile>
   </Sources>
   <Resources>
+   <DirectoryReference directoryRef="/usr/include/qt4" languageId="2" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtScript" languageId="2" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtScriptTools" languageId="2" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtGui" languageId="2" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtTest" languageId="2" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtXml" languageId="2" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/qt4/QtCore" languageId="2" resourceTypeId="1" directorySize="0">
+    <Metadata name="includeType" value="system"/>
+   </DirectoryReference>
    <DirectoryReference directoryRef="composantes/Nacre_info/src/admin" languageId="2" resourceTypeId="1" directorySize="0">
    </DirectoryReference>
    <DirectoryReference directoryRef="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/admin" languageId="2" resourceTypeId="1" directorySize="0">

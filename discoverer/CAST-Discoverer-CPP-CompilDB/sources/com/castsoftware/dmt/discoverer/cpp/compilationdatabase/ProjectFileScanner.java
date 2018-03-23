@@ -277,6 +277,8 @@ public class ProjectFileScanner
     	Boolean isArguments = false;
     	Boolean isInArguments = false;
     	Boolean isNextOutput = false;
+    	Boolean isNextInclude = false;
+    	String includeType = null;
     	Boolean isArgumentC = false;
         String directory = null;
     	String file = null;
@@ -309,6 +311,8 @@ public class ProjectFileScanner
 		            		isArguments = false;
 		            		isInArguments = false;
 		            		isNextOutput = false;
+		            		isNextInclude = false;
+		            		includeType = null;
 		            		isArgumentC = false;
 		            		output = null;
 		            		outputs = new ArrayList<String>();
@@ -378,6 +382,8 @@ public class ProjectFileScanner
 		            		isArguments = true;
 		            		isInArguments = true;
 		            		isNextOutput = false;
+		            		isNextInclude = false;
+		            		includeType = null;
 		            	}
 		            	else if (line.startsWith("]"))
 		            	{
@@ -387,6 +393,8 @@ public class ProjectFileScanner
 		            		{
 			            		isInArguments = false;
 			            		isNextOutput = false;
+			            		isNextInclude = false;
+			            		includeType = null;
 		            		}
 		            	}
 		            	else if (isInArguments)
@@ -401,7 +409,28 @@ public class ProjectFileScanner
                                 }
                                 else if (line.startsWith("\"-I"))
                                 {
-                                    compileFile.addInclude(line.substring(3, line.indexOf("\"", 2)));
+                                	compileFile.addInclude(line.substring(3, line.indexOf("\"", 2)), "I");
+                                }
+                                else if (line.startsWith("\"-isystem"))
+                                {
+                                	isNextInclude = true;
+                                	includeType = "system";
+                                }
+                                else if (line.startsWith("\"-iquote"))
+                                {
+                                	isNextInclude = true;
+                                	includeType = "quote";
+                                }
+                                else if (line.startsWith("\"-idirafter"))
+                                {
+                                	isNextInclude = true;
+                                	includeType = "dirafter";
+                                }
+                                else if (isNextInclude)
+                                {
+                                	compileFile.addInclude(line.substring(1, line.indexOf("\"", 2)), includeType);
+                                	isNextInclude = false;
+                                	includeType = null;
                                 }
                                 else if (line.startsWith("\"-o"))
                                 {
