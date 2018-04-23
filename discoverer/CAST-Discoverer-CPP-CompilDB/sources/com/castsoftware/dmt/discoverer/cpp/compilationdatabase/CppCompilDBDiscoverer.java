@@ -355,8 +355,6 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
             if (macroValue != null && !macroValue.equals(o.getValue()))
                 Logging.warn("cast.dmt.discover.cpp.compilationdatabase.macroconflict2", "MACRO", macroName, "VALUE1", macroValue, "VALUE2", o.getValue());
         }
-        if (project.getMetadata(macroName) == null)
-            project.addMetadata(macroName, macroValue);
         return;
     }
 
@@ -396,6 +394,25 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         }
         if (compileConfig != null)
         {
+        	Map<String, String> macros = compileConfig.getDefines();
+            if (macros != null && macros.size() > 1)
+                for (Map.Entry<String, String> macro : macros.entrySet())
+                {
+                	String macroName = macro.getKey();
+            		String macroValue = macro.getValue();
+                    Option o = project.getOption(macroName);
+                    if (o == null)
+                	{
+                		project.addOption(macroName, macroValue);
+                	}
+                    else
+                    {
+                        if (macroValue == null && o.getValue() != null)
+                            Logging.warn("cast.dmt.discover.cpp.compilationdatabase.macroconflict1", "MACRO", macroName, "VALUE", o.getValue());
+                        if (macroValue != null && !macroValue.equals(o.getValue()))
+                            Logging.warn("cast.dmt.discover.cpp.compilationdatabase.macroconflict2", "MACRO", macroName, "VALUE1", macroValue, "VALUE2", o.getValue());
+                    }
+                }
             List<String> includes = compileConfig.getInclude_paths();
             if (includes != null && includes.size() > 1)
                 for (String include : includes)
