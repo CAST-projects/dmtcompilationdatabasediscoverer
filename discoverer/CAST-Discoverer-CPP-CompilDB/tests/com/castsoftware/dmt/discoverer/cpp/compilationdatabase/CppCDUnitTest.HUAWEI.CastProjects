@@ -4,25 +4,6 @@
  <Project projectId="TD/TD/PTC/compile_commands.json#TD/TD/PTC/code/neptc/protocol/source" projectName="source" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="TD/TD/PTC/compile_commands.json#TD/TD/PTC/code/neptc/protocol/source" projectPath="TD/TD/PTC/TD/TD/PTC/code/neptc/protocol/source" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@source" value="TD/TD/PTC/TD/TD/PTC/code/neptc/protocol/source"/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@TD/TD/PTC/compile_commands.json#TD/TD/PTC/code/neptc/protocol/source" value="TD/TD/PTC/TD/TD/PTC/code/neptc/protocol/source"/>
-  <Metadata name="CPU" value="ARMARCH5"/>
-  <Metadata name="VOS_OS_VER" value="VOS_LINUX"/>
-  <Metadata name="VOS_CPU_TYPE" value="VOS_ARM"/>
-  <Metadata name="VOS_HARDWARE_PLATFORM" value="VOS_ARM"/>
-  <Metadata name="_OSP_DOPRA_V2"/>
-  <Metadata name="LINUX_NE"/>
-  <Metadata name="_EDT_FOR_LINUC_"/>
-  <Metadata name="TCPIP_DOUBLESOCK"/>
-  <Metadata name="_SW_DOPRA_VOS"/>
-  <Metadata name="PLATFORM_VISP"/>
-  <Metadata name="TCPIP_NOVRP_LINUX" value="1"/>
-  <Metadata name="_SUPPORT_RTN950N_"/>
-  <Metadata name="_SUPPORT_HBU_"/>
-  <Metadata name="_SUPPORT_NE_USB_"/>
-  <Metadata name="PTC_DB_SELF_RANGE"/>
-  <Metadata name="TCPIP_DOPRA_V2"/>
-  <Metadata name="PTC_FILE_STUB_DRV"/>
-  <Metadata name="_USE_PERMAP_VER2"/>
-  <Metadata name="NDEBUG"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>

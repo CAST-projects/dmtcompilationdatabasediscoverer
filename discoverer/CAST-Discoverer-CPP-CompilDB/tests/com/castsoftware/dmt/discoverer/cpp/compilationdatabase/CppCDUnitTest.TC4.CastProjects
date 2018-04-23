@@ -5,11 +5,6 @@
   <Metadata name="#!$?BASE_DIRECTORY_PATH@commontool.so" value="."/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#commontool.so" value="."/>
   <Metadata name="compile_config" value="cxx"/>
-  <Metadata name="UTFP_VERSION" value="V1_0_0"/>
-  <Metadata name="_64BIT_"/>
-  <Metadata name="OS_IS_LINUX"/>
-  <Metadata name="DATABASE_IS_DB2"/>
-  <Metadata name="_DEBUG"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -32,6 +27,143 @@
    <Option name="OS_IS_LINUX"/>
    <Option name="DATABASE_IS_DB2"/>
    <Option name="_DEBUG"/>
+   <Option name="__x86_64" value="1"/>
+   <Option name="__FLT_EVAL_METHOD__" value="0"/>
+   <Option name="__FLT_EPSILON__" value="1.19209290e-7F"/>
+   <Option name="__DEC64_MANT_DIG__" value="16"/>
+   <Option name="__FLT_MAX_EXP__" value="128"/>
+   <Option name="__DBL_MIN__" value="2.2250738585072014e-308"/>
+   <Option name="__LDBL_EPSILON__" value="1.08420217248550443401e-19L"/>
+   <Option name="__DEC64_MIN__" value="1E-383DD"/>
+   <Option name="__SCHAR_MAX__" value="127"/>
+   <Option name="__DEC128_MANT_DIG__" value="34"/>
+   <Option name="_LP64" value="1"/>
+   <Option name="__DBL_MIN_10_EXP__" value="(-307)"/>
+   <Option name="__unix__" value="1"/>
+   <Option name="__DBL_DENORM_MIN__" value="4.9406564584124654e-324"/>
+   <Option name="__REGISTER_PREFIX__" value=""/>
+   <Option name="__SHRT_MAX__" value="32767"/>
+   <Option name="__DBL_HAS_DENORM__" value="1"/>
+   <Option name="__SIZEOF_WCHAR_T__" value="4"/>
+   <Option name="__SIZEOF_PTRDIFF_T__" value="8"/>
+   <Option name="__DEC32_MAX__" value="9.999999E96DF"/>
+   <Option name="__linux__" value="1"/>
+   <Option name="__SIZEOF_DOUBLE__" value="8"/>
+   <Option name="__LDBL_HAS_QUIET_NAN__" value="1"/>
+   <Option name="__FLT_MIN_EXP__" value="(-125)"/>
+   <Option name="__LDBL_MANT_DIG__" value="64"/>
+   <Option name="__DEC32_EPSILON__" value="1E-6DF"/>
+   <Option name="__FLT_DENORM_MIN__" value="1.40129846e-45F"/>
+   <Option name="__CHAR32_TYPE__" value="unsigned int"/>
+   <Option name="__LDBL_DIG__" value="18"/>
+   <Option name="__ELF__" value="1"/>
+   <Option name="__LDBL_DENORM_MIN__" value="3.64519953188247460253e-4951L"/>
+   <Option name="__DEC32_MIN_EXP__" value="(-94)"/>
+   <Option name="__DEC128_MAX__" value="9.999999999999999999999999999999999E6144DL"/>
+   <Option name="__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8" value="1"/>
+   <Option name="_GNU_SOURCE" value="1"/>
+   <Option name="__FLT_MIN_10_EXP__" value="(-37)"/>
+   <Option name="__WCHAR_MAX__" value="2147483647"/>
+   <Option name="__LDBL_HAS_DENORM__" value="1"/>
+   <Option name="__GNUC_PATCHLEVEL__" value="4"/>
+   <Option name="__GXX_ABI_VERSION" value="1002"/>
+   <Option name="__DEC32_SUBNORMAL_MIN__" value="0.000001E-95DF"/>
+   <Option name="__SIZEOF_POINTER__" value="8"/>
+   <Option name="__SSE2_MATH__" value="1"/>
+   <Option name="__DBL_MIN_EXP__" value="(-1021)"/>
+   <Option name="__LDBL_HAS_INFINITY__" value="1"/>
+   <Option name="__FLT_MAX_10_EXP__" value="38"/>
+   <Option name="__DEC64_MIN_EXP__" value="(-382)"/>
+   <Option name="__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4" value="1"/>
+   <Option name="__SIZEOF_LONG_DOUBLE__" value="16"/>
+   <Option name="__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1" value="1"/>
+   <Option name="__DEC32_MIN__" value="1E-95DF"/>
+   <Option name="__MMX__" value="1"/>
+   <Option name="__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2" value="1"/>
+   <Option name="__LDBL_MIN_10_EXP__" value="(-4931)"/>
+   <Option name="__EXCEPTIONS" value="1"/>
+   <Option name="__SIZEOF_LONG_LONG__" value="8"/>
+   <Option name="__x86_64__" value="1"/>
+   <Option name="__DEC64_MAX_EXP__" value="385"/>
+   <Option name="__DEPRECATED" value="1"/>
+   <Option name="__FLT_MIN__" value="1.17549435e-38F"/>
+   <Option name="__DBL_EPSILON__" value="2.2204460492503131e-16"/>
+   <Option name="__GXX_RTTI" value="1"/>
+   <Option name="__DEC128_MAX_EXP__" value="6145"/>
+   <Option name="__k8__" value="1"/>
+   <Option name="__LDBL_MAX_EXP__" value="16384"/>
+   <Option name="__SIZEOF_SIZE_T__" value="8"/>
+   <Option name="__DBL_DIG__" value="15"/>
+   <Option name="__FLT_MANT_DIG__" value="24"/>
+   <Option name="__SSE__" value="1"/>
+   <Option name="__GNUC_MINOR__" value="3"/>
+   <Option name="__FLT_RADIX__" value="2"/>
+   <Option name="__DEC64_MAX__" value="9.999999999999999E384DD"/>
+   <Option name="__gnu_linux__" value="1"/>
+   <Option name="__INTMAX_TYPE__" value="long int"/>
+   <Option name="__FLT_DIG__" value="6"/>
+   <Option name="__LDBL_MIN_EXP__" value="(-16381)"/>
+   <Option name="__DECIMAL_BID_FORMAT__" value="1"/>
+   <Option name="__INT_MAX__" value="2147483647"/>
+   <Option name="__DEC64_EPSILON__" value="1E-15DD"/>
+   <Option name="__LONG_LONG_MAX__" value="9223372036854775807LL"/>
+   <Option name="__amd64" value="1"/>
+   <Option name="__DBL_HAS_INFINITY__" value="1"/>
+   <Option name="__DBL_MAX_10_EXP__" value="308"/>
+   <Option name="__FLT_HAS_QUIET_NAN__" value="1"/>
+   <Option name="__STDC__" value="1"/>
+   <Option name="__FLT_HAS_DENORM__" value="1"/>
+   <Option name="__LDBL_MIN__" value="3.36210314311209350626e-4932L"/>
+   <Option name="__NO_INLINE__" value="1"/>
+   <Option name="__SSE2__" value="1"/>
+   <Option name="__DEC128_EPSILON__" value="1E-33DL"/>
+   <Option name="__GNUC__" value="4"/>
+   <Option name="__SIZEOF_FLOAT__" value="4"/>
+   <Option name="__INTMAX_MAX__" value="9223372036854775807L"/>
+   <Option name="__DEC32_MAX_EXP__" value="97"/>
+   <Option name="__unix" value="1"/>
+   <Option name="__VERSION__" value="4.3.4 [gcc-4_3-branch revision 152973]"/>
+   <Option name="__k8" value="1"/>
+   <Option name="__DEC128_MIN_EXP__" value="(-6142)"/>
+   <Option name="__SIZEOF_WINT_T__" value="4"/>
+   <Option name="__USER_LABEL_PREFIX__" value=""/>
+   <Option name="__SIZEOF_INT__" value="4"/>
+   <Option name="__LONG_MAX__" value="9223372036854775807L"/>
+   <Option name="__PTRDIFF_TYPE__" value="long int"/>
+   <Option name="__CHAR_BIT__" value="8"/>
+   <Option name="__DEC128_SUBNORMAL_MIN__" value="0.000000000000000000000000000000001E-6143DL"/>
+   <Option name="__DBL_HAS_QUIET_NAN__" value="1"/>
+   <Option name="__SSE_MATH__" value="1"/>
+   <Option name="__SIZEOF_SHORT__" value="2"/>
+   <Option name="__DBL_MAX_EXP__" value="1024"/>
+   <Option name="__WINT_TYPE__" value="unsigned int"/>
+   <Option name="__DEC_EVAL_METHOD__" value="2"/>
+   <Option name="__DEC64_SUBNORMAL_MIN__" value="0.000000000000001E-383DD"/>
+   <Option name="__amd64__" value="1"/>
+   <Option name="__FLT_MAX__" value="3.40282347e+38F"/>
+   <Option name="__DBL_MANT_DIG__" value="53"/>
+   <Option name="__linux" value="1"/>
+   <Option name="__GNUC_GNU_INLINE__" value="1"/>
+   <Option name="__DEC128_MIN__" value="1E-6143DL"/>
+   <Option name="__SIZE_TYPE__" value="long unsigned int"/>
+   <Option name="__FLT_HAS_INFINITY__" value="1"/>
+   <Option name="__DEC32_MANT_DIG__" value="7"/>
+   <Option name="__STDC_HOSTED__" value="1"/>
+   <Option name="__DECIMAL_DIG__" value="21"/>
+   <Option name="linux" value="1"/>
+   <Option name="__LDBL_MAX_10_EXP__" value="4932"/>
+   <Option name="__DBL_MAX__" value="1.7976931348623157e+308"/>
+   <Option name="__GXX_WEAK__" value="1"/>
+   <Option name="__SIZEOF_LONG__" value="8"/>
+   <Option name="__UINTMAX_TYPE__" value="long unsigned int"/>
+   <Option name="__LDBL_MAX__" value="1.18973149535723176502e+4932L"/>
+   <Option name="__FINITE_MATH_ONLY__" value="0"/>
+   <Option name="__WCHAR_TYPE__" value="int"/>
+   <Option name="__LP64__" value="1"/>
+   <Option name="__GNUG__" value="4"/>
+   <Option name="unix" value="1"/>
+   <Option name="__CHAR16_TYPE__" value="short unsigned int"/>
+   <Option name="__cplusplus" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="kcbpf/src/entity/common/cls/commontool.cpp" languageId="2" sourceFileSize="0">

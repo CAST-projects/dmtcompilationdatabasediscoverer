@@ -4,7 +4,6 @@
  <Project projectId="compile_commands.json#V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" projectName="qtcomponents" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" projectPath="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@qtcomponents" value="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents"/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents" value="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents"/>
-  <Metadata name="DEV_DOCS"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>

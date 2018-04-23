@@ -4,16 +4,7 @@
  <Project projectId="compile_commands.json#libsrv.a" projectName="libsrv.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#libsrv.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@libsrv.a" value="."/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#libsrv.a" value="."/>
-  <Metadata name="DEV_DOCS"/>
-  <Metadata name="QT_CORE_LIB"/>
-  <Metadata name="QT_GUI_LIB"/>
-  <Metadata name="QT_NO_DEBUG"/>
-  <Metadata name="QT_SCRIPTTOOLS_LIB"/>
-  <Metadata name="QT_SCRIPT_LIB"/>
-  <Metadata name="QT_TEST_LIB"/>
-  <Metadata name="QT_THREAD_SUPPORT"/>
-  <Metadata name="QT_XML_LIB"/>
-  <Metadata name="XERCES2_PARSER"/>
+  <Metadata name="compile_config" value="cxx"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -101,16 +92,7 @@
  <Project projectId="compile_commands.json#libihmadminnacre.a" projectName="libihmadminnacre.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#libihmadminnacre.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@libihmadminnacre.a" value="."/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#libihmadminnacre.a" value="."/>
-  <Metadata name="DEV_DOCS"/>
-  <Metadata name="QT_CORE_LIB"/>
-  <Metadata name="QT_GUI_LIB"/>
-  <Metadata name="QT_NO_DEBUG"/>
-  <Metadata name="QT_SCRIPTTOOLS_LIB"/>
-  <Metadata name="QT_SCRIPT_LIB"/>
-  <Metadata name="QT_TEST_LIB"/>
-  <Metadata name="QT_THREAD_SUPPORT"/>
-  <Metadata name="QT_XML_LIB"/>
-  <Metadata name="XERCES2_PARSER"/>
+  <Metadata name="compile_config" value="cxx"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -206,16 +188,7 @@
  <Project projectId="compile_commands.json#admin_acces" projectName="admin_acces" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#admin_acces" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@admin_acces" value="."/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#admin_acces" value="."/>
-  <Metadata name="DEV_DOCS"/>
-  <Metadata name="QT_CORE_LIB"/>
-  <Metadata name="QT_GUI_LIB"/>
-  <Metadata name="QT_NO_DEBUG"/>
-  <Metadata name="QT_SCRIPTTOOLS_LIB"/>
-  <Metadata name="QT_SCRIPT_LIB"/>
-  <Metadata name="QT_TEST_LIB"/>
-  <Metadata name="QT_THREAD_SUPPORT"/>
-  <Metadata name="QT_XML_LIB"/>
-  <Metadata name="XERCES2_PARSER"/>
+  <Metadata name="compile_config" value="cxx"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>

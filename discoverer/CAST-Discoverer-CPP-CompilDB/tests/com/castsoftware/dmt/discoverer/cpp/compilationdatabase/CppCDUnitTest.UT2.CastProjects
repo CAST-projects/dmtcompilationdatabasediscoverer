@@ -4,10 +4,6 @@
  <Project projectId="Soter_build/compile_commands.json#Soter/src/llvm/IR" projectName="IR" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="Soter_build/compile_commands.json#Soter/src/llvm/IR" projectPath="Soter_build/Soter/src/llvm/IR" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@IR" value="Soter_build/Soter/src/llvm/IR"/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@Soter_build/compile_commands.json#Soter/src/llvm/IR" value="Soter_build/Soter/src/llvm/IR"/>
-  <Metadata name="__STDC_LIMIT_MACROS" value="1"/>
-  <Metadata name="__STDC_CONSTANT_MACROS" value="1"/>
-  <Metadata name="__STDC_FORMAT_MACROS" value="1"/>
-  <Metadata name="NDEBUG"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -42,10 +38,6 @@
  <Project projectId="Soter_build/compile_commands.json#Soter/src/llvm/Analysis" projectName="Analysis" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="Soter_build/compile_commands.json#Soter/src/llvm/Analysis" projectPath="Soter_build/Soter/src/llvm/Analysis" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@Analysis" value="Soter_build/Soter/src/llvm/Analysis"/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@Soter_build/compile_commands.json#Soter/src/llvm/Analysis" value="Soter_build/Soter/src/llvm/Analysis"/>
-  <Metadata name="__STDC_LIMIT_MACROS" value="1"/>
-  <Metadata name="__STDC_CONSTANT_MACROS" value="1"/>
-  <Metadata name="__STDC_FORMAT_MACROS" value="1"/>
-  <Metadata name="NDEBUG"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
@@ -82,10 +74,6 @@
  <Project projectId="Soter_build/compile_commands.json#Soter/src/llvm/Target/X86/MCTargetDesc" projectName="MCTargetDesc" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="Soter_build/compile_commands.json#Soter/src/llvm/Target/X86/MCTargetDesc" projectPath="Soter_build/Soter/src/llvm/Target/X86/MCTargetDesc" projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@MCTargetDesc" value="Soter_build/Soter/src/llvm/Target/X86/MCTargetDesc"/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@Soter_build/compile_commands.json#Soter/src/llvm/Target/X86/MCTargetDesc" value="Soter_build/Soter/src/llvm/Target/X86/MCTargetDesc"/>
-  <Metadata name="__STDC_LIMIT_MACROS" value="1"/>
-  <Metadata name="__STDC_CONSTANT_MACROS" value="1"/>
-  <Metadata name="__STDC_FORMAT_MACROS" value="1"/>
-  <Metadata name="NDEBUG"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>

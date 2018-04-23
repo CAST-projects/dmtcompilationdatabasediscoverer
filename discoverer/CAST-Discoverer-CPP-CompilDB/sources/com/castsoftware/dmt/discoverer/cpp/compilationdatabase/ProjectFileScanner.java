@@ -210,12 +210,14 @@ public class ProjectFileScanner
                                     if (line.startsWith("\"name\":"))
                                     {
                                         String val = line.substring(line.indexOf("\"", 7) + 1).trim();
-                                        defineName = val.substring(0, val.length() - 1);
+                                        defineName = val.substring(0, val.length() - 2);
                                     }
                                     else if (line.startsWith("\"value\":"))
                                     {
                                         String val = line.substring(line.indexOf("\"", 8) + 1).trim();
                                         defineValue = val.substring(0, val.length() - 1);
+                                        if (defineValue.startsWith("\\\""))
+                                        	defineValue = defineValue.substring(2, defineValue.length() - 2);
                                     }
                                 }
                             }

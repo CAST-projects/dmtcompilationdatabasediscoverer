@@ -4,13 +4,7 @@
  <Project projectId="compile_commands.json#libavdevice.a" projectName="libavdevice.a" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#libavdevice.a" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
   <Metadata name="#!$?BASE_DIRECTORY_PATH@libavdevice.a" value="."/>
   <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#libavdevice.a" value="."/>
-  <Metadata name="_ISOC99_SOURCE"/>
-  <Metadata name="_FILE_OFFSET_BITS" value="64"/>
-  <Metadata name="_LARGEFILE_SOURCE"/>
-  <Metadata name="_POSIX_C_SOURCE" value="200112"/>
-  <Metadata name="_XOPEN_SOURCE" value="600"/>
-  <Metadata name="ZLIB_CONST"/>
-  <Metadata name="HAVE_AV_CONFIG_H"/>
+  <Metadata name="compile_config" value="cc"/>
   <Languages>
    <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
     <ResourceTypes>
