@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects packageId="d31d512b-53de-4fa2-badf-15896ec24292" packageName="My Package" packageType="FileSourceCodeRepository" packageConnectionPath="/home/kcbptest1">
+ <PackageRootPath path=""/>
+ <Project projectId="compile_commands.json#commontool.so" projectName="commontool.so" projectType="dmtdevmicrosofttechno.CppProject" projectResourceId="compile_commands.json#commontool.so" projectPath="." projectOrigin="C/C++ Compilation Database project" selectionStatus="Selected">
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@commontool.so" value="."/>
+  <Metadata name="#!$?BASE_DIRECTORY_PATH@compile_commands.json#commontool.so" value="."/>
+  <Metadata name="compile_config" value="cxx"/>
+  <Metadata name="UTFP_VERSION" value="V1_0_0"/>
+  <Metadata name="_64BIT_"/>
+  <Metadata name="OS_IS_LINUX"/>
+  <Metadata name="DATABASE_IS_DB2"/>
+  <Metadata name="_DEBUG"/>
+  <Languages>
+   <Language languageId="1" languageName="CLanguage" sourceFilesPattern="*.c;*.pc;*.ppc" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CHeaderLanguage" resourceFilesPattern="*.h;*.ph" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="2" languageName="CPlusPlusLanguage" sourceFilesPattern="*.cpp;*.cc;*.cxx" sourceFilesCollation="WindowsNTFS">
+    <ResourceTypes>
+     <ResourceType resourceTypeId="1" resourceTypeName="CPlusPlusHeaderLanguage" resourceFilesPattern="*.h" resourceFilesCollation="WindowsNTFS" resourceContainersCollation="WindowsNTFS">
+     </ResourceType>
+    </ResourceTypes>
+   </Language>
+   <Language languageId="3" languageName="CFamilyNotCompilableLanguage" sourceFilesCollation="WindowsNTFS">
+   </Language>
+  </Languages>
+  <Options>
+   <Option name="UTFP_VERSION" value="V1_0_0"/>
+   <Option name="_64BIT_"/>
+   <Option name="OS_IS_LINUX"/>
+   <Option name="DATABASE_IS_DB2"/>
+   <Option name="_DEBUG"/>
+  </Options>
+  <Sources>
+   <SourceFile sourceFileRef="kcbpf/src/entity/common/cls/commontool.cpp" languageId="2" sourceFileSize="0">
+   </SourceFile>
+  </Sources>
+  <Resources>
+   <DirectoryReference directoryRef="/opt/ibm/db2/V10.1/include" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/home/simian/code/include/support" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/c++/4.4.7" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/c++/4.4.7/x86_64-redhat-linux" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include/c++/4.4.7/backward" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/local/include" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+   <DirectoryReference directoryRef="/usr/include" languageId="2" resourceTypeId="1" directorySize="0">
+   </DirectoryReference>
+  </Resources>
+ </Project>
+</Projects>

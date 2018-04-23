@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
@@ -41,6 +42,8 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     static int cPlusPlusLanguage = 2;
     static int cPlusPlusHeaderLanguage = 1;
     static int cFamilyNotCompilableLanguage = 3;
+    
+    static String META_COMPILE_CONFIG="compile_config";
 
     /**
      * Default constructor used by the discovery engine
@@ -60,10 +63,6 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
     {
         super.startTree(packageId, packageName, packageType, versionId, path);
         connectionPath = path;
-    	//To simulate a real extraction
-    	//this.connectionPath = "/usr1/soter";
-    	//this.connectionPath = "/home/yle/msieve";
-    	//this.connectionPath = "/home/yle/ffmpeg";
     }
 
     @Override
@@ -107,18 +106,7 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         {
         	Logging.info("cast.dmt.discover.cpp.compilationdatabase.startProcessingCompileCommands", "FILE", relativeFilePath);
             jsonFiles.add(relativeFilePath);
-//            PrintWriter out = null;
-//            try {
-//            	int i = 2;
-//				out = new PrintWriter("D:\\SRC\\C++\\Huawei\\RealTimeBuild_Dorado5000_V3_Main\\code\\current\\ScmXmlSvnName\\Product\\CI\\build\\cfgusr\\compile_commands.json");
-//				out.println( content );
-//				
-//
-//			} catch (FileNotFoundException e) {
-//				e.printStackTrace();
-//			} finally {
-//				out.close();
-//			}
+            
             Project project = getProjectsDiscovererUtilities().createInitialProject(fileId, f.getName(), "dmtdevmicrosofttechno.CppProject", fileId, directoryId);
             parseProjectFile(relativeDirectoryPath, content, project, getProjectsDiscovererUtilities());
             if (project != null)
@@ -228,6 +216,9 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
                                 .getRelativeConnectionPath(p, connectionPath, null, null, cf.getFilename());
                         if (p.getFileReference(fileRef) == null)
                             p.addSourceFileReference(fileRef, cf.getLanguageId());
+
+                        if (p.getMetadata(META_COMPILE_CONFIG) == null)
+                            p.setMetadata(META_COMPILE_CONFIG, cf.getType());
 
                         for (Macro macro : cf.getMacros())
                             addMacro(p, macro.getKey(), macro.getValue());
@@ -360,11 +351,9 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
         else
         {
             if (macroValue == null && o.getValue() != null)
-                Logging.warn("cast.dmt.discover.cpp.compilationdatabase.macroconflict1", "MACRO", macroName, "VALUE",
-                    o.getValue());
+                Logging.warn("cast.dmt.discover.cpp.compilationdatabase.macroconflict1", "MACRO", macroName, "VALUE", o.getValue());
             if (macroValue != null && !macroValue.equals(o.getValue()))
-                Logging.warn("cast.dmt.discover.cpp.compilationdatabase.macroconflict2", "MACRO", macroName, "VALUE1",
-                    macroValue, "VALUE2", o.getValue());
+                Logging.warn("cast.dmt.discover.cpp.compilationdatabase.macroconflict2", "MACRO", macroName, "VALUE1", macroValue, "VALUE2", o.getValue());
         }
         if (project.getMetadata(macroName) == null)
             project.addMetadata(macroName, macroValue);
@@ -396,9 +385,9 @@ public class CppCompilDBDiscoverer extends AdvancedProjectsDiscovererAdapter
 	        	String castpathContent = contents.getContent(ref);
                 if (castpathContent != null)
                 {
-                    if (project.getMetadata("command") != null)
+                    if (project.getMetadata(META_COMPILE_CONFIG) != null)
                     {
-                        String command = project.getMetadata("command").getValue();
+                        String command = project.getMetadata(META_COMPILE_CONFIG).getValue();
                         compileConfig = ProjectFileScanner.scanConfig(command, ref, castpathContent);
                     }
                 }

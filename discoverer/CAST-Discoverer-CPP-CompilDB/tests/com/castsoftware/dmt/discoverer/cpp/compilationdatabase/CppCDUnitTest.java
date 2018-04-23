@@ -133,6 +133,18 @@ public class CppCDUnitTest
     }
 
     /**
+     * Test discovery for include path with .. in the middle
+     *
+     * @throws Throwable
+     *             if anything goes wrong
+     */
+    @Test
+    public void unitTest_TC4() throws Throwable
+    {
+        new CppCDUnitTestTester("TC4").go();
+    }
+
+    /**
      * Test discovery with AR link and files with command
      *
      * @throws Throwable

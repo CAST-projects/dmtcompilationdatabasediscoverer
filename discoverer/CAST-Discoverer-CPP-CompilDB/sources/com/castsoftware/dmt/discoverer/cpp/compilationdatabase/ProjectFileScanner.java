@@ -89,15 +89,15 @@ public class ProjectFileScanner
     /**
      * Scan a compile_config.json file and add info to the project.
      *
-     * @param command
-     *            the command options to load in this file
+     * @param config
+     *            the config options to load in this file
      * @param configFilePath
      *            the path to the compile_config.json file
      * @param configContent
      *            the file content to scan.
      * @return {@code true} if no error was encountered during scanning. {@code false} otherwise.
      */
-    public static CompileConfig scanConfig(String command, String configFilePath, String configContent)
+    public static CompileConfig scanConfig(String config, String configFilePath, String configContent)
     {
     	BufferedReader reader = null;
         CompileConfig compileConfig = null;
@@ -121,7 +121,6 @@ public class ProjectFileScanner
                 Boolean isInDefines = false;
                 String defineName = null;
                 String defineValue = null;
-                // String command = project.getMetadata("command").getValue();
 	            for (String readline = reader.readLine(); readline != null; readline = reader.readLine())
 	            {
 	            	String line = readline.trim();
@@ -163,9 +162,9 @@ public class ProjectFileScanner
 		            	else if (line.contains(": {"))
 		            	{
 		            		isConfig = true;
-		            		String config = line.substring(line.indexOf("\"") + 1).trim();
-		            		config = config.substring(0, config.indexOf("\""));
-		            		if (command.equals(config))
+		            		String configId = line.substring(line.indexOf("\"") + 1).trim();
+		            		configId = configId.substring(0, configId.indexOf("\""));
+		            		if (configId.equals(config))
                             {
 		            			isCommandConfig = true;
                                 compileConfig = new CompileConfig();
