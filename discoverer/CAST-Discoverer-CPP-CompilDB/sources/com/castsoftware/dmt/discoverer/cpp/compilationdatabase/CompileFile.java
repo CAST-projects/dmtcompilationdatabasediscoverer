@@ -235,8 +235,16 @@ public class CompileFile extends Compile {
 		if (macro.contains("="))
 		{
 			String [] values = macro.split("=");
-			macroName = values[0];
-			macroValue = values[1];
+			//found a new use case for tickect#13025 handled under jira#DMTCPPBDIS-24
+			if(values.length>1)
+			{
+				macroName = values[0];
+				macroValue = values[1];
+			}
+			else
+			{
+				macroName = values[0];
+			}
 		}
 		else
 		{
