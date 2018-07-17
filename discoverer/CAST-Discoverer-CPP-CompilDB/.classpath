@@ -18,6 +18,7 @@
 	<classpathentry kind="lib" path="/CAST-COE-TargetFlat/binaries/jars/CAST-DeliveryEngineCLI.tests.jar"/>
 	<classpathentry kind="lib" path="/CAST-COE-TargetFlat/binaries/jars/CAST-Techno-Microsoft.jar" sourcepath="/CAST-COE-TargetFlat/binaries/jars/CAST-Techno-Microsoft.sources.jar"/>
 	<classpathentry kind="lib" path="/CAST-COE-TargetFlat/binaries/3rdParties/java/binaries/easymock-3.1/easymock-3.1.jar"/>
+	<classpathentry kind="lib" path="/CAST-COE-TargetFlat/binaries/3rdParties/java/binaries/maven-artifact-3.0.5/maven-artifact-3.0.5.jar"/>
 	<classpathentry kind="lib" path="/CAST-COE-TargetFlat/binaries/jars/CAST-Utilities.tests.jar"/>
 	<classpathentry kind="lib" path="/CAST-COE-TargetFlat/binaries/jars/CAST-DeliveryEngine.tests.jar"/>
 	<classpathentry kind="lib" path="/CAST-COE-TargetFlat/binaries/jars/CAST-Junit.tests.jar"/>
