@@ -244,6 +244,7 @@ public class CompileFile extends Compile {
 			else
 			{
 				macroName = values[0];
+				macroValue = "";
 			}
 		}
 		else
