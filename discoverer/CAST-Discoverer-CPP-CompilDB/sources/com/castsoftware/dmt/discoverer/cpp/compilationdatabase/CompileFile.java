@@ -250,6 +250,8 @@ public class CompileFile extends Compile {
 		else
 		{
 			macroName = macro;
+			//Setting value as 1 if macro not containing "=" as per doc https://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html#Preprocessor-Options
+			macroValue = "1";
 		}
 
 		if (getMacro(macroName) == null)
