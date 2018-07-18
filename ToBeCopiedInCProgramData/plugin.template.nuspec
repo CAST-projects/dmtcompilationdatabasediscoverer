@@ -8,9 +8,9 @@
     <owners>CAST</owners>
     <licenseUrl>https://help.castsoftware.com/hc/en-us/articles/212612648-AIP-Extension-License</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectUrl>http://doc.castsoftware.com/display/DOCEXT/CPP+Compilation+Database+Discoverer+1.0</projectUrl>
-    <releaseNotes>https://github.com/CAST-projects/dmtcompilationdatabasediscoverer/wiki</releaseNotes>
-    <description>Support for discovering C/C++ Compilation Database projects. It should be used when the source is extracted from a build chain where the compile_commands.json are generated.</description>
+    <projectUrl>http://doc.castsoftware.com/display/DOCEXT/CPP+Compilation+Database+Discoverer+1.1</projectUrl>
+    <releaseNotes>https://doc.castsoftware.com/display/DOCEXT/CPP+Compilation+Database+Discoverer+1.1</releaseNotes>
+    <description>Support for discovering C/C++ JSON Compilation Database projects. It should be used when the source is extracted from a build chain where the compile_commands.json are generated.</description>
     <dependencies>
       <dependency id="CAIP" version="8.2.0"/>
     </dependencies>
