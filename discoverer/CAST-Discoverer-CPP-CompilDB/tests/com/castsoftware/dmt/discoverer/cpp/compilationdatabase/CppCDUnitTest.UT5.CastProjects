@@ -21,7 +21,7 @@
    </Language>
   </Languages>
   <Options>
-   <Option name="DEV_DOCS"/>
+   <Option name="DEV_DOCS" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="V2_6_0_sprint2/build/nacre_info-V2-6-0-rc3/src/rock/qtcomponents/moc_QTreeNodeCanvas.cxx" languageId="3" sourceFileSize="0">

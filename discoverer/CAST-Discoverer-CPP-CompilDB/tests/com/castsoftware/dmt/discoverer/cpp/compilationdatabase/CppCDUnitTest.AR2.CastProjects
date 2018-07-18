@@ -22,13 +22,13 @@
    </Language>
   </Languages>
   <Options>
-   <Option name="_ISOC99_SOURCE"/>
+   <Option name="_ISOC99_SOURCE" value="1"/>
    <Option name="_FILE_OFFSET_BITS" value="64"/>
-   <Option name="_LARGEFILE_SOURCE"/>
+   <Option name="_LARGEFILE_SOURCE" value="1"/>
    <Option name="_POSIX_C_SOURCE" value="200112"/>
    <Option name="_XOPEN_SOURCE" value="600"/>
-   <Option name="ZLIB_CONST"/>
-   <Option name="HAVE_AV_CONFIG_H"/>
+   <Option name="ZLIB_CONST" value="1"/>
+   <Option name="HAVE_AV_CONFIG_H" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="libavdevice/alldevices.c" languageId="1" sourceFileSize="0">

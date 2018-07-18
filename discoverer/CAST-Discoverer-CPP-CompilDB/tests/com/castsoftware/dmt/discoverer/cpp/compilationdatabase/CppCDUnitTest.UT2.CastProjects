@@ -24,7 +24,7 @@
    <Option name="__STDC_LIMIT_MACROS" value="1"/>
    <Option name="__STDC_CONSTANT_MACROS" value="1"/>
    <Option name="__STDC_FORMAT_MACROS" value="1"/>
-   <Option name="NDEBUG"/>
+   <Option name="NDEBUG" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="Soter/src/llvm/IR/IRBuilder.cpp" languageId="2" sourceFileSize="0">
@@ -58,7 +58,7 @@
    <Option name="__STDC_LIMIT_MACROS" value="1"/>
    <Option name="__STDC_CONSTANT_MACROS" value="1"/>
    <Option name="__STDC_FORMAT_MACROS" value="1"/>
-   <Option name="NDEBUG"/>
+   <Option name="NDEBUG" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="Soter/src/llvm/Analysis/ProfileDataLoader.cpp" languageId="2" sourceFileSize="0">
@@ -94,7 +94,7 @@
    <Option name="__STDC_LIMIT_MACROS" value="1"/>
    <Option name="__STDC_CONSTANT_MACROS" value="1"/>
    <Option name="__STDC_FORMAT_MACROS" value="1"/>
-   <Option name="NDEBUG"/>
+   <Option name="NDEBUG" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="Soter/src/llvm/Target/X86/MCTargetDesc/X86MCTargetDesc.cpp" languageId="2" sourceFileSize="0">

@@ -25,21 +25,21 @@
    <Option name="VOS_OS_VER" value="VOS_LINUX"/>
    <Option name="VOS_CPU_TYPE" value="VOS_ARM"/>
    <Option name="VOS_HARDWARE_PLATFORM" value="VOS_ARM"/>
-   <Option name="_OSP_DOPRA_V2"/>
-   <Option name="LINUX_NE"/>
-   <Option name="_EDT_FOR_LINUC_"/>
-   <Option name="TCPIP_DOUBLESOCK"/>
-   <Option name="_SW_DOPRA_VOS"/>
-   <Option name="PLATFORM_VISP"/>
+   <Option name="_OSP_DOPRA_V2" value="1"/>
+   <Option name="LINUX_NE" value="1"/>
+   <Option name="_EDT_FOR_LINUC_" value="1"/>
+   <Option name="TCPIP_DOUBLESOCK" value="1"/>
+   <Option name="_SW_DOPRA_VOS" value="1"/>
+   <Option name="PLATFORM_VISP" value="1"/>
    <Option name="TCPIP_NOVRP_LINUX" value="1"/>
-   <Option name="_SUPPORT_RTN950N_"/>
-   <Option name="_SUPPORT_HBU_"/>
-   <Option name="_SUPPORT_NE_USB_"/>
-   <Option name="PTC_DB_SELF_RANGE"/>
-   <Option name="TCPIP_DOPRA_V2"/>
-   <Option name="PTC_FILE_STUB_DRV"/>
-   <Option name="_USE_PERMAP_VER2"/>
-   <Option name="NDEBUG"/>
+   <Option name="_SUPPORT_RTN950N_" value="1"/>
+   <Option name="_SUPPORT_HBU_" value="1"/>
+   <Option name="_SUPPORT_NE_USB_" value="1"/>
+   <Option name="PTC_DB_SELF_RANGE" value="1"/>
+   <Option name="TCPIP_DOPRA_V2" value="1"/>
+   <Option name="PTC_FILE_STUB_DRV" value="1"/>
+   <Option name="_USE_PERMAP_VER2" value="1"/>
+   <Option name="NDEBUG" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="TD/TD/PTC/code/neptc/protocol/source/CPtcLagMwPgResMgr.cpp" languageId="2" sourceFileSize="0">

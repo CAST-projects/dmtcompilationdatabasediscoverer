@@ -23,10 +23,10 @@
   </Languages>
   <Options>
    <Option name="UTFP_VERSION" value="V1_0_0"/>
-   <Option name="_64BIT_"/>
-   <Option name="OS_IS_LINUX"/>
-   <Option name="DATABASE_IS_DB2"/>
-   <Option name="_DEBUG"/>
+   <Option name="_64BIT_" value="1"/>
+   <Option name="OS_IS_LINUX" value="1"/>
+   <Option name="DATABASE_IS_DB2" value="1"/>
+   <Option name="_DEBUG" value="1"/>
    <Option name="__x86_64" value="1"/>
    <Option name="__FLT_EVAL_METHOD__" value="0"/>
    <Option name="__FLT_EPSILON__" value="1.19209290e-7F"/>
@@ -64,8 +64,8 @@
    <Option name="_GNU_SOURCE" value="1"/>
    <Option name="__FLT_MIN_10_EXP__" value="(-37)"/>
    <Option name="__WCHAR_MAX__" value="2147483647"/>
-   <Option name="__LDBL_HAS_DENORM__" value="1"/>
    <Option name="__GNUC_PATCHLEVEL__" value="4"/>
+   <Option name="__LDBL_HAS_DENORM__" value="1"/>
    <Option name="__GXX_ABI_VERSION" value="1002"/>
    <Option name="__DEC32_SUBNORMAL_MIN__" value="0.000001E-95DF"/>
    <Option name="__SIZEOF_POINTER__" value="8"/>

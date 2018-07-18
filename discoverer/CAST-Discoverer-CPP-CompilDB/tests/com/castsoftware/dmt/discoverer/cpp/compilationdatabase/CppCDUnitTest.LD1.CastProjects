@@ -22,16 +22,16 @@
    </Language>
   </Languages>
   <Options>
-   <Option name="DEV_DOCS"/>
-   <Option name="QT_CORE_LIB"/>
-   <Option name="QT_GUI_LIB"/>
-   <Option name="QT_NO_DEBUG"/>
-   <Option name="QT_SCRIPTTOOLS_LIB"/>
-   <Option name="QT_SCRIPT_LIB"/>
-   <Option name="QT_TEST_LIB"/>
-   <Option name="QT_THREAD_SUPPORT"/>
-   <Option name="QT_XML_LIB"/>
-   <Option name="XERCES2_PARSER"/>
+   <Option name="DEV_DOCS" value="1"/>
+   <Option name="QT_CORE_LIB" value="1"/>
+   <Option name="QT_GUI_LIB" value="1"/>
+   <Option name="QT_NO_DEBUG" value="1"/>
+   <Option name="QT_SCRIPTTOOLS_LIB" value="1"/>
+   <Option name="QT_SCRIPT_LIB" value="1"/>
+   <Option name="QT_TEST_LIB" value="1"/>
+   <Option name="QT_THREAD_SUPPORT" value="1"/>
+   <Option name="QT_XML_LIB" value="1"/>
+   <Option name="XERCES2_PARSER" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="composantes/Nacre_info/src/srv_donnees/FileTransferSrvDonRef.cc" languageId="1" sourceFileSize="0">
@@ -110,16 +110,16 @@
    </Language>
   </Languages>
   <Options>
-   <Option name="DEV_DOCS"/>
-   <Option name="QT_CORE_LIB"/>
-   <Option name="QT_GUI_LIB"/>
-   <Option name="QT_NO_DEBUG"/>
-   <Option name="QT_SCRIPTTOOLS_LIB"/>
-   <Option name="QT_SCRIPT_LIB"/>
-   <Option name="QT_TEST_LIB"/>
-   <Option name="QT_THREAD_SUPPORT"/>
-   <Option name="QT_XML_LIB"/>
-   <Option name="XERCES2_PARSER"/>
+  <Option name="DEV_DOCS" value="1"/>
+   <Option name="QT_CORE_LIB" value="1"/>
+   <Option name="QT_GUI_LIB" value="1"/>
+   <Option name="QT_NO_DEBUG" value="1"/>
+   <Option name="QT_SCRIPTTOOLS_LIB" value="1"/>
+   <Option name="QT_SCRIPT_LIB" value="1"/>
+   <Option name="QT_TEST_LIB" value="1"/>
+   <Option name="QT_THREAD_SUPPORT" value="1"/>
+   <Option name="QT_XML_LIB" value="1"/>
+   <Option name="XERCES2_PARSER" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="composantes/Nacre_info/src/admin/adminListWidget.cc" languageId="1" sourceFileSize="0">
@@ -206,16 +206,16 @@
    </Language>
   </Languages>
   <Options>
-   <Option name="DEV_DOCS"/>
-   <Option name="QT_CORE_LIB"/>
-   <Option name="QT_GUI_LIB"/>
-   <Option name="QT_NO_DEBUG"/>
-   <Option name="QT_SCRIPTTOOLS_LIB"/>
-   <Option name="QT_SCRIPT_LIB"/>
-   <Option name="QT_TEST_LIB"/>
-   <Option name="QT_THREAD_SUPPORT"/>
-   <Option name="QT_XML_LIB"/>
-   <Option name="XERCES2_PARSER"/>
+   <Option name="DEV_DOCS" value="1"/>
+   <Option name="QT_CORE_LIB" value="1"/>
+   <Option name="QT_GUI_LIB" value="1"/>
+   <Option name="QT_NO_DEBUG" value="1"/>
+   <Option name="QT_SCRIPTTOOLS_LIB" value="1"/>
+   <Option name="QT_SCRIPT_LIB" value="1"/>
+   <Option name="QT_TEST_LIB" value="1"/>
+   <Option name="QT_THREAD_SUPPORT" value="1"/>
+   <Option name="QT_XML_LIB" value="1"/>
+   <Option name="XERCES2_PARSER" value="1"/>
   </Options>
   <Sources>
    <SourceFile sourceFileRef="composantes/Nacre_info/src/admin/MainAdmin.cpp" languageId="2" sourceFileSize="0">

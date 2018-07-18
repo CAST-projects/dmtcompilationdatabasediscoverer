@@ -22,8 +22,8 @@
   </Languages>
   <Options>
    <Option name="_FILE_OFFSET_BITS" value="64"/>
-   <Option name="NDEBUG"/>
-   <Option name="_LARGEFILE64_SOURCE"/>
+   <Option name="NDEBUG" value="1"/>
+   <Option name="_LARGEFILE64_SOURCE" value="1"/>
    <Option name="MSIEVE_SVN_VERSION" value="1003M"/>
   </Options>
   <Sources>
@@ -66,8 +66,8 @@
   </Languages>
   <Options>
    <Option name="_FILE_OFFSET_BITS" value="64"/>
-   <Option name="NDEBUG"/>
-   <Option name="_LARGEFILE64_SOURCE"/>
+   <Option name="NDEBUG" value="1"/>
+   <Option name="_LARGEFILE64_SOURCE" value="1"/>
    <Option name="MSIEVE_SVN_VERSION" value="1003M"/>
   </Options>
   <Sources>
