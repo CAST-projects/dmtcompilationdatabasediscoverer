@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>com.castsoftware.dmtcppcompilationdatabasediscoverer</id>
-    <version>_VERSION_-build_BUILDNO_</version>
+    <version>1.1.0-build_BUILDNO_</version>
     <title>CPP Compilation Database Discoverer</title>
     <authors>CAST Product</authors>
     <owners>CAST</owners>
@@ -16,9 +16,4 @@
     </dependencies>
 		<tags>DMT DISCOVER CPP CAIP8.2</tags>		
  </metadata>
-  <files>
-    <file src="TOOLS\**" target="TOOLS" />    
-    <file src="CPP-CompilationDatabase Technology Extension Version.txt" target="CPP-CompilationDatabase Technology Extension Version.txt" />    
-    <file src="readme.html" target="readme.html" />    
-  </files>  
 </package>
