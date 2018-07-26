@@ -1,0 +1,41 @@
+[
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-O2", 
+            "-std=c++11", 
+            "-o", 
+            "main.o", 
+            "main.cpp"
+        ], 
+        "directory": "/home/yle/tiny-c2", 
+        "file": "main.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-O2", 
+            "-std=c++11", 
+            "-o", 
+            "a.o", 
+            "a.cpp"
+        ], 
+        "directory": "/home/yle/tiny-c2", 
+        "file": "a.cpp"
+    }, 
+    {
+        "arguments": [
+            "c++", 
+            "-c", 
+            "-O2", 
+            "-std=c++11", 
+            "-o", 
+            "b.o", 
+            "b.cpp"
+        ], 
+        "directory": "/home/yle/tiny-c2", 
+        "file": "b.cpp"
+    }
+]
