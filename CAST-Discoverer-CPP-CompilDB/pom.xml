@@ -95,6 +95,7 @@
         <version>2.18.1</version>
         <configuration>
           <useSystemClassLoader>false</useSystemClassLoader>
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
     </plugins>
