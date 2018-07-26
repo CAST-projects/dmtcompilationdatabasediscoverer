@@ -5,7 +5,13 @@
 @echo %LOGDEBUG%
 SetLocal EnableDelayedExpansion
 
+set ENGTOOLS=\\productfs01\engtools
+set EXTERNAL_TOOLS=%ENGTOOLS%\external_tools\win64
+set JAVATOOL=%ENGTOOLS%\external_tools\java\java64\jdk1.8.0_121\bin
+set KEYSTORE=%ENGTOOLS%\certificates\certif_02_09_2021.jks
+set OLDKEYSTORE=%ENGTOOLS%\certificates\certif_2015-12-31.jks
 set WORKSPACE=%cd%
+
 for %%a in (%0) do set CMDDIR=%%~dpa
 for %%a in (%0) do set CMDNAME=%%~na
 
@@ -86,6 +92,16 @@ robocopy %ROBOPT% %SRC_DIR%\%PROJNAME%\target %PACK_DIR%\TOOLS\Plugins\%EXTNAME%
 if errorlevel 8 goto endclean
 
 ren %PACK_DIR%\TOOLS\Plugins\%EXTNAME%-%EXTVERS%\%EXTNAME%-%EXTVERS%.jar %EXTNAME%-%EXTVERS%.mda
+if errorlevel 1 goto endclean
+
+
+set CMD=%JAVATOOL%\jarsigner -keystore %KEYSTORE% -storepass castcast -tsa http://timestamp.comodoca.com -signedjar %PACK_DIR%\TOOLS\Plugins\%EXTNAME%-%EXTVERS%\%EXTNAME%-%EXTVERS%.mda.signed_SHA256 %PACK_DIR%\TOOLS\Plugins\%EXTNAME%-%EXTVERS%\%EXTNAME%-%EXTVERS%.mda cast
+echo Executing %CMD%
+call %CMD%
+if errorlevel 1 goto endclean
+set CMD=%JAVATOOL%\jarsigner -keystore %OLDKEYSTORE% -storepass castcast -signedjar %PACK_DIR%\TOOLS\Plugins\%EXTNAME%-%EXTVERS%\%EXTNAME%-%EXTVERS%.mda.signed_SHA1 -digestalg SHA1 %PACK_DIR%\TOOLS\Plugins\%EXTNAME%-%EXTVERS%\%EXTNAME%-%EXTVERS%.mda cast
+echo Executing %CMD%
+call %CMD%
 if errorlevel 1 goto endclean
 
 :: ========================================================================================
