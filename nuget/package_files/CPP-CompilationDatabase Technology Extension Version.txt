@@ -1,1 +1,0 @@
-This is the Extension for CPP provided to discover Compilation Database projects, version VERSION, build BUILDNO
